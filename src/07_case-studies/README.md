@@ -41,7 +41,11 @@ Each case study follows this structure:
 - `low-level-design.md` - Detailed design of components
 - `scalability.md` - Scaling strategies and considerations
 - `trade-offs.md` - Design decisions and their trade-offs
-- `diagrams/` - Case study specific diagrams (C4, sequence, architecture)
+- `diagrams/` - Case study specific diagrams
+  - `context-diagram.md` - C4 Level 1: System context
+  - `container-diagram.md` - C4 Level 2: Container architecture
+  - `component-diagram.md` - C4 Level 3: Component details
+  - `sequence-diagrams/` - Interaction flows and sequences
 
-**Note**: Diagrams are co-located with each case study for better organization and maintainability. The main `src/diagrams/` folder is reserved for generic/shared diagrams that apply across multiple case studies.
+**Note**: Diagrams are co-located with each case study for better organization and maintainability. Each case study should have its own `diagrams/` folder containing all diagrams specific to that case study.
 

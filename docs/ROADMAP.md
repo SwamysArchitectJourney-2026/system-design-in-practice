@@ -80,6 +80,6 @@ This roadmap outlines the learning path and content organization for mastering s
 
 1. Complete Phase 1 content (src/principles/)
 2. Start with first case study: **URL Shortener** (src/case-studies/url-shortener/)
-3. Add diagrams and visualizations (src/diagrams/)
+3. Add diagrams and visualizations (within each case study's diagrams/ folder)
 4. Expand with cloud-native perspectives (Azure, AWS)
 

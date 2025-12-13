@@ -115,10 +115,6 @@ system-design-in-practice/
 │   │   ├── aws-outage.md
 │   │   └── lessons-learned.md
 │   │
-│   ├── diagrams/                 # Architecture diagrams
-│   │   ├── c4/
-│   │   └── sequence/
-│   │
 │   └── references/               # Learning resources
 │       ├── books.md
 │       ├── papers.md

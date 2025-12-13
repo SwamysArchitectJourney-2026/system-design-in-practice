@@ -34,11 +34,12 @@ This document provides a comprehensive index of all topics covered in this repos
 
 ## Foundational Concepts
 
-- [Abstractions in System Design](../foundations/abstractions.md)
-- [Network Abstractions: RPC](../foundations/network-abstractions.md)
-- [Consistency Models](../foundations/consistency-models.md)
-- [Failure Models](../foundations/failure-models.md)
-- [Back-of-the-Envelope Calculations](../foundations/back-of-envelope.md)
+- [Abstractions in System Design](../03_foundations/abstractions.md)
+- [Network Abstractions: RPC](../03_foundations/network-abstractions.md)
+- [Consistency Models](../03_foundations/consistency-models.md)
+- [Failure Models](../03_foundations/failure-models.md)
+- [Back-of-the-Envelope Calculations](../03_foundations/back-of-envelope.md)
+- [C4 Model for System Design](../03_foundations/06_c4-diagrams.md)
 
 ## System Design Principles
 
