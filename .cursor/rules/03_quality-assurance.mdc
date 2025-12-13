@@ -9,7 +9,7 @@
 
 **Before ANY content creation or modification**:
 
-### Content Quality (Prompt Engineering Playbook Standards)
+### Content Quality (System Design in Practice Standards)
 
 **APPLICABILITY**: 
 - **Case Study Documentation** (`src/07_case-studies/`): Apply zero-copy policy, but YAML frontmatter and strict line limits are not required

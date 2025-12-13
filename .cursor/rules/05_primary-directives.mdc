@@ -57,7 +57,7 @@ See: `01_educational-content-rules.mdc` for complete details and applicability.
 
 1. ✅ **Check for `00_` prefix**: **NEVER ALLOWED** - Use `01_` instead
 2. ✅ **Verify scope**: Rule applies to **ALL files** including:
-   - Educational content (`01_Reference/`, `02_Learning/`)
+   - Educational content (`src/01_introduction/`, `src/02_interview-prep/`, etc.)
    - Documentation files (`docs/`)
    - Any numbered files anywhere in repository
 3. ✅ **Quick validation**: Run `Get-ChildItem -Recurse -Filter "*00_*"` to find violations

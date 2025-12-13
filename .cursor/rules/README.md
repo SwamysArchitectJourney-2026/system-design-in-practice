@@ -13,7 +13,7 @@ This directory contains modular rule files for Cursor AI, following the recommen
 
 **Priority**: MANDATORY  
 **Content**: Zero-Copy Policy, Transformative Workflow, 25-minute segments, metadata requirements, educational excellence standards  
-**Applicability**: Rules apply differently to playbook documentation vs. educational content (see rule file for details)
+**Applicability**: Rules apply differently to case study documentation vs. educational content (see rule file for details)
 
 ### `02_repository-structure.mdc`
 

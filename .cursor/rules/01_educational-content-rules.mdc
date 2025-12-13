@@ -121,7 +121,7 @@
 **APPLICABILITY**: These metadata fields are RECOMMENDED for educational content files in `src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, and `src/08_failures/` directories (when content is added).
 
 **NOT REQUIRED** for:
-- Playbook documentation files (`playbook/` directory)
+- Case study files (`src/07_case-studies/` directory)
 - Code examples (`src/` directory)
 - Infrastructure documentation (`infra/` directory)
 - General documentation (`docs/` directory)
@@ -467,7 +467,7 @@ Before committing:
 
 **APPLICABILITY**: This review process applies to educational content files (`src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, `src/08_failures/`).
 
-**For Playbook Documentation**: Review for content quality, accuracy, and consistency, but YAML frontmatter and strict line limits are not required.
+**For Case Study Documentation**: Review for content quality, accuracy, and consistency, but YAML frontmatter and strict line limits are not required.
 
 **MANDATORY**: All content in `src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, and `src/08_failures/` folders must undergo comprehensive review using CoT (Chain-of-Thought), ReAct (Reasoning + Acting), and systematic reasoning.
 

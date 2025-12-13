@@ -40,13 +40,13 @@ Supported languages: `text`, `mermaid`, `bash`, `powershell`, `json`, `yaml`, `p
 
 ### Applicability
 
-**REQUIRED FOR**: Educational content files in `01_Reference/`, `02_Learning/`, and `03_Interview-Prep/` directories.
+**RECOMMENDED FOR**: Educational content files in `src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, and `src/08_failures/` directories (when content is added).
 
 **NOT REQUIRED FOR**:
-- Playbook documentation files (`playbook/` directory)
-- Code examples (`src/` directory)
-- Infrastructure documentation (`infra/` directory)
+- Case study files (`src/07_case-studies/` directory)
+- Reference materials (`src/references/` directory)
 - General documentation (`docs/` directory)
+- README files
 
 ### Required Structure
 
