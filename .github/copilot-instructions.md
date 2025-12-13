@@ -251,6 +251,126 @@ Before publishing any content:
 
 ---
 
+## 🧠 Reasoning Frameworks for Content Development
+
+Apply structured reasoning when creating and reviewing system design content.
+
+### Chain-of-Thought (CoT) Process
+
+When creating system design content, follow this explicit reasoning chain:
+
+1. **UNDERSTAND**: What problem does this system solve?
+   - Define the core user needs and business goals
+   - Identify the scale and constraints
+
+2. **DECOMPOSE**: What are the core components?
+   - Break down into functional building blocks
+   - Identify data flows and dependencies
+
+3. **ANALYZE**: What are the trade-offs for each approach?
+   - Consider consistency vs availability
+   - Evaluate latency vs throughput
+   - Assess cost vs performance
+
+4. **SYNTHESIZE**: How do components work together?
+   - Draw architecture diagrams
+   - Document interaction patterns
+
+5. **VALIDATE**: Does this meet requirements?
+   - Check against functional requirements
+   - Verify non-functional constraints
+
+### ReAct (Reason + Act) Pattern
+
+Use this iterative pattern for complex design decisions:
+
+```text
+THOUGHT: Why is this design decision optimal for the given constraints?
+ACTION:  Document the decision with rationale and Mermaid diagram
+OBSERVE: Does this align with quality standards and learning objectives?
+REPEAT:  Until all requirements are covered with clear reasoning
+```
+
+**Example Application**:
+
+```text
+THOUGHT: Users need low-latency access to frequently requested data
+ACTION:  Add distributed cache layer between API and database
+OBSERVE: Cache hit ratio improves latency; need to address cache invalidation
+THOUGHT: Cache invalidation is complex; what strategy fits this use case?
+ACTION:  Document write-through vs write-behind trade-offs
+OBSERVE: Write-through ensures consistency but adds write latency
+```
+
+### Reasoning in Educational Content
+
+When writing case studies and explanations, make the thought process explicit:
+
+#### ✅ DO: Show the "Why" Behind Decisions
+
+```markdown
+## Design Decision: Choosing a Database
+
+**Context**: We need to store user profiles with flexible schema requirements.
+
+**Reasoning Chain**:
+1. User profiles have varying attributes across regions (flexible schema needed)
+2. Read-heavy workload (80% reads, 20% writes)
+3. Need horizontal scaling for millions of users
+4. Strong consistency not required for profile data
+
+**Decision**: Document database (e.g., MongoDB, Cosmos DB)
+**Trade-off**: Eventual consistency acceptable for faster reads
+```
+
+#### ❌ AVOID: Stating Facts Without Reasoning
+
+```markdown
+## Design Decision: Choosing a Database
+Use MongoDB for user profiles.  ← No reasoning provided
+```
+
+---
+
+## 📋 Content Review with Reasoning
+
+### Review Checklist (Reasoning-Based)
+
+When reviewing content, apply structured reasoning:
+
+#### Logical Flow Assessment (CoT)
+
+- [ ] Does the content follow a logical progression from problem to solution?
+- [ ] Are concepts introduced before they're used?
+- [ ] Is each design decision backed by explicit reasoning?
+- [ ] Are trade-offs clearly articulated (not just mentioned)?
+
+#### Depth of Reasoning (ReAct)
+
+- [ ] Can a reader understand WHY this approach was chosen?
+- [ ] Are alternative approaches mentioned with reasons for rejection?
+- [ ] Is the reasoning chain traceable from requirements to implementation?
+- [ ] Would an interviewer accept this reasoning in a system design interview?
+
+#### Educational Effectiveness
+
+- [ ] Does the content teach HOW to think, not just WHAT to build?
+- [ ] Are there explicit "Thought Process" sections for complex decisions?
+- [ ] Can a learner apply this reasoning to similar problems?
+- [ ] Are common misconceptions addressed with corrective reasoning?
+
+### Review Questions by Content Type
+
+| Content Type | Key Reasoning Questions |
+|--------------|------------------------|
+| **Requirements** | Why these requirements? What drove the priorities? |
+| **High-Level Design** | Why this architecture? What alternatives were considered? |
+| **Low-Level Design** | Why these data structures/algorithms? What are the trade-offs? |
+| **Scalability** | Why this scaling strategy? What are the bottlenecks and mitigations? |
+| **Trade-offs** | Is the reasoning chain complete? Are edge cases covered? |
+
+---
+
 ## 📝 Local Quality Checks
 
 Before committing changes:
