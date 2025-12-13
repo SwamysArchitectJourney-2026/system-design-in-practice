@@ -121,8 +121,7 @@ system-design-in-practice/
 │       └── tools.md
 │
 ├── docs/
-│   ├── ROADMAP.md                 # Learning path and roadmap
-│   └── architecture-diagrams/
+│   └── ROADMAP.md                 # Learning path and roadmap
 │
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
