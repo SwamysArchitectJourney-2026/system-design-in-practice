@@ -386,16 +386,7 @@ class ProductFactory:
 
 ### Learning Paths Creation Policy
 
-**Important**: `Learning/` folder structure is created **as needed** when content is ready.
-
-**Policy**:
-- ✅ Create `Learning/` folders when you have compliant content ready to add
-- ✅ Empty folders are acceptable - they indicate planned content areas
-- ❌ Do not create extensive empty folder hierarchies in advance
-- ✅ Add content progressively following Educational Content Rules
-- ✅ Create folder structure incrementally as learning content is developed
-
-**Rationale**: This prevents creating empty structures that may never be populated, while allowing for planned learning paths to be established when content is ready.
+**Note**: The repository structure is already established with numbered folders (`01_introduction/` through `08_failures/`). Content should be added progressively following Educational Content Rules.
 
 ---
 
