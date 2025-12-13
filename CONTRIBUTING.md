@@ -1,6 +1,6 @@
-# Contributing to Prompt Engineering Playbook
+# Contributing to System Design in Practice
 
-Thank you for your interest in contributing to the Prompt Engineering Playbook! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to System Design in Practice! This document provides guidelines and instructions for contributing.
 
 ## Table of Contents
 
@@ -21,14 +21,14 @@ This project adheres to a Code of Conduct that all contributors are expected to 
 2. **Clone your fork** locally:
 
    ```bash
-   git clone git@github.com:YOUR_USERNAME/prompt-engineering-playbook.git
-   cd prompt-engineering-playbook
+   git clone git@github.com:YOUR_USERNAME/system-design-in-practice.git
+   cd system-design-in-practice
    ```
 
 3. **Set up the development environment**:
-   - For Python examples: Create a virtual environment and install dependencies
-   - For C# examples: Ensure .NET SDK is installed
-   - For Postman: Import the collection and environment files
+   - For diagrams: Install diagramming tools (Mermaid, PlantUML, or draw.io)
+   - For documentation: Use a Markdown editor with preview support
+   - For code examples: Set up appropriate language environments if contributing code samples
 
 ## How to Contribute
 
@@ -79,26 +79,19 @@ git checkout -b task/implement-csharp
 
 ## Coding Standards
 
-### Python
+### Diagrams
 
-- Follow PEP 8 style guidelines
-- Use type hints where appropriate
-- Include docstrings for functions and classes
-- Run `flake8` and `pytest` before committing
+- Use Mermaid, PlantUML, or draw.io for architecture diagrams
+- Follow C4 model conventions for system context and container diagrams
+- Include sequence diagrams for complex interactions
+- Ensure diagrams are clear and well-labeled
 
-### C# (CSharp)
+### Code Examples
 
-- Follow C# coding conventions
-- Use XML documentation comments
-- Ensure code compiles with zero warnings
-- Run `dotnet test` before committing
-
-### Postman
-
-- Follow Postman collection structure guidelines
-- Include clear descriptions for requests
-- Use environment variables for configuration
-- Test collections with Newman before committing
+- Include code examples in multiple languages when relevant (Python, Java, Go, etc.)
+- Follow language-specific style guidelines
+- Include comments explaining design decisions
+- Keep examples simple and focused on the concept being demonstrated
 
 ### Markdown Documentation
 
@@ -139,4 +132,4 @@ If you have questions, please:
 - Check existing documentation
 - Contact maintainers
 
-Thank you for contributing to the Prompt Engineering Playbook!
+Thank you for contributing to System Design in Practice!
