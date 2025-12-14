@@ -75,5 +75,5 @@ Service2 → TokenSvc → MySQL
 
 ---
 
-*Previous: [Redirection Flow](./redirection-flow.md)*
+*Previous: [Redirection Flow](./02_redirection-flow.md)*
 

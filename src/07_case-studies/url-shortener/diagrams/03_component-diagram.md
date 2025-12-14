@@ -85,5 +85,5 @@ C4Component
 
 ---
 
-*Previous: [Container Diagram](./container-diagram.md) | Next: [Sequence Diagrams](./sequence-diagrams/)*
+*Previous: [Container Diagram](./02_container-diagram.md) | Next: [Sequence Diagrams](./sequence-diagrams/)*
 

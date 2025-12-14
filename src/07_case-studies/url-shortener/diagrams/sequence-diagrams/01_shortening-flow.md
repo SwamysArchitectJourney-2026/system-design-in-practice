@@ -75,5 +75,5 @@ User → WebApp → API → Service → TokenMgr → TokenSvc
 
 ---
 
-*Next: [Redirection Flow](./redirection-flow.md)*
+*Next: [Redirection Flow](./02_redirection-flow.md)*
 

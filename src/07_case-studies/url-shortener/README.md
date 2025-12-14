@@ -24,14 +24,14 @@ This case study covers the complete design of a URL shortening service that can 
 All diagrams are located in the [`diagrams/`](./diagrams/) folder:
 
 - **C4 Model Diagrams**:
-  - [Context Diagram](./diagrams/context-diagram.md) - System context and external relationships
-  - [Container Diagram](./diagrams/container-diagram.md) - High-level technical building blocks
-  - [Component Diagram](./diagrams/component-diagram.md) - Internal service components
+  - [Context Diagram](./diagrams/01_context-diagram.md) - System context and external relationships
+  - [Container Diagram](./diagrams/02_container-diagram.md) - High-level technical building blocks
+  - [Component Diagram](./diagrams/03_component-diagram.md) - Internal service components
 
 - **Sequence Diagrams**:
-  - [Shortening Flow](./diagrams/sequence-diagrams/shortening-flow.md) - URL creation flow
-  - [Redirection Flow](./diagrams/sequence-diagrams/redirection-flow.md) - URL access and redirect flow
-  - [Token Range Assignment](./diagrams/sequence-diagrams/token-range-assignment.md) - Token service interaction
+  - [Shortening Flow](./diagrams/sequence-diagrams/01_shortening-flow.md) - URL creation flow
+  - [Redirection Flow](./diagrams/sequence-diagrams/02_redirection-flow.md) - URL access and redirect flow
+  - [Token Range Assignment](./diagrams/sequence-diagrams/03_token-range-assignment.md) - Token service interaction
 
 ## Key Design Highlights
 

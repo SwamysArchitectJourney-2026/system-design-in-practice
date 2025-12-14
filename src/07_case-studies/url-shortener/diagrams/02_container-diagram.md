@@ -100,5 +100,5 @@ C4Container
 
 ---
 
-*Previous: [Context Diagram](./context-diagram.md) | Next: [Component Diagram](./component-diagram.md)*
+*Previous: [Context Diagram](./01_context-diagram.md) | Next: [Component Diagram](./03_component-diagram.md)*
 
