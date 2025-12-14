@@ -145,4 +145,4 @@ Key trade-offs accepted:
 
 ---
 
-*This completes the URL Shortener case study. Review [Requirements](./requirements.md) for functional requirements and [High-Level Design](./high-level-design.md) for architecture overview.*
+*This completes the URL Shortener case study. Review [Requirements](./01_requirements.md) for functional requirements, [Back-of-Envelope](./06_back-of-envelope.md) for capacity planning, [Observability](./07_observability.md) for monitoring, and [Security](./08_security.md) for security considerations.*

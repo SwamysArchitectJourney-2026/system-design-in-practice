@@ -143,4 +143,4 @@ If using MySQL instead of Cassandra:
 
 ---
 
-*For design trade-offs and alternatives, see [Trade-offs](./trade-offs.md).*
+*For design trade-offs and alternatives, see [Trade-offs](./05_trade-offs.md).*

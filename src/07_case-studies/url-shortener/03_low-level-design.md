@@ -142,4 +142,4 @@ def redirect(short_url):
 
 ---
 
-*For scaling strategies and analytics, see [Scalability](./scalability.md). For design trade-offs, see [Trade-offs](./trade-offs.md).*
+*For scaling strategies and analytics, see [Scalability](./04_scalability.md). For design trade-offs, see [Trade-offs](./05_trade-offs.md).*

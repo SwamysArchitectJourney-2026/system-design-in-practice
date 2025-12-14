@@ -1,6 +1,6 @@
 ---
 learning_level: "Intermediate"
-prerequisites: ["03_databases.md"]
+prerequisites: ["03_databases-part1.md"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply decision framework for choosing between relational and non-relational databases"
@@ -8,9 +8,9 @@ learning_objectives:
   - "Design database combinations for complex real-world scenarios"
 related_topics:
   prerequisites:
-    - 03_databases.md
+    - 03_databases-part1.md
   builds_upon:
-    - 03_databases.md
+    - 03_databases-part1.md
   enables:
     - 04_key-value-store.md
   cross_refs: []

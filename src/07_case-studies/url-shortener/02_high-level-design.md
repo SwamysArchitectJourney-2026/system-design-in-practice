@@ -40,24 +40,68 @@ The URL shortening service consists of two main flows:
 
 ```mermaid
 graph TB
-    User[User] --> LB[Load Balancer]
-    LB --> SUS1[Short URL Service Instance 1]
-    LB --> SUS2[Short URL Service Instance 2]
-    LB --> SUS3[Short URL Service Instance N]
+    subgraph "Client Layer"
+        User[User]
+        WebApp[Web Application]
+    end
     
-    SUS1 --> TS[Token Service]
+    subgraph "Edge Layer"
+        CDN[CDN/Edge Cache]
+    end
+    
+    subgraph "API Layer"
+        LB[Load Balancer]
+        API[API Gateway]
+    end
+    
+    subgraph "Application Layer"
+        SUS1[Short URL Service Instance 1]
+        SUS2[Short URL Service Instance 2]
+        SUS3[Short URL Service Instance N]
+        TS[Token Service]
+    end
+    
+    subgraph "Data Layer"
+        Cache[(Redis Cache)]
+        DB[(Cassandra Database)]
+        MySQL[(MySQL Database)]
+    end
+    
+    subgraph "Analytics Layer"
+        Kafka[Kafka]
+        Analytics[Analytics Service]
+    end
+    
+    User --> WebApp
+    User -->|Access Short URL| CDN
+    WebApp --> API
+    CDN -->|Cache Miss| API
+    API --> LB
+    LB --> SUS1
+    LB --> SUS2
+    LB --> SUS3
+    
+    SUS1 --> TS
     SUS2 --> TS
     SUS3 --> TS
     
-    SUS1 --> DB[(Cassandra Database)]
+    SUS1 --> Cache
+    SUS2 --> Cache
+    SUS3 --> Cache
+    
+    SUS1 --> DB
     SUS2 --> DB
     SUS3 --> DB
     
-    TS --> MySQL[(MySQL)]
+    TS --> MySQL
     
-    User -->|Short URL Request| LB
-    LB -->|Redirect| User
+    SUS1 -->|Async Events| Kafka
+    SUS2 -->|Async Events| Kafka
+    SUS3 -->|Async Events| Kafka
+    Kafka --> Analytics
 ```
+
+**Note**: For detailed C4 diagrams and sequence diagrams, see the [diagrams folder](./diagrams/).
 
 ## Request Flows
 
@@ -102,4 +146,4 @@ graph TB
 
 ---
 
-*For detailed implementation of token generation and service design, see [Low-Level Design](./low-level-design.md).*
+*For detailed implementation of token generation and service design, see [Low-Level Design](./03_low-level-design.md).*
