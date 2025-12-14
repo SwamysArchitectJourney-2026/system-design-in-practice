@@ -8,18 +8,22 @@
 ## Non-Functional Requirements
 
 ### Availability
+
 - **High Availability**: Service must be always available (99.9%+ uptime)
 - **No Single Point of Failure**: System must handle component failures gracefully
 
 ### Performance
+
 - **Low Latency**: Response times must be minimal (critical for platforms like social media where URLs are shared frequently)
 - **Fast Redirection**: Short URL resolution and redirection must happen quickly
 
 ### Scalability
+
 - **Handle High Traffic**: System must support traffic from large-scale platforms (millions of requests per second)
 - **Horizontal Scaling**: Must be able to scale by adding more instances
 
 ### Durability
+
 - **Long-Term Storage**: Short URLs must remain valid for extended periods (e.g., 10 years)
 - **Data Persistence**: URL mappings must not be lost
 
@@ -28,17 +32,20 @@
 ### Short URL Length Calculation
 
 The length of short URLs depends on:
+
 - Expected number of unique URLs to be shortened
 - Character set allowed in short URLs
 - Duration URLs need to remain valid
 
 **Character Set**: Typically uses alphanumeric characters:
+
 - Lowercase letters (a-z): 26 characters
 - Uppercase letters (A-Z): 26 characters
 - Numbers (0-9): 10 characters
 - **Total**: 62 characters
 
 **Capacity Calculation**:
+
 - Length 1: 62 unique URLs
 - Length 2: 62² = 3,844 unique URLs
 - Length 6: 62⁶ ≈ 58 billion unique URLs

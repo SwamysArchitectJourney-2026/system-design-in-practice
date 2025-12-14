@@ -31,6 +31,7 @@ The choice between relational (SQL) and non-relational (NoSQL) databases depends
 **When to use**: Financial transactions, inventory management, order processing, or any scenario requiring transactional guarantees.
 
 **Why Relational Databases**:
+
 - ACID properties ensure data consistency
 - Transaction support for multi-step operations
 - Strong referential integrity
@@ -44,6 +45,7 @@ The choice between relational (SQL) and non-relational (NoSQL) databases depends
 **When to use**: User profiles, content metadata, or read-heavy workloads where eventual consistency is acceptable.
 
 **Options**: Either relational or non-relational databases work. Choose based on:
+
 - Team expertise
 - Existing infrastructure
 - Query complexity requirements
@@ -51,16 +53,19 @@ The choice between relational (SQL) and non-relational (NoSQL) databases depends
 ## Unstructured Data: Document Databases
 
 **When to use**: E-commerce catalogs, content management systems, or any scenario with:
+
 - Wide variety of attributes across items
 - Flexible schema requirements
 - Complex queries on nested data
 
 **Characteristics**:
+
 - Store documents (JSON-like structures)
 - Flexible schema per document
 - Optimized for querying nested attributes
 
 **Example Scenario**: E-commerce product catalog where:
+
 - Shirts have attributes: size, color, material
 - Refrigerators have attributes: volume, energy rating, features
 - Milk has attributes: quantity, expiry date
@@ -72,16 +77,19 @@ The choice between relational (SQL) and non-relational (NoSQL) databases depends
 ## Unstructured Data: Columnar Databases
 
 **When to use**: Scenarios with:
+
 - Ever-increasing data volume (growing faster than linear)
 - Limited query types (few, well-defined queries)
 - High write throughput requirements
 
 **Characteristics**:
+
 - Optimized for append-heavy workloads
 - Efficient storage and retrieval of time-ordered data
 - Horizontal scalability
 
 **Example Scenario**: Location tracking system where:
+
 - Drivers continuously send location pings
 - Data volume grows as more drivers join
 - Primary query: "Get all locations for driver X"

@@ -39,6 +39,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **When to use**: Reduce database load, cache frequently accessed data, or store API responses.
 
 **Characteristics**:
+
 - Key-value storage model
 - Fast in-memory access
 - Typically volatile (data can be evicted)
@@ -46,6 +47,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **Common Solutions**: Redis, Memcached, etcd, Hazelcast
 
 **Example Use Cases**:
+
 - Cache database query results
 - Store session data
 - Cache remote API responses to reduce latency
@@ -55,6 +57,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **When to use**: Store large binary files (images, videos, documents) that don't require querying.
 
 **Characteristics**:
+
 - Optimized for large file storage
 - Not designed for querying or indexing
 - Cost-effective for large volumes
@@ -62,6 +65,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **Common Solutions**: Amazon S3, Azure Blob Storage, Google Cloud Storage
 
 **Example Use Cases**:
+
 - Product images in e-commerce platforms
 - Video content for streaming services
 - User-uploaded documents
@@ -73,6 +77,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **When to use**: Full-text search, fuzzy matching, or complex text queries across large datasets.
 
 **Characteristics**:
+
 - Optimized for text indexing and search
 - Support for fuzzy search (handling typos)
 - Not a primary data store (use for search, not as source of truth)
@@ -80,6 +85,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **Common Solutions**: Elasticsearch, Apache Solr (both built on Apache Lucene)
 
 **Example Use Cases**:
+
 - Product search in e-commerce (search by title, description)
 - Movie search by title, genre, cast
 - Location search with fuzzy matching
@@ -91,6 +97,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **When to use**: Store and query metrics, monitoring data, or any data with timestamps as the primary dimension.
 
 **Characteristics**:
+
 - Append-only write pattern (sequential writes)
 - Optimized for time-range queries
 - Efficient compression for time-series data
@@ -98,6 +105,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **Common Solutions**: InfluxDB, OpenTSDB, TimescaleDB
 
 **Example Use Cases**:
+
 - Application metrics (CPU, memory, latency)
 - IoT sensor data
 - Financial tick data
@@ -107,6 +115,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **When to use**: Analytics, reporting, and business intelligence on large historical datasets.
 
 **Characteristics**:
+
 - Designed for analytical queries (OLAP)
 - Not optimized for transactional workloads (OLTP)
 - Handles massive data volumes
@@ -114,6 +123,7 @@ Before diving into traditional databases, consider specialized storage solutions
 **Common Solutions**: Hadoop ecosystem, Amazon Redshift, Google BigQuery
 
 **Example Use Cases**:
+
 - Business analytics and reporting
 - Data mining across company-wide data
 - Historical trend analysis
