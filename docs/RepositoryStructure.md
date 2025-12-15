@@ -100,7 +100,11 @@ system-design-in-practice/
 │   │   └── README.md
 │   │
 │   ├── 07_case-studies/                   # End-to-end case studies
-│   │   ├── url-shortener/                  # Complete case study
+│   │   ├── 01-scalefromzerotomillonusers/ # Scale from zero to million users
+│   │   ├── 02-rate-limiter/               # Rate limiter design
+│   │   ├── 03-consistenthashing/          # Consistent hashing
+│   │   ├── 04-uniqueidgenerator/          # Unique ID generator
+│   │   ├── 05-url-shortener/              # URL Shortener (complete case study)
 │   │   │   ├── 01_requirements.md
 │   │   │   ├── 02_back-of-envelope.md
 │   │   │   ├── 03_high-level-design.md
@@ -118,23 +122,23 @@ system-design-in-practice/
 │   │   │           ├── 01_shortening-flow.md
 │   │   │           ├── 02_redirection-flow.md
 │   │   │           └── 03_token-range-assignment.md
-│   │   ├── youtube/
-│   │   ├── twitter/
-│   │   ├── instagram/
-│   │   ├── uber/
-│   │   ├── whatsapp/
-│   │   ├── google-maps/
-│   │   ├── yelp/
-│   │   ├── quora/
-│   │   ├── newsfeed/
-│   │   ├── web-crawler/
-│   │   ├── livestreaming/
-│   │   ├── videoconferencing/
-│   │   ├── typeahead/
-│   │   ├── google-docs/
-│   │   ├── deployment/
-│   │   ├── payment/
 │   │   ├── chatgpt/
+│   │   ├── deployment/
+│   │   ├── google-docs/
+│   │   ├── google-maps/
+│   │   ├── instagram/
+│   │   ├── livestreaming/
+│   │   ├── newsfeed/
+│   │   ├── payment/
+│   │   ├── quora/
+│   │   ├── twitter/
+│   │   ├── typeahead/
+│   │   ├── uber/
+│   │   ├── videoconferencing/
+│   │   ├── web-crawler/
+│   │   ├── whatsapp/
+│   │   ├── yelp/
+│   │   ├── youtube/
 │   │   └── README.md
 │   │
 │   ├── 08_failures/                       # Real-world failure analysis
