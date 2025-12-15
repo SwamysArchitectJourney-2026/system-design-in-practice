@@ -1,4 +1,0 @@
-# Databases
-
-*Content coming soon...*
-
