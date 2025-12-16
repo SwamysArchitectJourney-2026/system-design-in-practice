@@ -4,31 +4,43 @@ This directory contains end-to-end system design case studies.
 
 ## Available Case Studies
 
+### Fundamentals
+
+- [Scale from Zero to Million Users](./01-scalefromzerotomillonusers/) - *Complete*
+- [Rate Limiter](./02-rate-limiter/) - *Complete*
+- [Consistent Hashing](./03-consistenthashing/) - *Coming soon*
+- [Unique ID Generator](./04-uniqueidgenerator/) - *Coming soon*
+- [URL Shortener (TinyURL)](./05-url-shortener/) - *Complete*
+
 ### Communication & Social
-- [URL Shortener (TinyURL)](./url-shortener/) - *Coming soon*
+
 - [WhatsApp](./whatsapp/) - *Coming soon*
 - [Twitter](./twitter/) - *Coming soon*
 - [Instagram](./instagram/) - *Coming soon*
 - [Newsfeed System](./newsfeed/) - *Coming soon*
 
 ### Media & Content
+
 - [YouTube](./youtube/) - *Coming soon*
 - [Web Crawler](./web-crawler/) - *Coming soon*
 - [Live Streaming](./livestreaming/) - *In Progress*
 - [Video Conferencing](./videoconferencing/) - *In Progress*
 
 ### Services & Platforms
+
 - [Uber](./uber/) - *Coming soon*
 - [Google Maps](./google-maps/) - *Coming soon*
 - [Yelp (Proximity Service)](./yelp/) - *Coming soon*
 - [Quora](./quora/) - *Coming soon*
 
 ### Productivity & Tools
+
 - [Google Docs (Collaborative Editing)](./google-docs/) - *Coming soon*
 - [Typeahead Suggestion](./typeahead/) - *Coming soon*
 - [Deployment System](./deployment/) - *Coming soon*
 
 ### Financial & AI
+
 - [Payment System](./payment/) - *Coming soon*
 - [ChatGPT System](./chatgpt/) - *Coming soon*
 

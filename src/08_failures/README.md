@@ -4,11 +4,11 @@ This section analyzes real-world failures in large-scale distributed systems and
 
 ## Topics
 
-- [Introduction to Distributed System Failures](./introduction.md)
-- [Facebook, WhatsApp, Instagram, Oculus Outage](./facebook-outage.md)
-- [AWS Kinesis Outage](./aws-kinesis-outage.md)
-- [AWS Widespread Outage](./aws-outage.md)
-- [Lessons Learned](./lessons-learned.md)
+- [Introduction to Distributed System Failures](./01_introduction.md)
+- [Facebook, WhatsApp, Instagram, Oculus Outage](./02_facebook-outage.md)
+- [AWS Kinesis Outage](./03_aws-kinesis-outage.md)
+- [AWS Widespread Outage](./04_aws-outage.md)
+- [Lessons Learned](./05_lessons-learned.md)
 
 ---
 

@@ -4,11 +4,11 @@ This section covers the fundamental abstractions and concepts in distributed sys
 
 ## Topics
 
-- [Abstractions in System Design](./abstractions.md)
-- [Network Abstractions: Remote Procedure Calls](./network-abstractions.md)
-- [Spectrum of Consistency Models](./consistency-models.md)
-- [The Spectrum of Failure Models](./failure-models.md)
-- [Back-of-the-Envelope Calculations](./back-of-envelope.md)
+- [Abstractions in System Design](./01_abstractions.md)
+- [Network Abstractions: Remote Procedure Calls](./02_network-abstractions.md)
+- [Spectrum of Consistency Models](./03_consistency-models.md)
+- [The Spectrum of Failure Models](./04_failure-models.md)
+- [Back-of-the-Envelope Calculations](./05_back-of-envelope.md)
 - [C4 Model for System Design](./06_c4-diagrams.md)
 
 ---

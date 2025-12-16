@@ -20,112 +20,129 @@ This document provides a comprehensive index of all topics covered in this repos
 
 ## Introduction & Getting Started
 
-- [Introduction to Modern System Design](../introduction/modern-system-design.md)
-- [Why Learn System Design](../introduction/why-learn-system-design.md)
-- [Course Structure](../introduction/course-structure.md)
+- [Introduction to Modern System Design](01_introduction/01_modern-system-design.md)
+- [Why Learn System Design](01_introduction/02_why-learn-system-design.md)
+- [Course Structure](01_introduction/03_course-structure.md)
 
 ## Interview Preparation
 
-- [Getting Ready for System Design Interviews](../interview-prep/getting-ready.md)
-- [Do's and Don'ts](../interview-prep/dos-and-donts.md)
-- [Preparation Timeline](../interview-prep/preparation-timeline.md)
-- [Mock Interview Strategies](../interview-prep/mock-interviews.md)
-- [AI Evaluation Tools](../interview-prep/ai-evaluation.md)
+- [Getting Ready for System Design Interviews](02_interview-prep/01_getting-ready.md)
+- [Do's and Don'ts](02_interview-prep/02_dos-and-donts.md)
+- [Preparation Timeline](02_interview-prep/03_preparation-timeline.md)
+- [Mock Interview Strategies](02_interview-prep/04_mock-interviews.md)
+- [AI Evaluation Tools](02_interview-prep/05_ai-evaluation.md)
 
 ## Foundational Concepts
 
-- [Abstractions in System Design](../03_foundations/abstractions.md)
-- [Network Abstractions: RPC](../03_foundations/network-abstractions.md)
-- [Consistency Models](../03_foundations/consistency-models.md)
-- [Failure Models](../03_foundations/failure-models.md)
-- [Back-of-the-Envelope Calculations](../03_foundations/back-of-envelope.md)
-- [C4 Model for System Design](../03_foundations/06_c4-diagrams.md)
+- [Abstractions in System Design](03_foundations/01_abstractions.md)
+- [Network Abstractions: RPC](03_foundations/02_network-abstractions.md)
+- [Consistency Models](03_foundations/03_consistency-models.md)
+- [Failure Models](03_foundations/04_failure-models.md)
+- [Back-of-the-Envelope Calculations](03_foundations/05_back-of-envelope.md)
+- [C4 Model for System Design](03_foundations/06_c4-diagrams.md)
 
 ## System Design Principles
 
-- [Availability](../principles/availability.md)
-- [Reliability](../principles/reliability.md)
-- [Scalability](../principles/scalability.md)
-- [Maintainability](../principles/maintainability.md)
-- [Fault Tolerance](../principles/fault-tolerance.md)
-- [Consistency](../principles/consistency.md)
-- [Security](../principles/security.md)
+- [Availability](04_principles/01_availability.md)
+- [Reliability](04_principles/02_reliability.md)
+- [Scalability](04_principles/03_scalability.md)
+- [Maintainability](04_principles/06_maintainability.md)
+- [Fault Tolerance](04_principles/05_fault-tolerance.md)
+- [Consistency](04_principles/04_consistency.md)
+- [Security](04_principles/07_security.md)
 
 ## Building Blocks
 
 ### Core Infrastructure
-- [Domain Name System (DNS)](../building-blocks/dns.md)
-- [Load Balancers](../building-blocks/load-balancers.md)
-- [Databases](../building-blocks/databases.md)
+
+- [Domain Name System (DNS)](05_building-blocks/01_dns.md)
+- [Load Balancers](05_building-blocks/02_load-balancers.md)
+- [Databases](05_building-blocks/03_databases-part1.md)
 
 ### Storage Systems
-- [Key-Value Store](../building-blocks/key-value-store.md)
-- [Object/Blob Storage](../building-blocks/object-storage.md)
-- [Content Delivery Network (CDN)](../building-blocks/cdn.md)
+
+- [Key-Value Store](05_building-blocks/04_key-value-store.md)
+- [Object/Blob Storage](05_building-blocks/11_object-storage.md)
+- [Content Delivery Network (CDN)](05_building-blocks/05_cdn.md)
 
 ### Communication & Messaging
-- [Message Queues](../building-blocks/message-queues.md)
-- [Pub-Sub Systems](../building-blocks/pub-sub.md)
+
+- [Message Queues](05_building-blocks/09_message-queues.md)
+- [Pub-Sub Systems](05_building-blocks/10_pub-sub.md)
 
 ### Specialized Systems
-- [Distributed Cache](../building-blocks/distributed-cache.md)
-- [Sequencer (Unique ID Generator)](../building-blocks/sequencer.md)
-- [Distributed Search](../building-blocks/search.md)
-- [Distributed Logging](../building-blocks/distributed-logging.md)
-- [Distributed Monitoring](../building-blocks/monitoring.md)
-- [Task Scheduler](../building-blocks/task-scheduler.md)
-- [Sharded Counters](../building-blocks/sharded-counters.md)
+
+- [Distributed Cache](05_building-blocks/08_distributed-cache.md)
+- [Sequencer (Unique ID Generator)](05_building-blocks/06_sequencer.md)
+- [Distributed Search](05_building-blocks/12_search.md)
+- [Distributed Logging](05_building-blocks/13_distributed-logging.md)
+- [Distributed Monitoring](05_building-blocks/07_monitoring.md)
+- [Task Scheduler](05_building-blocks/14_task-scheduler.md)
+- [Sharded Counters](05_building-blocks/15_sharded-counters.md)
 
 ## Architectural Patterns
 
-- [Caching Patterns](../patterns/caching.md)
-- [Rate Limiting](../patterns/rate-limiting.md)
-- [Circuit Breaker](../patterns/circuit-breaker.md)
-- [CQRS](../patterns/cqrs.md)
-- [Event-Driven Architecture](../patterns/event-driven.md)
+- [Caching Patterns](06_patterns/01_caching.md)
+- [Rate Limiting](06_patterns/02_rate-limiting.md)
+- [Circuit Breaker](06_patterns/03_circuit-breaker.md)
+- [CQRS](06_patterns/04_cqrs.md)
+- [Event-Driven Architecture](06_patterns/05_event-driven.md)
 
 ## Case Studies
 
+### Fundamentals
+
+- [Scale from Zero to Million Users](07_case-studies/01-scalefromzerotomillonusers/)
+- [Rate Limiter](07_case-studies/02-rate-limiter/)
+- [Consistent Hashing](07_case-studies/03-consistenthashing/)
+- [Unique ID Generator](07_case-studies/04-uniqueidgenerator/)
+- [URL Shortener (TinyURL)](07_case-studies/05-url-shortener/)
+
 ### Communication & Social
-- [URL Shortener (TinyURL)](../07_case-studies/url-shortener/)
-- [WhatsApp](../07_case-studies/whatsapp/)
-- [Twitter](../07_case-studies/twitter/)
-- [Instagram](../07_case-studies/instagram/)
-- [Newsfeed System](../07_case-studies/newsfeed/)
+
+- [WhatsApp](07_case-studies/whatsapp/)
+- [Twitter](07_case-studies/twitter/)
+- [Instagram](07_case-studies/instagram/)
+- [Newsfeed System](07_case-studies/newsfeed/)
 
 ### Media & Content
-- [YouTube](../07_case-studies/youtube/)
-- [Web Crawler](../07_case-studies/web-crawler/)
-- [Live Streaming](../07_case-studies/livestreaming/)
-- [Video Conferencing](../07_case-studies/videoconferencing/)
+
+- [YouTube](07_case-studies/youtube/)
+- [Web Crawler](07_case-studies/web-crawler/)
+- [Live Streaming](07_case-studies/livestreaming/)
+- [Video Conferencing](07_case-studies/videoconferencing/)
 
 ### Services & Platforms
-- [Uber](../07_case-studies/uber/)
-- [Google Maps](../07_case-studies/google-maps/)
-- [Yelp (Proximity Service)](../07_case-studies/yelp/)
-- [Quora](../07_case-studies/quora/)
+
+- [Uber](07_case-studies/uber/)
+- [Google Maps](07_case-studies/google-maps/)
+- [Yelp (Proximity Service)](07_case-studies/yelp/)
+- [Quora](07_case-studies/quora/)
 
 ### Productivity & Tools
-- [Google Docs (Collaborative Editing)](../07_case-studies/google-docs/)
-- [Typeahead Suggestion](../07_case-studies/typeahead/)
-- [Deployment System](../07_case-studies/deployment/)
+
+- [Google Docs (Collaborative Editing)](07_case-studies/google-docs/)
+- [Typeahead Suggestion](07_case-studies/typeahead/)
+- [Deployment System](07_case-studies/deployment/)
 
 ### Financial & AI
-- [Payment System](../07_case-studies/payment/)
-- [ChatGPT System](../07_case-studies/chatgpt/)
+
+- [Payment System](07_case-studies/payment/)
+- [ChatGPT System](07_case-studies/chatgpt/)
 
 ## Failure Analysis
 
-- [Introduction to System Failures](../failures/introduction.md)
-- [Facebook/WhatsApp/Instagram Outage](../failures/facebook-outage.md)
-- [AWS Outages](../failures/aws-outages.md)
-- [Lessons Learned](../failures/lessons-learned.md)
+- [Introduction to System Failures](08_failures/01_introduction.md)
+- [Facebook/WhatsApp/Instagram Outage](08_failures/02_facebook-outage.md)
+- [AWS Kinesis Outage](08_failures/03_aws-kinesis-outage.md)
+- [AWS Outages](08_failures/04_aws-outage.md)
+- [Lessons Learned](08_failures/05_lessons-learned.md)
 
 ## References
 
-- [Recommended Books](../references/books.md)
-- [Research Papers](../references/papers.md)
-- [Tools & Resources](../references/tools.md)
+- [Recommended Books](references/books.md)
+- [Research Papers](references/papers.md)
+- [Tools & Resources](references/tools.md)
 
 ---
 

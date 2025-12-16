@@ -309,12 +309,12 @@ docker run --rm -v "${PWD}:/input:ro" lycheeverse/lychee --config /input/lychee.
 
 ## 🔗 Quick Links
 
-- [Learning Path](docs/ROADMAP.md)
-- [Content Index](src/CONTENT_INDEX.md)
-- [System Design Principles](src/04_principles/)
-- [Building Blocks](src/05_building-blocks/)
-- [Case Studies](src/07_case-studies/)
-- [Contributing](CONTRIBUTING.md)
+- [Learning Path](../docs/ROADMAP.md)
+- [Content Index](../src/CONTENT_INDEX.md)
+- [System Design Principles](../src/04_principles/)
+- [Building Blocks](../src/05_building-blocks/)
+- [Case Studies](../src/07_case-studies/)
+- [Contributing](../CONTRIBUTING.md)
 
 ---
 

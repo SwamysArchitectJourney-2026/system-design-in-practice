@@ -4,9 +4,9 @@ This section provides an overview of modern system design and why it's essential
 
 ## Topics
 
-- [Introduction to Modern System Design](./modern-system-design.md)
-- [Why Every Developer Should Learn System Design](./why-learn-system-design.md)
-- [Course Structure](./course-structure.md)
+- [Introduction to Modern System Design](./01_modern-system-design.md)
+- [Why Every Developer Should Learn System Design](./02_why-learn-system-design.md)
+- [Course Structure](./03_course-structure.md)
 
 ---
 
