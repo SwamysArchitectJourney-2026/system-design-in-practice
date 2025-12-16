@@ -46,7 +46,7 @@ sequenceDiagram
 
 ## ASCII Fallback
 
-```
+```text
 Service1 → TokenSvc → MySQL
 Service2 → TokenSvc → MySQL
 

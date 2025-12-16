@@ -39,7 +39,7 @@ C4Container
 
 ## ASCII Fallback
 
-```
+```text
 ┌─────────┐
 │  User   │
 └────┬────┘

@@ -47,7 +47,7 @@ sequenceDiagram
 
 ## ASCII Fallback
 
-```
+```text
 User → WebApp → API → Service → TokenMgr → TokenSvc
                               ↓
                            Cache

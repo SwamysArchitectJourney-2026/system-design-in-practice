@@ -235,19 +235,19 @@ Observability enables understanding system behavior through logs, metrics, and t
 
 **Error Analysis**:
 
-```
+```text
 ERROR level logs | last 1 hour | group by error_type
 ```
 
 **Slow Requests**:
 
-```
+```text
 latency > 200ms | last 1 hour | group by endpoint
 ```
 
 **Traffic Patterns**:
 
-```
+```text
 redirect requests | last 24 hours | group by hour
 ```
 

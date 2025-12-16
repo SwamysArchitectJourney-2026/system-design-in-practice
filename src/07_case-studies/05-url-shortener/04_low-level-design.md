@@ -20,7 +20,7 @@
 
 **Example Flow**:
 
-```
+```text
 Service Instance 1 requests range → Token Service assigns 1001-2000
 Service Instance 2 requests range → Token Service assigns 2001-3000
 Service Instance 1 uses 1001, 1002, 1003... (converts to base-62 for short URL)
@@ -57,7 +57,7 @@ Service Instance 1 exhausts range → Requests next range → Gets 5001-6000
 
 **Table**: `url_mappings`
 
-```
+```text
 Primary Key: short_url (text)
 Columns:
   - long_url (text)
@@ -74,7 +74,7 @@ Columns:
 
 **Table**: `token_ranges`
 
-```
+```text
 Columns:
   - range_start (bigint, primary key)
   - range_end (bigint)

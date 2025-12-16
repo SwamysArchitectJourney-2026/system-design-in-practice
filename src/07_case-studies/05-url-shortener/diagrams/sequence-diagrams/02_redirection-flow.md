@@ -48,7 +48,7 @@ sequenceDiagram
 
 ## ASCII Fallback
 
-```
+```text
 User → CDN → API → Service → Cache → DB
                     ↓
                 Analytics

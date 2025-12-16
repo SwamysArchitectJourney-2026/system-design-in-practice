@@ -72,7 +72,7 @@ class RateLimitCounter:
 
 **HTTP Headers**:
 
-```
+```text
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
 X-RateLimit-Reset: 1638360000

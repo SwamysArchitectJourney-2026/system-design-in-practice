@@ -81,7 +81,7 @@ logger.info("rate_limit_check", extra={
 
 **Rate Limit Check Trace**:
 
-```
+```text
 rate_limit_check (root span)
 ├── get_configuration (child span)
 │   ├── cache_lookup
@@ -240,19 +240,19 @@ def readiness():
 
 **Rate Limit Violations**:
 
-```
+```text
 logs | filter allowed == false | group by rule_id | count
 ```
 
 **High Latency Requests**:
 
-```
+```text
 logs | filter latency_ms > 2 | group by rule_id | avg(latency_ms)
 ```
 
 **Error Patterns**:
 
-```
+```text
 logs | filter level == "ERROR" | group by error_type | count
 ```
 

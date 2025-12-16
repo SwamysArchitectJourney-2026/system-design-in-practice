@@ -29,7 +29,7 @@ C4Component
 
 ## ASCII Fallback
 
-```
+```text
 ┌─────────────────────────────────────┐
 │   Short URL Service Container       │
 │                                     │

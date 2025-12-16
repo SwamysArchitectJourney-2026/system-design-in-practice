@@ -39,7 +39,7 @@ sequenceDiagram
 
 ## ASCII Fallback
 
-```
+```text
 Phase 1 (0-1K Users): Monolithic
 ┌─────────────────────────────────┐
 │  Users                          │

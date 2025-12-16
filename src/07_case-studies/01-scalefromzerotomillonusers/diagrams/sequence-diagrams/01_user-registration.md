@@ -35,7 +35,7 @@ sequenceDiagram
 
 ## ASCII Fallback
 
-```
+```text
 User          WebApp        API Gateway   App Service   Auth Service  Database    Cache    Message Queue
  │              │              │              │              │            │          │            │
  │ Submit form  │              │              │              │            │          │            │
