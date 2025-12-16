@@ -11,4 +11,3 @@
 - Queuing strategies
 - Resource capacity optimization
 - Evaluation of design
-

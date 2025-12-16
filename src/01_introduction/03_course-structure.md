@@ -9,4 +9,3 @@
 3. Patterns
 4. Case Studies
 5. Advanced Topics
-

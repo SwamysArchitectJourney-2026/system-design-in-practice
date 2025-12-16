@@ -14,4 +14,3 @@ This section covers the fundamental abstractions and concepts in distributed sys
 ---
 
 *Content coming soon...*
-

@@ -8,4 +8,3 @@
 - Why abstractions matter
 - Common abstraction layers
 - Trade-offs of abstraction
-

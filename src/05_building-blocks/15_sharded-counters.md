@@ -9,4 +9,3 @@
 - Detailed Design of Sharded Counters
 - Use cases and applications
 - Performance optimization
-

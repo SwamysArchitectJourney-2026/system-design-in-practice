@@ -34,12 +34,12 @@ The system exposes a set of RESTful APIs for management and signaling, while med
 
 ### Real-Time Signaling (WebSocket)
 
-*   **Endpoint**: `wss://api.meet.com/v1/signal`
-*   **Events**:
-    *   `join_room`: Client joins the signaling channel.
-    *   `offer` / `answer`: WebRTC SDP exchange.
-    *   `ice_candidate`: Network connectivity candidates.
-    *   `transcript_update`: Push real-time AI transcriptions to client.
+* **Endpoint**: `wss://api.meet.com/v1/signal`
+* **Events**:
+  * `join_room`: Client joins the signaling channel.
+  * `offer` / `answer`: WebRTC SDP exchange.
+  * `ice_candidate`: Network connectivity candidates.
+  * `transcript_update`: Push real-time AI transcriptions to client.
 
 ## 2. Data Model
 
@@ -99,7 +99,7 @@ erDiagram
 
 ### Schema Considerations
 
-*   **Sharding**: For scale (2,000+ concurrent meetings), we may shard the `Participant` and `Transcript` tables by `MeetingId`.
-*   **Indexes**:
-    *   `Meeting(hostId, startTime)`: For listing a user's meetings.
-    *   `Participant(meetingId, userId)`: For quick lookup of who is in a meeting.
+* **Sharding**: For scale (2,000+ concurrent meetings), we may shard the `Participant` and `Transcript` tables by `MeetingId`.
+* **Indexes**:
+  * `Meeting(hostId, startTime)`: For listing a user's meetings.
+  * `Participant(meetingId, userId)`: For quick lookup of who is in a meeting.

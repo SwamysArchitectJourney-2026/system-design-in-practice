@@ -99,4 +99,3 @@ Client 1   Client 2   RL Instance 1   RL Instance 2   Redis Cluster
 - **Consistent**: Same limits enforced everywhere
 - **Scalable**: Add more instances easily
 - **Simple**: No complex synchronization needed
-

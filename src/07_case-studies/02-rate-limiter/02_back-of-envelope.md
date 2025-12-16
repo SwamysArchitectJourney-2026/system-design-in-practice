@@ -5,6 +5,7 @@
 ### Traffic Estimates
 
 **Assumptions**:
+
 - Peak traffic: 10 million requests per second (RPS)
 - Average request size: 1 KB
 - Unique rate limit keys: 100 million
@@ -15,12 +16,14 @@
 #### Rate Limit Counters
 
 **Counter Storage**:
+
 - Each counter: 8 bytes (timestamp + count)
 - Unique keys: 100 million
 - Total counter storage: 100M × 8 bytes = 800 MB
 - With replication (3x): 2.4 GB
 
 **TTL-based Cleanup**:
+
 - Counters expire after time window (e.g., 1 hour)
 - Active counters at any time: ~10% of total = 10 million
 - Active storage: 10M × 8 bytes = 80 MB
@@ -29,6 +32,7 @@
 #### Configuration Storage
 
 **Rate Limit Rules**:
+
 - Number of rules: 10,000
 - Average rule size: 500 bytes (rule definition, limits, keys)
 - Total configuration: 10K × 500 bytes = 5 MB
@@ -56,12 +60,14 @@
 #### Rate Limit Check Operations
 
 **Operations per Request**:
+
 - Redis lookup: 1 operation
 - Counter increment: 1 operation
 - TTL check: 1 operation
 - Total: ~3 operations per request
 
 **Total Operations**:
+
 - Requests per second: 10 million
 - Operations per request: 3
 - Total operations: 30 million ops/second
@@ -69,11 +75,13 @@
 #### CPU Requirements
 
 **Per Operation**:
+
 - Redis operation: ~0.1 ms CPU time
 - Algorithm computation: ~0.05 ms CPU time
 - Total: ~0.15 ms per operation
 
 **Total CPU Time**:
+
 - Operations per second: 30 million
 - CPU time per operation: 0.15 ms
 - Total CPU time: 4,500 seconds/second = 4,500 cores
@@ -83,6 +91,7 @@
 #### Memory Requirements
 
 **Per Instance**:
+
 - In-memory cache: 1 GB (frequently accessed counters)
 - Application memory: 500 MB
 - Redis connection pool: 100 MB
@@ -172,4 +181,3 @@
 | Instances | 100 application servers |
 | Latency (p99) | <1 ms |
 | Monthly Cost | ~$19K |
-

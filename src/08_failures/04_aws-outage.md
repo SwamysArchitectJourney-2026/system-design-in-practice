@@ -8,4 +8,3 @@
 - Root causes
 - Multi-region impact
 - Lessons for cloud architecture
-

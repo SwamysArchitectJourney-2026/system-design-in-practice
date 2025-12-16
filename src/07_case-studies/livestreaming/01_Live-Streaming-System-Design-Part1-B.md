@@ -93,7 +93,7 @@ Interview framing:
 Key talking point:
 
 > "For this design, I will assume LL-HLS/CMAF with ~3–7 seconds latency, because
->  it balances global scale, device support, and CDN efficiency."
+> it balances global scale, device support, and CDN efficiency."
 
 ## 3. CDN & Origin Topology
 

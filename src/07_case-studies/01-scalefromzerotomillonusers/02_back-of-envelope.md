@@ -5,12 +5,14 @@
 ### Phase 1: 0-1,000 Users
 
 **Assumptions**:
+
 - 1,000 active users
 - 10 requests/user/day average
 - 100 requests/second peak
 - 1 KB average request/response size
 
 **Calculations**:
+
 - **Daily Requests**: 1,000 users × 10 requests = 10,000 requests/day
 - **Peak QPS**: 100 requests/second
 - **Bandwidth**: 100 QPS × 1 KB × 2 (request + response) = 200 KB/s = 1.6 Mbps
@@ -22,12 +24,14 @@
 ### Phase 2: 1,000-100,000 Users
 
 **Assumptions**:
+
 - 100,000 active users
 - 10 requests/user/day average
 - 1,000 requests/second peak
 - 1 KB average request/response size
 
 **Calculations**:
+
 - **Daily Requests**: 100,000 users × 10 requests = 1,000,000 requests/day
 - **Peak QPS**: 1,000 requests/second
 - **Bandwidth**: 1,000 QPS × 1 KB × 2 = 2 MB/s = 16 Mbps
@@ -39,12 +43,14 @@
 ### Phase 3: 100,000-1,000,000 Users
 
 **Assumptions**:
+
 - 1,000,000 active users
 - 10 requests/user/day average
 - 10,000 requests/second peak
 - 1 KB average request/response size
 
 **Calculations**:
+
 - **Daily Requests**: 1M users × 10 requests = 10,000,000 requests/day
 - **Peak QPS**: 10,000 requests/second
 - **Bandwidth**: 10,000 QPS × 1 KB × 2 = 20 MB/s = 160 Mbps
@@ -56,12 +62,14 @@
 ### Phase 4: 1,000,000+ Users
 
 **Assumptions**:
+
 - 10,000,000+ active users
 - 10 requests/user/day average
 - 100,000+ requests/second peak
 - 1 KB average request/response size
 
 **Calculations**:
+
 - **Daily Requests**: 10M users × 10 requests = 100,000,000 requests/day
 - **Peak QPS**: 100,000 requests/second
 - **Bandwidth**: 100,000 QPS × 1 KB × 2 = 200 MB/s = 1.6 Gbps
@@ -85,4 +93,3 @@
 - **Read/Write Ratio**: 10:1 read/write ratio affects database design
 - **Data Growth**: Plan for 3-5 years of data retention
 - **Geographic Distribution**: Multi-region deployment for global users
-

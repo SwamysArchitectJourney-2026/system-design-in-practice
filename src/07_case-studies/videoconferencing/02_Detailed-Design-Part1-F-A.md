@@ -69,4 +69,3 @@ These models exist only while a meeting is active.
   * `isMuted`: Boolean.
   * `isVideoOn`: Boolean.
   * `joinedAt`: Timestamp.
-

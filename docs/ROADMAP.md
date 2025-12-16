@@ -32,6 +32,7 @@ This roadmap outlines the learning path and content organization for mastering s
 ## Phase 4 – Case Studies
 
 ### Communication & Social
+
 - URL Shortener (TinyURL)
 - WhatsApp
 - Twitter
@@ -39,23 +40,27 @@ This roadmap outlines the learning path and content organization for mastering s
 - Newsfeed System
 
 ### Media & Content
+
 - YouTube
 - Web Crawler
 - Live Streaming
 - Video Conferencing
 
 ### Services & Platforms
+
 - Uber
 - Google Maps
 - Yelp (Proximity Service)
 - Quora
 
 ### Productivity & Tools
+
 - Google Docs (Collaborative Editing)
 - Typeahead Suggestion
 - Deployment System
 
 ### Financial & AI
+
 - Payment System
 - ChatGPT System
 
@@ -82,4 +87,3 @@ This roadmap outlines the learning path and content organization for mastering s
 2. Start with first case study: **URL Shortener** (src/case-studies/url-shortener/)
 3. Add diagrams and visualizations (within each case study's diagrams/ folder)
 4. Expand with cloud-native perspectives (Azure, AWS)
-

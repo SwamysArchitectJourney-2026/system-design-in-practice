@@ -73,14 +73,17 @@ C4Container
 ## Phase Evolution
 
 ### Phase 1: Single Container
+
 - Application + Database on single server
 
 ### Phase 2: Basic Separation
+
 - Application Server
 - Database + Read Replicas
 - Basic Cache
 
 ### Phase 3: Distributed Containers
+
 - Multiple Application Servers
 - Load Balancer
 - Database Cluster
@@ -88,6 +91,7 @@ C4Container
 - Message Queue
 
 ### Phase 4: Microservices
+
 - Multiple Services
 - API Gateway
 - Service Mesh
@@ -102,4 +106,3 @@ C4Container
 4. **Cache**: High-speed data access
 5. **Database**: Persistent data storage
 6. **Message Queue**: Async processing and events
-

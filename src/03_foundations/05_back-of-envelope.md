@@ -9,4 +9,3 @@
 - Examples: servers, storage, bandwidth
 - Putting numbers in perspective
 - Common calculation patterns
-

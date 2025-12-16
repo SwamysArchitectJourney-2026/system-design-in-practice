@@ -80,4 +80,3 @@ After studying this case study, you should be able to:
 ---
 
 *This case study demonstrates real-world distributed rate limiting patterns commonly used in production systems and system design interviews.*
-

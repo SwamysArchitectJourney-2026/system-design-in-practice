@@ -1,4 +1,3 @@
 # Event-Driven Architecture
 
 *Content coming soon...*
-

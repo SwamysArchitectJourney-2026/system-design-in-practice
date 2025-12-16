@@ -149,6 +149,7 @@ This document provides a comprehensive index of all topics covered in this repos
 ## Learning Path Recommendations
 
 ### Beginner Path
+
 1. Introduction & Getting Started
 2. Foundational Concepts
 3. System Design Principles
@@ -156,12 +157,14 @@ This document provides a comprehensive index of all topics covered in this repos
 5. Simple Case Study (URL Shortener)
 
 ### Intermediate Path
+
 1. All Building Blocks
 2. Architectural Patterns
 3. Medium Complexity Case Studies (Twitter, Instagram)
 4. Failure Analysis
 
 ### Advanced Path
+
 1. Complex Case Studies (YouTube, Uber, ChatGPT)
 2. Advanced Patterns (CQRS, Event-Driven)
 3. Real-world Failure Analysis
@@ -170,4 +173,3 @@ This document provides a comprehensive index of all topics covered in this repos
 ---
 
 *Last Updated: December 13, 2025*
-

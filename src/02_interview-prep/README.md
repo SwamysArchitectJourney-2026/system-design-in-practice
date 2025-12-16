@@ -13,4 +13,3 @@ This section covers everything you need to know about system design interviews.
 ---
 
 *Content coming soon...*
-

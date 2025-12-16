@@ -8,4 +8,3 @@
 - Getting feedback on designs
 - Identifying gaps in knowledge
 - Continuous improvement
-

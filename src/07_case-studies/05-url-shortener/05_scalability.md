@@ -5,16 +5,19 @@
 ### Horizontal Scaling
 
 **Short URL Service**:
+
 - Add more service instances behind load balancer
 - Stateless design allows easy horizontal scaling
 - Each instance independently generates short URLs using assigned token ranges
 
 **Database (Cassandra)**:
+
 - Add more nodes to Cassandra cluster
 - Automatic data distribution across nodes
 - Linear scalability with node addition
 
 **Token Service**:
+
 - Low-frequency service (called only when token ranges exhausted)
 - Can scale by:
   - Increasing token range size (assign millions instead of thousands)
@@ -24,11 +27,13 @@
 ### Caching Layer
 
 **Redis Cache for Read Path**:
+
 - Cache popular short URLs to reduce database load
 - Cache hit ratio typically 80-90% for popular URLs
 - Reduces latency for frequently accessed URLs
 
 **Cache Strategy**:
+
 - Write-through: Write to both cache and database
 - TTL: 24 hours (configurable based on access patterns)
 - Eviction: LRU (Least Recently Used) for cache full scenarios
@@ -38,6 +43,7 @@
 If using MySQL instead of Cassandra:
 
 **Sharding Strategy**:
+
 - Shard by short URL hash (consistent hashing)
 - Each shard handles subset of URLs
 - Requires shard management and routing logic
@@ -49,12 +55,14 @@ If using MySQL instead of Cassandra:
 ### Analytics Requirements
 
 **Business Metrics**:
+
 - Click-through rates per short URL
 - Geographic distribution of clicks
 - Device/platform breakdown (mobile, desktop, iOS, Android)
 - Referrer information (which platform shared the link)
 
 **Operational Metrics**:
+
 - Request latency (p50, p95, p99)
 - Error rates
 - Cache hit ratios
@@ -63,11 +71,13 @@ If using MySQL instead of Cassandra:
 ### Analytics Architecture
 
 **Data Collection**:
+
 - Asynchronous event publishing to message queue (Kafka)
 - Non-blocking to avoid impacting redirect latency
 - Batch processing for efficiency
 
 **Event Structure**:
+
 ```json
 {
   "short_url": "aB3xK9m",
@@ -80,6 +90,7 @@ If using MySQL instead of Cassandra:
 ```
 
 **Processing Pipeline**:
+
 1. Service publishes events to Kafka (async, non-blocking)
 2. Stream processing (Spark Streaming) aggregates events
 3. Aggregated data stored in analytics database
@@ -90,6 +101,7 @@ If using MySQL instead of Cassandra:
 **Problem**: Writing to Kafka on every request impacts latency.
 
 **Solution**: Local batching
+
 - Accumulate events in memory buffer
 - Flush to Kafka when:
   - Buffer reaches threshold (e.g., 100 events)
@@ -103,16 +115,19 @@ If using MySQL instead of Cassandra:
 ### Multi-Region Deployment
 
 **Strategy**:
+
 - Deploy service instances in multiple data centers
 - Route users to nearest data center
 - Replicate database across regions
 
 **Benefits**:
+
 - Reduced latency for global users
 - Improved availability (survives regional outages)
 - Better data residency compliance
 
 **Challenges**:
+
 - Cross-region database replication
 - Token Service coordination across regions
 - Cache invalidation across regions
@@ -122,11 +137,13 @@ If using MySQL instead of Cassandra:
 ### Read-Heavy Workload
 
 **Characteristics**:
+
 - Redirect requests: 100:1 ratio vs shortening requests
 - Most URLs accessed infrequently (long tail)
 - Small percentage of URLs receive majority of traffic
 
 **Optimization**:
+
 - Aggressive caching for popular URLs
 - Database read replicas
 - CDN for static assets (if any)
@@ -134,14 +151,15 @@ If using MySQL instead of Cassandra:
 ### Write Workload
 
 **Characteristics**:
+
 - Shortening requests: Lower volume but must be fast
 - Token generation: Very low frequency (ranges last hours/days)
 
 **Optimization**:
+
 - Large token ranges to reduce Token Service calls
 - Efficient database writes (Cassandra optimized for writes)
 
 ---
 
 *For capacity planning details, see [Back-of-Envelope](./02_back-of-envelope.md). For design trade-offs, see [Trade-offs](./08_trade-offs.md).*
-

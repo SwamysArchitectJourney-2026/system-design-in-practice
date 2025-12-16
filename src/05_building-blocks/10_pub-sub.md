@@ -10,4 +10,3 @@
 - Implementation patterns
 - Optimization strategies
 - Use cases and examples
-

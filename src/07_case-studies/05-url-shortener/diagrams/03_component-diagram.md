@@ -66,11 +66,13 @@ C4Component
 **API Controller**: Handles incoming HTTP/gRPC requests, validates input, and returns responses.
 
 **URL Handler**: Core business logic component that:
+
 - Processes URL shortening requests
 - Handles URL redirection requests
 - Coordinates with other components
 
 **Token Manager**: Manages token ranges:
+
 - Tracks current token range
 - Requests new ranges from Token Service when needed
 - Provides next available token
@@ -86,4 +88,3 @@ C4Component
 ---
 
 *Previous: [Container Diagram](./02_container-diagram.md) | Next: [Sequence Diagrams](./sequence-diagrams/)*
-

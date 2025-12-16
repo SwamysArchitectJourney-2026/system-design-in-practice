@@ -1,4 +1,3 @@
 # Scalability
 
 *Content coming soon...*
-

@@ -9,4 +9,3 @@
 - Monitoring and alerting
 - Incident response
 - Post-mortem practices
-

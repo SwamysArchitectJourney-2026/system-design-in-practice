@@ -81,4 +81,3 @@ C4Container
 - **Local Cache**: Caches frequently accessed configurations and counters
 - **Redis Cluster**: Stores rate limit counters with TTL, provides atomic operations
 - **Configuration Database**: Persists rate limit rules, supports versioning
-

@@ -111,25 +111,33 @@ Client    Rate Limiter   Redis Cluster
 ## Key Operations
 
 ### ZREMRANGEBYSCORE
+
 Removes entries with scores (timestamps) outside the window:
+
 ```
 ZREMRANGEBYSCORE key 0 (current_time - window_seconds)
 ```
 
 ### ZCARD
+
 Counts current entries in the sorted set:
+
 ```
 ZCARD key
 ```
 
 ### ZADD
+
 Adds current request with timestamp as score:
+
 ```
 ZADD key {request_id: current_timestamp}
 ```
 
 ### EXPIRE
+
 Sets TTL for automatic cleanup:
+
 ```
 EXPIRE key window_seconds
 ```
@@ -145,4 +153,3 @@ EXPIRE key window_seconds
 - **Memory**: More memory for sorted sets
 - **Complexity**: More complex operations
 - **Latency**: Slightly higher latency than fixed window
-

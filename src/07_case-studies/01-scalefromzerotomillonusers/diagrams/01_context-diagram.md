@@ -44,4 +44,3 @@ C4Context
 - **Application System** may integrate with external Auth Provider for authentication
 - **CDN** serves static assets to reduce load on application servers
 - **Analytics Service** receives events for monitoring and analysis
-

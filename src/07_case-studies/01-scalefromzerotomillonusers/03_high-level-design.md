@@ -5,17 +5,20 @@
 ### Phase 1: Monolithic Architecture (0-1K Users)
 
 **Design**:
+
 - Single server hosting all components
 - Monolithic application
 - Single database (SQLite or MySQL)
 - Simple deployment
 
 **Components**:
+
 - Application Server
 - Database
 - Static File Storage
 
 **Characteristics**:
+
 - Simple to develop and deploy
 - Low operational overhead
 - Single point of failure
@@ -24,18 +27,21 @@
 ### Phase 2: Vertical Scaling (1K-100K Users)
 
 **Design**:
+
 - Larger server with more resources
 - Database read replicas
 - Basic caching (application-level)
 - Load balancer (optional)
 
 **Components**:
+
 - Application Server (larger instance)
 - Primary Database + Read Replicas
 - Cache Layer (Redis/Memcached)
 - Load Balancer
 
 **Characteristics**:
+
 - Improved performance
 - Better availability with replicas
 - Still single application instance
@@ -44,6 +50,7 @@
 ### Phase 3: Horizontal Scaling (100K-1M Users)
 
 **Design**:
+
 - Multiple application servers
 - Database sharding or read replicas
 - Distributed caching
@@ -51,6 +58,7 @@
 - Message queue for async processing
 
 **Components**:
+
 - Multiple Application Servers
 - Database Cluster (sharded or replicated)
 - Distributed Cache (Redis Cluster)
@@ -59,6 +67,7 @@
 - Message Queue (Kafka/RabbitMQ)
 
 **Characteristics**:
+
 - High availability
 - Better fault tolerance
 - Improved performance
@@ -67,6 +76,7 @@
 ### Phase 4: Distributed Microservices (1M+ Users)
 
 **Design**:
+
 - Microservices architecture
 - Service mesh for communication
 - Distributed databases
@@ -75,6 +85,7 @@
 - Multi-region deployment
 
 **Components**:
+
 - Microservices (User Service, Data Service, etc.)
 - API Gateway
 - Service Mesh
@@ -84,6 +95,7 @@
 - Monitoring & Observability Stack
 
 **Characteristics**:
+
 - Maximum scalability
 - High fault tolerance
 - Global distribution
@@ -121,4 +133,3 @@
 | **Load Balancer** | None | Optional | Required | Global LB |
 | **CDN** | None | None | Optional | Required |
 | **Message Queue** | None | None | Optional | Required |
-

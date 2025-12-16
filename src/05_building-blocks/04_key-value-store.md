@@ -9,4 +9,3 @@
 - Ensuring scalability and replication
 - Versioning data and configurability
 - Fault tolerance and failure detection
-

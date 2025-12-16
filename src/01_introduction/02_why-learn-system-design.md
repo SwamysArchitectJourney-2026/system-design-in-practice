@@ -8,4 +8,3 @@
 - Technical skills development
 - Problem-solving capabilities
 - Real-world application
-

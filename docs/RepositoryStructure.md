@@ -225,4 +225,3 @@ system-design-in-practice/
 - **Learning Path**: `docs/ROADMAP.md`
 - **Content Index**: `src/CONTENT_INDEX.md`
 - **GitHub Copilot Instructions**: `.github/copilot-instructions.md`
-

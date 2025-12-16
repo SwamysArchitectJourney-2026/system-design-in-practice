@@ -37,6 +37,7 @@ class RateLimitCounter:
 **Endpoint**: `POST /api/v1/rate-limit/check`
 
 **Request**:
+
 ```json
 {
   "key_type": "user",
@@ -47,6 +48,7 @@ class RateLimitCounter:
 ```
 
 **Response (Allowed)**:
+
 ```json
 {
   "allowed": true,
@@ -57,6 +59,7 @@ class RateLimitCounter:
 ```
 
 **Response (Denied)**:
+
 ```json
 {
   "allowed": false,
@@ -68,6 +71,7 @@ class RateLimitCounter:
 ```
 
 **HTTP Headers**:
+
 ```
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
@@ -280,6 +284,7 @@ class RateLimiterService:
 **Key Format**: `ratelimit:{key_type}:{key_value}:{rule_id}`
 
 **Value**: JSON string with counter state
+
 ```json
 {
   "count": 42,
@@ -296,10 +301,12 @@ class RateLimiterService:
 **Key Format**: `ratelimit:sliding:{key_type}:{key_value}:{rule_id}:requests`
 
 **Type**: Redis Sorted Set
+
 - **Score**: Timestamp
 - **Member**: Request ID
 
 **Operations**:
+
 - `ZADD`: Add request
 - `ZREMRANGEBYSCORE`: Remove old requests
 - `ZCARD`: Count current requests
@@ -408,4 +415,3 @@ class CircuitBreaker:
                 self.state = "open"
             raise e
 ```
-

@@ -60,4 +60,3 @@ Each case study follows this structure:
   - `sequence-diagrams/` - Interaction flows and sequences
 
 **Note**: Diagrams are co-located with each case study for better organization and maintainability. Each case study should have its own `diagrams/` folder containing all diagrams specific to that case study.
-

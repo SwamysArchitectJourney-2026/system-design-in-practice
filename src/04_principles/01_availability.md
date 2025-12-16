@@ -1,4 +1,3 @@
 # Availability
 
 *Content coming soon...*
-

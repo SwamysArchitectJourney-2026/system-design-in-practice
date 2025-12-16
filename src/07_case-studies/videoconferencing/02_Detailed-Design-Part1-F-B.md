@@ -104,4 +104,3 @@ sequenceDiagram
     
     Signal->>Client: ParticipantJoined (Broadcast to others)
 ```
-

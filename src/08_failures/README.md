@@ -13,4 +13,3 @@ This section analyzes real-world failures in large-scale distributed systems and
 ---
 
 *Content coming soon...*
-

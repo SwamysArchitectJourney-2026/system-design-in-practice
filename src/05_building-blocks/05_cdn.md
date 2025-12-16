@@ -10,4 +10,3 @@
 - Consistency in CDN
 - Efficient content delivery techniques
 - Evaluation of CDN design
-

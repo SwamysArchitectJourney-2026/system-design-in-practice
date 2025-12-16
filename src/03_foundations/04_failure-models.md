@@ -9,4 +9,3 @@
 - Failure recovery
 - Designing for failure
 - Fault tolerance strategies
-

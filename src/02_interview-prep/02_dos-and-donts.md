@@ -15,4 +15,3 @@
 - Ignore non-functional requirements
 - Forget about scalability
 - Skip the evaluation phase
-

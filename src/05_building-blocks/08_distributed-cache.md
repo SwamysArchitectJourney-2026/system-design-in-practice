@@ -10,4 +10,3 @@
 - Evaluation of a Distributed Cache's Design
 - Memcached vs Redis
 - Caching strategies and patterns
-

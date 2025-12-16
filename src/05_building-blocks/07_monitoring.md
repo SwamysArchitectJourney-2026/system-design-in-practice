@@ -12,4 +12,3 @@
 - Client-side error monitoring
 - Design of a monitoring system
 - Data visualization
-

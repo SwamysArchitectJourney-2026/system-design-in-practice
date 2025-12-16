@@ -9,4 +9,3 @@
 - Unique IDs with causality
 - Consistency in distributed ID generation
 - Performance considerations
-

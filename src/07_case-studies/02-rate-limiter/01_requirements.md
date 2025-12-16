@@ -114,4 +114,3 @@
 - Rate limit accuracy within ±1%
 - Support for multiple rate limiting algorithms
 - Distributed rate limiting with consistency
-

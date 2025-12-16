@@ -11,12 +11,14 @@ The rate limiter is designed as a distributed service that can be deployed as a 
 **Purpose**: Main service that enforces rate limits
 
 **Responsibilities**:
+
 - Receive rate limit check requests
 - Execute rate limiting algorithms
 - Return allow/deny decisions
 - Update rate limit counters
 
 **Characteristics**:
+
 - Stateless design (all state in Redis)
 - Horizontally scalable
 - Low latency (<1ms p99)
@@ -26,11 +28,13 @@ The rate limiter is designed as a distributed service that can be deployed as a 
 **Purpose**: Distributed storage for rate limit counters
 
 **Responsibilities**:
+
 - Store rate limit counters with TTL
 - Provide atomic operations for counter updates
 - Support distributed rate limiting across instances
 
 **Characteristics**:
+
 - High throughput (millions of ops/second)
 - Low latency (<1ms)
 - Automatic TTL-based cleanup
@@ -40,11 +44,13 @@ The rate limiter is designed as a distributed service that can be deployed as a 
 **Purpose**: Manage rate limit rules and policies
 
 **Responsibilities**:
+
 - Store rate limit configurations
 - Provide configuration API
 - Support dynamic configuration updates
 
 **Characteristics**:
+
 - Database-backed (MySQL/PostgreSQL)
 - Cached in memory for fast access
 - Support for versioning and rollback
@@ -54,11 +60,13 @@ The rate limiter is designed as a distributed service that can be deployed as a 
 **Purpose**: In-memory cache for frequently accessed data
 
 **Responsibilities**:
+
 - Cache rate limit configurations
 - Cache frequently accessed counters
 - Reduce Redis load
 
 **Characteristics**:
+
 - Local in-memory cache (per instance)
 - TTL-based expiration
 - Cache-aside pattern
@@ -141,6 +149,7 @@ graph TB
 **Challenge**: Multiple rate limiter instances must enforce consistent limits
 
 **Solution**: Use Redis for centralized counter storage
+
 - All instances read/write to same Redis cluster
 - Atomic operations ensure consistency
 - Redis handles synchronization
@@ -150,6 +159,7 @@ graph TB
 ### 1. Token Bucket
 
 **How it works**:
+
 - Bucket has capacity (max tokens)
 - Tokens are added at fixed rate (refill rate)
 - Request consumes one token
@@ -160,6 +170,7 @@ graph TB
 ### 2. Sliding Window
 
 **How it works**:
+
 - Track requests in time window
 - Window slides continuously
 - Request allowed if count < limit
@@ -169,6 +180,7 @@ graph TB
 ### 3. Fixed Window
 
 **How it works**:
+
 - Fixed time window (e.g., 1 minute)
 - Count requests in current window
 - Request allowed if count < limit
@@ -182,6 +194,7 @@ graph TB
 **Decision**: Rate limiter instances are stateless
 
 **Rationale**:
+
 - Enables horizontal scaling
 - No state synchronization needed
 - Easy to add/remove instances
@@ -193,6 +206,7 @@ graph TB
 **Decision**: Use Redis for rate limit counter storage
 
 **Rationale**:
+
 - High throughput and low latency
 - Atomic operations for consistency
 - TTL support for automatic cleanup
@@ -205,6 +219,7 @@ graph TB
 **Decision**: Use in-memory cache for configurations and hot counters
 
 **Rationale**:
+
 - Reduces Redis load
 - Faster configuration lookup
 - Better performance
@@ -216,6 +231,7 @@ graph TB
 **Decision**: Support multiple rate limiting algorithms
 
 **Rationale**:
+
 - Different use cases need different algorithms
 - Flexibility for clients
 - Can optimize per use case
@@ -273,4 +289,3 @@ graph TB
 - Rate limit the rate limiter itself
 - Monitor for abuse patterns
 - Alert on unusual traffic
-

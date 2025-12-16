@@ -9,4 +9,3 @@
 - Documentation
 - Monitoring and observability
 - Technical debt management
-

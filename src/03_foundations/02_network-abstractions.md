@@ -8,4 +8,3 @@
 - RPC vs REST
 - RPC implementation patterns
 - Error handling in RPCs
-

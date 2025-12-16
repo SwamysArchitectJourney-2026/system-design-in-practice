@@ -5,18 +5,21 @@
 ### Phase 1: Basic Security
 
 **Measures**:
+
 - Password hashing (bcrypt)
 - HTTPS/TLS
 - Basic input validation
 - SQL injection prevention
 
 **Authentication**:
+
 - Simple session-based auth
 - JWT tokens (optional)
 
 ### Phase 2: Enhanced Security
 
 **Measures**:
+
 - All Phase 1 measures
 - Rate limiting
 - CSRF protection
@@ -24,6 +27,7 @@
 - Regular security updates
 
 **Authentication**:
+
 - JWT tokens with expiration
 - Refresh tokens
 - Password reset flow
@@ -31,6 +35,7 @@
 ### Phase 3: Advanced Security
 
 **Measures**:
+
 - All Phase 2 measures
 - WAF (Web Application Firewall)
 - DDoS protection
@@ -38,6 +43,7 @@
 - Penetration testing
 
 **Authentication**:
+
 - OAuth 2.0 / OIDC
 - Multi-factor authentication (MFA)
 - SSO integration
@@ -45,6 +51,7 @@
 ### Phase 4: Enterprise Security
 
 **Measures**:
+
 - All Phase 3 measures
 - Zero-trust architecture
 - Security information and event management (SIEM)
@@ -52,6 +59,7 @@
 - Security audits
 
 **Authentication**:
+
 - Advanced MFA
 - Biometric authentication
 - Certificate-based auth
@@ -139,4 +147,3 @@
 - **Response**: Incident response playbook
 - **Recovery**: Backup and restore procedures
 - **Post-mortem**: Security incident analysis
-

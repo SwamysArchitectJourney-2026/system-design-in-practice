@@ -80,6 +80,7 @@ logger.info("rate_limit_check", extra={
 ### Trace Spans
 
 **Rate Limit Check Trace**:
+
 ```
 rate_limit_check (root span)
 ├── get_configuration (child span)
@@ -176,6 +177,7 @@ alerts:
 ### Operational Dashboard
 
 **Key Panels**:
+
 - Request rate (RPS) over time
 - Latency distribution (p50, p95, p99)
 - Error rate percentage
@@ -186,6 +188,7 @@ alerts:
 ### Business Dashboard
 
 **Key Panels**:
+
 - Total rate limit checks
 - Rate limit violations by rule
 - Top rate-limited keys
@@ -195,6 +198,7 @@ alerts:
 ### Performance Dashboard
 
 **Key Panels**:
+
 - Algorithm performance comparison
 - Cache hit rates
 - Redis latency breakdown
@@ -235,16 +239,19 @@ def readiness():
 ### Common Queries
 
 **Rate Limit Violations**:
+
 ```
 logs | filter allowed == false | group by rule_id | count
 ```
 
 **High Latency Requests**:
+
 ```
 logs | filter latency_ms > 2 | group by rule_id | avg(latency_ms)
 ```
 
 **Error Patterns**:
+
 ```
 logs | filter level == "ERROR" | group by error_type | count
 ```
@@ -289,4 +296,3 @@ logs | filter level == "ERROR" | group by error_type | count
 ## Summary
 
 Comprehensive observability includes metrics (system, Redis, application), structured logging, distributed tracing, SLIs/SLOs, alerting, dashboards, health checks, and incident response procedures. This enables proactive monitoring, quick issue detection, and effective troubleshooting.
-

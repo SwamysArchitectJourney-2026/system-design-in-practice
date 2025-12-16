@@ -11,4 +11,3 @@ This section provides an overview of modern system design and why it's essential
 ---
 
 *Content coming soon...*
-

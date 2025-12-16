@@ -9,4 +9,3 @@
 - Week 5-6: Patterns
 - Week 7-8: Case Studies
 - Week 9-10: Mock Interviews
-

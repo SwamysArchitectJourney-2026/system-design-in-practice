@@ -8,4 +8,3 @@
 - Evolution of distributed systems
 - Modern challenges and requirements
 - The role of system design in software engineering
-

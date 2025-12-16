@@ -65,4 +65,3 @@ C4Context
 - **Redis Cluster**: Distributed storage for rate limit counters
 - **Configuration Database**: Stores rate limit rules and policies
 - **Monitoring System**: Collects metrics, logs, and traces
-

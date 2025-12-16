@@ -8,4 +8,3 @@
 - Common failure patterns
 - Impact of failures
 - Learning from failures
-

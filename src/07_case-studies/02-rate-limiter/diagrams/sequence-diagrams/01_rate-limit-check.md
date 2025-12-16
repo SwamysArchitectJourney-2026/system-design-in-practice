@@ -113,4 +113,3 @@ Client    API Gateway   Rate Limiter   Cache    Config Service   Redis    Metric
 - **Configuration Missing**: Fail-open, allow request
 - **Invalid Request**: Return 400 Bad Request
 - **Authentication Failed**: Return 401 Unauthorized
-

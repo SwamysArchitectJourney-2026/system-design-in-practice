@@ -5,11 +5,13 @@
 ### Phase 1: Vertical Scaling
 
 **Approach**: Increase server resources
+
 - Upgrade CPU: 2 cores → 4 cores → 8 cores
 - Increase RAM: 4 GB → 8 GB → 16 GB
 - Faster storage: HDD → SSD → NVMe
 
 **Limitations**:
+
 - Hardware limits
 - Single point of failure
 - Cost increases linearly
@@ -17,11 +19,13 @@
 ### Phase 2: Read Replicas
 
 **Approach**: Add database read replicas
+
 - Primary database for writes
 - 2-3 read replicas for reads
 - Replication lag: <100ms
 
 **Benefits**:
+
 - Distribute read load
 - Improved availability
 - Better performance
@@ -29,11 +33,13 @@
 ### Phase 3: Horizontal Scaling
 
 **Approach**: Add more application servers
+
 - Stateless application servers
 - Load balancer distributes traffic
 - Shared database and cache
 
 **Benefits**:
+
 - Linear scalability
 - Better fault tolerance
 - Cost-effective
@@ -41,12 +47,14 @@
 ### Phase 4: Distributed Architecture
 
 **Approach**: Microservices + Distributed Systems
+
 - Service decomposition
 - Independent scaling per service
 - Distributed databases
 - Global distribution
 
 **Benefits**:
+
 - Maximum scalability
 - Service-level optimization
 - Global reach
@@ -133,4 +141,3 @@
 - **Cache Optimization**: Reduce database load
 - **CDN**: Reduce bandwidth costs
 - **Data Archival**: Move old data to cheaper storage
-

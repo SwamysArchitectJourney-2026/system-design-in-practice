@@ -9,4 +9,3 @@
 - Weak consistency
 - CAP theorem and PACELC
 - Choosing the right consistency model
-

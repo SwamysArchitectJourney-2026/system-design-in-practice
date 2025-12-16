@@ -85,4 +85,3 @@ User → CDN → API → Service → Cache → DB
 ---
 
 *Previous: [Shortening Flow](./01_shortening-flow.md) | Next: [Token Range Assignment](./03_token-range-assignment.md)*
-

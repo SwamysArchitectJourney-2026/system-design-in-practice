@@ -83,46 +83,54 @@ C4Component
 ## Component Responsibilities
 
 ### API Controller
+
 - Receives rate limit check requests
 - Validates input parameters
 - Returns rate limit decisions
 - Handles errors and exceptions
 
 ### Rate Limit Engine
+
 - Orchestrates rate limiting process
 - Selects appropriate algorithm
 - Executes algorithm
 - Makes allow/deny decisions
 
 ### Algorithm Factory
+
 - Creates algorithm instances based on rule type
 - Manages algorithm lifecycle
 - Provides algorithm abstraction
 
 ### Algorithm Components
+
 - **Token Bucket**: Implements token bucket algorithm
 - **Sliding Window**: Implements sliding window algorithm
 - **Fixed Window**: Implements fixed window algorithm
 
 ### Redis Client
+
 - Manages Redis connections
 - Performs counter operations
 - Handles connection pooling
 - Implements retry logic
 
 ### Cache Client
+
 - Manages local in-memory cache
 - Implements cache-aside pattern
 - Handles cache invalidation
 - Manages TTL
 
 ### Config Client
+
 - Communicates with configuration service
 - Fetches rate limit rules
 - Handles configuration updates
 - Implements caching
 
 ### Metrics Collector
+
 - Collects rate limit metrics
 - Sends metrics to monitoring system
 - Tracks performance indicators
@@ -133,4 +141,3 @@ C4Component
 2. **Configuration Flow**: Rate Limit Engine → Config Client → Configuration Service
 3. **Cache Flow**: Rate Limit Engine → Cache Client → Local Cache
 4. **Metrics Flow**: API Controller → Metrics Collector → Monitoring System
-

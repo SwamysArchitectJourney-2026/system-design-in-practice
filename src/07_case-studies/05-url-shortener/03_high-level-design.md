@@ -10,10 +10,12 @@ The URL shortening service consists of two main flows:
 ## Core Components
 
 ### 1. Load Balancer
+
 - Distributes incoming requests across multiple service instances
 - Ensures high availability and load distribution
 
 ### 2. Short URL Service
+
 - **Multiple Instances**: Horizontally scalable service instances
 - **Responsibilities**:
   - Generate unique short URL identifiers
@@ -21,6 +23,7 @@ The URL shortening service consists of two main flows:
   - Retrieve URL mappings for redirection
 
 ### 3. Token Service
+
 - **Purpose**: Generate unique numeric identifiers for short URLs
 - **Operation**: Assigns ranges of unique numbers to each service instance
 - **Characteristics**:
@@ -29,6 +32,7 @@ The URL shortening service consists of two main flows:
   - Built on relational database (MySQL) for ACID guarantees
 
 ### 4. Database
+
 - **Primary Storage**: Stores short URL to long URL mappings
 - **Choice**: Columnar database (Cassandra) for:
   - High write throughput
@@ -127,11 +131,13 @@ graph TB
 ### Why Token Service Instead of Centralized Counter?
 
 **Problem with Centralized Counter (Redis)**:
+
 - Single point of failure
 - Performance bottleneck (all instances hit same Redis)
 - Difficult to scale beyond single Redis capacity
 
 **Solution: Token Range Assignment**:
+
 - Each service instance gets a range of unique tokens
 - Instances generate short URLs independently from their assigned range
 - Token Service only called when range is exhausted (low frequency)
@@ -147,4 +153,3 @@ graph TB
 ---
 
 *For capacity planning, see [Back-of-Envelope](./02_back-of-envelope.md). For detailed implementation, see [Low-Level Design](./04_low-level-design.md).*
-

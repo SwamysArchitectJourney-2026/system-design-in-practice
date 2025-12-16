@@ -95,7 +95,7 @@ User    API Gateway   App Service   Primary DB   Cache    Message Queue
 1. **User requests data** via API Gateway
 2. **AppService checks cache** first
 3. **If cache hit**: Return cached data immediately
-4. **If cache miss**: 
+4. **If cache miss**:
    - Query Read Replica database
    - Store result in cache with TTL
    - Return data to user
@@ -119,4 +119,3 @@ User    API Gateway   App Service   Primary DB   Cache    Message Queue
 - **Phase 1-2**: Direct database access, no cache
 - **Phase 3**: Cache-aside pattern with Redis
 - **Phase 4**: Multi-layer caching (L1: app cache, L2: Redis, L3: CDN)
-

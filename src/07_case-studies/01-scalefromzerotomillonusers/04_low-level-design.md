@@ -37,12 +37,14 @@
 ### RESTful APIs
 
 **Phase 1-2**: Simple REST APIs
+
 - `POST /api/users` - Create user
 - `GET /api/users/{id}` - Get user
 - `PUT /api/users/{id}` - Update user
 - `DELETE /api/users/{id}` - Delete user
 
 **Phase 3-4**: REST APIs with versioning
+
 - `POST /api/v1/users` - Create user
 - `GET /api/v1/users/{id}` - Get user
 - Rate limiting and authentication required
@@ -114,4 +116,3 @@ CREATE INDEX idx_username ON users(username);
 - **Batch Processing**: Batch database operations
 - **Async Processing**: Offload heavy operations to queues
 - **Compression**: Compress responses for large payloads
-

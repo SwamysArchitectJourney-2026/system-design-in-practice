@@ -9,4 +9,3 @@
 - DNS design and architecture
 - DNS in system design
 - Performance and caching strategies
-

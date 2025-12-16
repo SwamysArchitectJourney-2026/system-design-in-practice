@@ -1,4 +1,3 @@
 # Consistency
 
 *Content coming soon...*
-

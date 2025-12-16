@@ -9,12 +9,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Public vs Private URLs
 
 **Public URLs** (Default):
+
 - No authentication required
 - Anyone can create short URLs
 - Anyone can access short URLs
 - Suitable for general use cases
 
 **Private URLs** (Optional Feature):
+
 - Require user authentication
 - Only authenticated users can create
 - Access control (owner-only or shared)
@@ -23,17 +25,20 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Authentication Methods
 
 **API Key Authentication**:
+
 - Generate API keys for registered users
 - Include API key in request header: `Authorization: Bearer <api_key>`
 - Rate limits per API key
 - Track usage per key
 
 **OAuth 2.0** (For Private URLs):
+
 - Support OAuth providers (Google, GitHub, etc.)
 - Issue JWT tokens for authenticated sessions
 - Token expiration: 1 hour (refreshable)
 
 **Session-Based** (For Web UI):
+
 - Traditional session cookies
 - Secure, HttpOnly cookies
 - CSRF protection for state-changing operations
@@ -43,6 +48,7 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Per-IP Rate Limiting
 
 **Anonymous Users**:
+
 - Create short URL: 10 requests/minute per IP
 - Redirect: Unlimited (public access)
 
@@ -51,11 +57,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Per-User Rate Limiting
 
 **Authenticated Users**:
+
 - Free tier: 100 URLs/minute
 - Premium tier: 1,000 URLs/minute
 - Enterprise: Custom limits
 
 **Implementation**:
+
 - Use Redis for rate limit counters
 - Sliding window algorithm
 - Key format: `rate_limit:{user_id}:{endpoint}`
@@ -65,6 +73,7 @@ Security is critical for URL shortening services to prevent abuse, protect users
 **Challenge**: Multiple service instances need coordinated rate limiting
 
 **Solution**: Centralized Redis for rate limit counters
+
 - All instances check same Redis
 - Atomic increment operations
 - TTL-based expiration
@@ -76,12 +85,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Input Sanitization
 
 **Long URL Validation**:
+
 - Maximum length: 2,048 characters (HTTP URL limit)
 - Valid URL format (scheme, domain, path)
 - Whitelist allowed schemes: `http://`, `https://`
 - Block dangerous schemes: `javascript:`, `data:`, `file:`
 
 **Malicious URL Detection**:
+
 - Check against known phishing/malware databases
 - Pattern matching for suspicious domains
 - User reporting mechanism
@@ -89,12 +100,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Content Filtering
 
 **Blocked Content**:
+
 - Known malware domains
 - Phishing sites
 - Spam patterns
 - Adult content (if policy requires)
 
 **Implementation**:
+
 - Real-time URL checking service
 - Cache results (TTL: 24 hours)
 - Async validation (don't block user, validate in background)
@@ -104,11 +117,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Layer 1: CDN/WAF
 
 **Web Application Firewall (WAF)**:
+
 - Filter malicious requests at edge
 - Block known attack patterns
 - Rate limit at CDN level
 
 **CDN Protection**:
+
 - Cloudflare, AWS Shield, or similar
 - Automatic DDoS mitigation
 - Geographic filtering if needed
@@ -116,11 +131,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Layer 2: Application-Level
 
 **Request Throttling**:
+
 - Per-IP rate limits (see Rate Limiting section)
 - Per-user rate limits
 - Global rate limits (circuit breaker)
 
 **Circuit Breaker Pattern**:
+
 - If error rate > threshold, reject new requests
 - Automatic recovery after cooldown period
 - Protect downstream services
@@ -130,11 +147,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Encryption in Transit
 
 **Requirement**: All traffic over HTTPS
+
 - TLS 1.2 minimum (TLS 1.3 preferred)
 - Strong cipher suites only
 - Certificate pinning for mobile apps
 
 **Certificate Management**:
+
 - Automated certificate renewal (Let's Encrypt, ACM)
 - HSTS headers (force HTTPS)
 - Redirect HTTP → HTTPS
@@ -144,11 +163,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### URL Privacy
 
 **Long URL Handling**:
+
 - Don't log full URLs in access logs (privacy)
 - Hash long URLs for analytics
 - Encrypt sensitive URLs in database (optional)
 
 **Access Logs**:
+
 - Log short URL, timestamp, IP (hashed)
 - Don't log full long URLs
 - Anonymize IP addresses after 90 days
@@ -156,11 +177,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Database Security
 
 **Encryption at Rest**:
+
 - Encrypt database volumes
 - Encrypt sensitive columns (if storing private URLs)
 - Key management service (AWS KMS, Azure Key Vault)
 
 **Access Control**:
+
 - Least privilege principle
 - Separate read/write credentials
 - Rotate credentials regularly
@@ -170,12 +193,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Spam Detection
 
 **Patterns to Detect**:
+
 - Rapid URL creation from same IP
 - Similar long URLs (variations)
 - Suspicious domain patterns
 - User reporting
 
 **Mitigation**:
+
 - Temporary IP blocking (1 hour)
 - Require CAPTCHA after threshold
 - Manual review queue for suspicious URLs
@@ -183,12 +208,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Link Shortening Abuse
 
 **Common Abuse**:
+
 - Phishing links
 - Malware distribution
 - Spam campaigns
 - Copyright infringement
 
 **Prevention**:
+
 - URL validation (see URL Validation section)
 - User reporting mechanism
 - Automated takedown process
@@ -199,6 +226,7 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Security Metrics
 
 **Key Metrics**:
+
 - Failed authentication attempts
 - Rate limit violations
 - Blocked malicious URLs
@@ -208,12 +236,14 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Security Alerts
 
 **Critical Alerts**:
+
 - DDoS attack detected
 - Unusual traffic spike from single IP
 - High rate of blocked URLs
 - Authentication system failure
 
 **Warning Alerts**:
+
 - Rate limit violations increasing
 - Suspicious URL patterns detected
 - Unusual geographic traffic
@@ -223,11 +253,13 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Data Privacy
 
 **GDPR Compliance** (if applicable):
+
 - User data deletion (right to be forgotten)
 - Data export (right to access)
 - Privacy policy and consent
 
 **Data Retention**:
+
 - URL mappings: 10 years (as per requirements)
 - Access logs: 90 days (anonymized)
 - User data: Per privacy policy
@@ -235,6 +267,7 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ### Audit Logging
 
 **What to Log**:
+
 - Authentication events (success/failure)
 - Authorization changes
 - URL creation/deletion
@@ -259,4 +292,3 @@ Security is critical for URL shortening services to prevent abuse, protect users
 ---
 
 *For system architecture, see [High-Level Design](./03_high-level-design.md). For capacity planning, see [Back-of-Envelope](./02_back-of-envelope.md).*
-

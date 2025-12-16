@@ -62,6 +62,7 @@ C4Context
 **Users**: End users who want to shorten long URLs or access shortened URLs.
 
 **URL Shortener System**: The core system that provides:
+
 - URL shortening functionality
 - URL redirection services
 - Analytics and monitoring
@@ -73,4 +74,3 @@ C4Context
 ---
 
 *Next: [Container Diagram](./02_container-diagram.md)*
-

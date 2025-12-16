@@ -8,4 +8,3 @@
 - Common interview questions
 - Evaluation criteria
 - Practice strategies
-

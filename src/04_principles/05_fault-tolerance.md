@@ -9,4 +9,3 @@
 - Redundancy patterns
 - Graceful degradation
 - Recovery mechanisms
-

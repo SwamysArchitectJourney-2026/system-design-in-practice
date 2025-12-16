@@ -83,6 +83,7 @@ C4Container
 **API Gateway**: Entry point that handles routing, rate limiting, authentication, and load balancing.
 
 **Short URL Service**: Core service that:
+
 - Generates short URLs from token ranges
 - Stores URL mappings
 - Retrieves long URLs for redirection
@@ -101,4 +102,3 @@ C4Container
 ---
 
 *Previous: [Context Diagram](./01_context-diagram.md) | Next: [Component Diagram](./03_component-diagram.md)*
-

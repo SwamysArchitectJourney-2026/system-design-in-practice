@@ -68,17 +68,20 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../d
 ### When Creating Educational Content
 
 #### File Naming
+
 - ✅ Use zero-padded numeric prefixes: `01_`, `02_`, etc.
 - ❌ **NEVER** use `00_` prefix - **NO EXCEPTIONS**
 - ✅ Use hyphens for multi-word names: `01_modern-system-design.md`
 
 #### Content Structure
+
 - ✅ Recommended ≤150 lines per file
 - ✅ Split into multiple parts if content exceeds 150 lines
 - ✅ Never trim or condense content
 - ✅ Each part should be self-contained
 
 #### YAML Frontmatter (Recommended for content files)
+
 ```yaml
 ---
 learning_level: "Beginner" | "Intermediate" | "Advanced"
@@ -98,7 +101,9 @@ related_topics:
 ### When Creating Case Studies
 
 #### Standard Structure
+
 Each case study should include:
+
 - `requirements.md` - Functional and non-functional requirements
 - `high-level-design.md` - System architecture and component interactions
 - `low-level-design.md` - Detailed design of components
@@ -152,6 +157,7 @@ Each case study should include:
 ### Quality Gate Questions
 
 Before publishing any content:
+
 1. ✅ Is this explanation clearer than the source material?
 2. ✅ Does this fit naturally in the learning progression?
 3. ✅ Would a learner understand this without the original source?
@@ -286,11 +292,13 @@ When reviewing content, apply structured reasoning:
 Before committing changes:
 
 ### Markdown Linting
+
 ```bash
 npx markdownlint-cli2 "**/*.md"
 ```
 
 ### Link Checking (Lychee via Docker)
+
 ```bash
 docker run --rm -v "${PWD}:/input:ro" lycheeverse/lychee --config /input/lychee.toml "/input/**/*.md"
 ```
