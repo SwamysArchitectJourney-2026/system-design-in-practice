@@ -10,9 +10,9 @@ related_topics:
   prerequisites: []
   builds_upon: []
   enables:
-    - ../../07_case-studies/url-shortener/diagrams/01_context-diagram.md
-    - ../../07_case-studies/url-shortener/diagrams/02_container-diagram.md
-    - ../../07_case-studies/url-shortener/diagrams/03_component-diagram.md
+    - ../07_case-studies/05-url-shortener/diagrams/01_context-diagram.md
+    - ../07_case-studies/05-url-shortener/diagrams/02_container-diagram.md
+    - ../07_case-studies/05-url-shortener/diagrams/03_component-diagram.md
   cross_refs: []
 ---
 
