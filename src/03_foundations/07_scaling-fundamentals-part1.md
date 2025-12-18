@@ -115,4 +115,5 @@ graph LR
 
 ---
 
-*Next: [Part 2: Database Choices and Scaling Strategies](./07_scaling-fundamentals-part2.md).* 
+*Next: [Part 2: Database Choices and Scaling Strategies](./07_scaling-fundamentals-part2.md).*
+

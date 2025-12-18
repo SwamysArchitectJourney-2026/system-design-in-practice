@@ -140,7 +140,7 @@ This document provides a comprehensive index of all topics covered in this repos
 - [AWS Kinesis Outage](08_failures/03_aws-kinesis-outage.md)
 - [AWS Outages](08_failures/04_aws-outage.md)
 - [Lessons Learned](08_failures/05_lessons-learned.md)
- 
+
 ## AI & ML Systems
 
 - [AI & ML Systems in Practice](09_ai-ml-systems/README.md)
