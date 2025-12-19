@@ -3,9 +3,9 @@ learning_level: "Intermediate"
 prerequisites: ["Consistency (Part 1)", "CAP theorem basics"]
 estimated_time: "25 minutes"
 learning_objectives:
-  - "Apply consistency design patterns to system architecture"
-  - "Choose appropriate consistency patterns for different scenarios"
-  - "Monitor and measure consistency in distributed systems"
+  - "Apply consistency design patterns in practice"
+  - "Balance consistency with performance and availability"
+  - "Choose appropriate consistency strategies for different scenarios"
 related_topics:
   prerequisites:
     - ./04_consistency.md
@@ -17,73 +17,152 @@ related_topics:
   cross_refs: []
 ---
 
-# Consistency (Part 2): Design Patterns and Monitoring
+# Consistency (Part 2): Design Patterns and Practical Applications
 
 ## Design Patterns for Consistency
 
-### Pattern 1: Write-Through Cache
+### Pattern 1: Read Replicas
 
-**Concept**: Write to both cache and database simultaneously.
+**Concept**: Route reads to replicas, writes to primary.
 
-**Consistency**: Strong (cache always matches database).
+**Benefits**:
+- Scale read operations
+- Reduce load on primary
+- Geographic distribution
 
-**Use when**: Need strong consistency, can accept write latency.
+**Consistency Trade-off**:
+- Replicas may have slight lag
+- Acceptable for most read scenarios
 
-**Trade-offs**:
-- ✅ Strong consistency
-- ✅ Cache always accurate
-- ❌ Higher write latency
+**Example**: User profile reads → replica, profile updates → primary.
 
-### Pattern 2: Write-Behind Cache
+### Pattern 2: Quorum Reads/Writes
 
-**Concept**: Write to cache immediately, async write to database.
+**Concept**: Require majority of nodes to agree.
 
-**Consistency**: Eventual (cache may be ahead of database).
+**How it works**:
+- Write: Must write to (N/2 + 1) nodes
+- Read: Must read from (N/2 + 1) nodes
 
-**Use when**: Can accept eventual consistency, need low write latency.
+**Benefits**:
+- Strong consistency
+- Handles node failures
 
-**Trade-offs**:
-- ✅ Low write latency
-- ✅ High write throughput
-- ❌ Risk of data loss if cache fails
+**Example**: 5-node cluster → write to 3 nodes, read from 3 nodes.
 
-### Pattern 3: Read Replicas
+### Pattern 3: Version Vectors
 
-**Concept**: Writes go to primary, reads from replicas.
+**Concept**: Track version of each update.
 
-**Consistency**: Eventual (replicas lag behind primary).
+**How it works**:
+- Each node maintains version vector
+- Compare vectors to detect conflicts
+- Resolve conflicts based on policy
 
-**Use when**: Read-heavy workloads, can accept stale reads.
+**Benefits**:
+- Detect conflicts
+- Track causality
+- Enable conflict resolution
 
-**Trade-offs**:
-- ✅ Scale reads horizontally
-- ✅ Reduce load on primary
-- ❌ Replication lag
+**Example**: Distributed document editing → version vectors track changes.
 
-## Monitoring Consistency
+### Pattern 4: Event Sourcing
 
-### Key Metrics
+**Concept**: Store events instead of current state.
 
-- **Replication Lag**: Time between write and replica update
-- **Stale Read Rate**: Percentage of reads that see outdated data
-- **Consistency Violations**: Incorrect data seen by users
+**How it works**:
+- All changes stored as events
+- Current state derived from events
+- Replay events to reconstruct state
 
-### Tools
+**Benefits**:
+- Complete audit trail
+- Time travel (reconstruct any point in time)
+- Strong consistency possible
 
-- Database replication monitoring
-- Application-level consistency checks
-- User-reported inconsistencies
+**Example**: Bank account → store transactions (events) → balance = sum of transactions.
+
+## Practical Applications
+
+### Financial Systems
+
+**Requirement**: Strong consistency
+
+**Why**: Money must be accurate, no double-spending.
+
+**Implementation**:
+- ACID transactions
+- Quorum writes
+- Synchronous replication
+
+**Trade-off**: Higher latency, but correctness critical.
+
+### Social Media
+
+**Requirement**: Eventual consistency
+
+**Why**: Acceptable if posts take seconds to propagate.
+
+**Implementation**:
+- Asynchronous replication
+- Read replicas
+- Caching
+
+**Trade-off**: Temporary inconsistencies, but high availability.
+
+### E-Commerce
+
+**Requirement**: Mixed consistency
+
+**Why**: Different data has different requirements.
+
+**Implementation**:
+- **Inventory**: Strong consistency (prevent overselling)
+- **Product catalog**: Eventual consistency (acceptable lag)
+- **Recommendations**: Eventual consistency (not critical)
+
+**Trade-off**: Right consistency for each use case.
+
+## Consistency Decision Framework
+
+### Step 1: Assess Criticality
+
+**Question**: What happens if data is stale?
+
+- **Critical** (money, medical) → Strong consistency
+- **Important** (user profiles) → Read-your-writes
+- **Acceptable** (social posts) → Eventual consistency
+
+### Step 2: Evaluate Update Frequency
+
+**Question**: How often is data updated?
+
+- **Frequent** → Consider eventual consistency
+- **Rare** → Strong consistency feasible
+
+### Step 3: Consider Geographic Distribution
+
+**Question**: Are users globally distributed?
+
+- **Global** → Eventual consistency often necessary
+- **Single region** → Strong consistency possible
+
+### Step 4: Analyze Read/Write Patterns
+
+**Question**: What's the read/write ratio?
+
+- **Read-heavy** (10:1) → Eventual consistency with caching
+- **Write-heavy** (1:1) → Consider strong consistency
 
 ## Key Takeaways
 
-1. **Consistency is a spectrum** - choose based on requirements
-2. **Trade-offs are inevitable** - consistency vs availability vs performance
-3. **Different use cases need different guarantees** - financial vs social media
-4. **Design patterns help** - write-through, write-behind, read replicas
-5. **Monitor consistency** - track replication lag, stale reads
+1. **Choose right pattern** - read replicas, quorum, version vectors, event sourcing
+2. **Match consistency to use case** - financial needs strong, social needs eventual
+3. **Use decision framework** - assess criticality, frequency, distribution, patterns
+4. **Balance trade-offs** - consistency vs availability vs performance
+5. **Monitor consistency** - track replication lag, detect conflicts
 
 ---
 
 *Previous: [Consistency (Part 1)](./04_consistency.md)*  
-*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Database Selection](../05_building-blocks/03_databases-part1.md).*
-
+*Next: Learn about [Database Selection](../05_building-blocks/03_databases-part1.md) or explore [Distributed Cache](../05_building-blocks/08_distributed-cache.md).*

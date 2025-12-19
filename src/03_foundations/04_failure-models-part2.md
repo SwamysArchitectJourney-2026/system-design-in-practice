@@ -3,9 +3,9 @@ learning_level: "Intermediate"
 prerequisites: ["Failure Models (Part 1)", "Basic understanding of distributed systems"]
 estimated_time: "25 minutes"
 learning_objectives:
-  - "Apply failure recovery strategies to system design"
-  - "Design systems that gracefully handle failures"
-  - "Implement patterns for failure isolation and recovery"
+  - "Apply failure recovery strategies in system design"
+  - "Design systems that gracefully handle different failure types"
+  - "Implement fault tolerance patterns"
 related_topics:
   prerequisites:
     - ./04_failure-models.md
@@ -23,102 +23,140 @@ related_topics:
 
 ### 1. Retry with Exponential Backoff
 
-**When to use**: Transient failures (network glitches, temporary overload).
+**Concept**: Retry failed operations with increasing delays.
 
 **How it works**:
-- Retry failed operation
-- Wait longer between each retry (exponential backoff)
-- Give up after max attempts
+- First retry: Wait 1 second
+- Second retry: Wait 2 seconds
+- Third retry: Wait 4 seconds
+- Continue doubling until success or max retries
 
-**Example**: API call fails → wait 1s → retry → wait 2s → retry → wait 4s → retry.
+**Use when**: Transient failures (network issues, temporary overload).
 
-**Trade-offs**:
-- ✅ Handles transient failures automatically
-- ❌ Can amplify load if many retries
-- ❌ Must distinguish transient vs permanent failures
+**Example**: API call fails → retry with backoff → succeeds on second attempt.
 
-### 2. Circuit Breaker
+### 2. Circuit Breaker Pattern
 
-**When to use**: Repeated failures from a dependency.
+**Concept**: Stop calling failing service after threshold.
 
-**How it works**:
-- Track failure rate
-- If threshold exceeded, "open" circuit (stop calling)
-- After timeout, "half-open" (test if fixed)
-- If successful, "close" circuit (resume normal operation)
+**States**:
+- **Closed**: Normal operation, calls pass through
+- **Open**: Service failing, calls fail fast
+- **Half-Open**: Testing if service recovered
 
-**Example**: Database repeatedly timing out → stop sending queries → test after 30s → resume if healthy.
+**Use when**: Service repeatedly failing, want to fail fast.
 
-**Trade-offs**:
-- ✅ Prevents cascade failures
-- ✅ Fails fast instead of waiting
-- ⚠️ Requires careful tuning of thresholds
+**Example**: Payment service down → circuit opens → return error immediately instead of waiting for timeout.
 
 ### 3. Graceful Degradation
 
-**When to use**: Non-critical features failing.
+**Concept**: System continues with reduced functionality.
 
-**How it works**:
-- Disable failing feature
-- Continue serving core functionality
-- Return cached data or simplified responses
+**Strategies**:
+- Return cached data
+- Use default values
+- Disable non-critical features
+- Show simplified UI
 
-**Example**: Recommendation service down → show default recommendations instead of failing entire page.
-
-**Trade-offs**:
-- ✅ Better user experience than complete failure
-- ✅ System remains usable
-- ❌ Reduced functionality
+**Example**: Recommendation service down → show popular items instead of personalized recommendations.
 
 ### 4. Failover
 
-**When to use**: Primary component fails, need backup.
+**Concept**: Automatically switch to backup when primary fails.
 
-**How it works**:
-- Detect primary failure
-- Switch traffic to backup/replica
-- Restore primary when fixed
+**Types**:
+- **Automatic**: System detects and switches
+- **Manual**: Requires intervention
 
-**Example**: Primary database fails → route reads to read replica → promote replica to primary.
+**Example**: Primary database fails → automatically route to replica.
 
-**Trade-offs**:
-- ✅ Maintains service during failures
-- ✅ Transparent to users
-- ❌ Failover time (brief downtime)
-- ❌ Data synchronization complexity
+## Design Patterns for Failure Handling
+
+### Pattern 1: Redundancy
+
+**Concept**: Deploy multiple instances of critical components.
+
+**Benefits**:
+- Single failure doesn't bring down system
+- Load distribution
+- Geographic distribution
+
+**Example**: Multiple application servers behind load balancer.
+
+### Pattern 2: Timeouts
+
+**Concept**: Don't wait indefinitely for responses.
+
+**Implementation**:
+- Set reasonable timeouts
+- Fail fast on timeout
+- Retry if appropriate
+
+**Example**: Database query timeout after 5 seconds → return error instead of hanging.
+
+### Pattern 3: Idempotency
+
+**Concept**: Operations can be safely retried.
+
+**Benefits**:
+- Safe retry on failures
+- Prevents duplicate processing
+- Handles network retries
+
+**Example**: Payment with idempotency key → retry safe if network fails.
+
+### Pattern 4: Health Checks
+
+**Concept**: Continuously monitor component health.
+
+**Implementation**:
+- Periodic health endpoints
+- Heartbeat mechanisms
+- External monitoring
+
+**Example**: Load balancer checks `/health` every 5 seconds → removes unhealthy instances.
 
 ## Designing for Failure
 
-### Principles
+### Assume Failures Will Happen
 
-1. **Assume failures will happen**: Design defensively
-2. **Fail fast**: Detect and handle failures quickly
-3. **Isolate failures**: Prevent cascade failures
-4. **Plan recovery**: Know how to restore service
-5. **Monitor everything**: Detect failures before users notice
+**Principle**: Design assuming components will fail.
 
-### Common Patterns
+**Practices**:
+- No single points of failure
+- Redundant components
+- Automatic recovery
+- Graceful degradation
 
-**Redundancy**: Multiple instances of critical components.
+### Test Failure Scenarios
 
-**Idempotency**: Operations safe to retry.
+**Principle**: Actively test how system handles failures.
 
-**Stateless design**: Easier to recover (no state to restore).
+**Practices**:
+- Chaos engineering
+- Failure injection
+- Load testing
+- Disaster recovery drills
 
-**Timeouts**: Don't wait forever for responses.
+### Monitor Everything
 
-**Rate limiting**: Prevent overload from causing failures.
+**Principle**: Detect failures before they impact users.
+
+**Practices**:
+- Comprehensive logging
+- Metrics and alerts
+- Distributed tracing
+- Health dashboards
 
 ## Key Takeaways
 
-1. **Failures are normal** - design expecting them
-2. **Different failure types** require different strategies
-3. **Detect failures quickly** - use heartbeats, health checks, timeouts
-4. **Recover gracefully** - retry, circuit break, degrade, failover
-5. **Isolate failures** - prevent cascade effects
+1. **Failures are expected** - design for them, don't just hope they don't happen
+2. **Recovery strategies** - retry, circuit break, degrade gracefully
+3. **Redundancy is essential** - eliminate single points of failure
+4. **Test failure scenarios** - know how system behaves under failure
+5. **Monitor proactively** - detect issues before users do
 
 ---
 
 *Previous: [Failure Models (Part 1)](./04_failure-models.md)*  
-*Next: Learn about [Fault Tolerance](../04_principles/05_fault-tolerance.md) or explore [Failure Analysis](../08_failures/01_introduction.md).*
-
+*Next: Learn about [Fault Tolerance](../04_principles/05_fault-tolerance.md) or explore [Real-World Failures](../08_failures/01_introduction.md).*

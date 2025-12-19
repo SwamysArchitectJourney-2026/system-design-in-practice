@@ -152,35 +152,6 @@ Maintainable systems enable:
 
 **Example**: Prototype with shortcuts, but refactor before production scale.
 
-## Technical Debt Management
-
-### What Is Technical Debt?
-
-**Definition**: Shortcuts taken for speed that need to be paid back later.
-
-**Types**:
-- **Code debt**: Quick fixes, hacks
-- **Architecture debt**: Suboptimal design decisions
-- **Documentation debt**: Missing or outdated docs
-- **Test debt**: Insufficient test coverage
-
-### Managing Technical Debt
-
-**Strategies**:
-- **Track debt**: Document known issues
-- **Prioritize**: Fix high-impact debt first
-- **Allocate time**: Regular refactoring sprints
-- **Prevent**: Code reviews, architecture reviews
-
-## Key Takeaways
-
-1. **Maintainability is a long-term investment** - pays off over time
-2. **Modular design** - independent, well-defined components
-3. **Observability is essential** - logs, metrics, traces
-4. **Documentation matters** - code, architecture, decisions
-5. **Balance with other concerns** - don't sacrifice everything for maintainability
-
 ---
 
-*Previous: [Fault Tolerance](./05_fault-tolerance.md)*  
-*Next: Learn about [Security](./07_security.md) or explore [Monitoring](../05_building-blocks/07_monitoring.md).*
+*Next: Continue with [Technical Debt Management and Key Takeaways](./06_maintainability-part2.md).*
