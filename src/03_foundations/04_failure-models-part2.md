@@ -3,9 +3,9 @@ learning_level: "Intermediate"
 prerequisites: ["Failure Models (Part 1)", "Basic understanding of distributed systems"]
 estimated_time: "25 minutes"
 learning_objectives:
-  - "Apply failure recovery strategies in system design"
-  - "Design systems that gracefully handle different failure types"
-  - "Understand fault tolerance patterns and their trade-offs"
+  - "Apply failure recovery strategies to system design"
+  - "Design systems that handle failures gracefully"
+  - "Understand failure patterns and prevention strategies"
 related_topics:
   prerequisites:
     - ./04_failure-models.md
@@ -21,157 +21,99 @@ related_topics:
 
 ## Failure Recovery Strategies
 
-### 1. Retry with Exponential Backoff
+### Strategy 1: Retry
 
-**Strategy**: Retry failed operations with increasing delays.
+**Concept**: Automatically retry failed operations.
 
-**How it works**:
-- First retry: Wait 1 second
-- Second retry: Wait 2 seconds
-- Third retry: Wait 4 seconds
-- Continue doubling delay
+**When to Use**: Transient failures (network timeouts, temporary unavailability).
 
-**Use when**: Transient failures (network issues, temporary overload).
+**Implementation**:
+- Exponential backoff (wait 1s, 2s, 4s, 8s...)
+- Maximum retry count
+- Jitter to avoid thundering herd
 
-**Trade-offs**:
-- ✅ Handles temporary issues automatically
-- ❌ Increases latency for persistent failures
-- ❌ Can amplify load on failing system
+**Example**: Database connection timeout → retry with backoff → succeed on 3rd attempt.
 
-### 2. Circuit Breaker
+### Strategy 2: Checkpoint and Restart
 
-**Strategy**: Stop calling failing service after threshold.
+**Concept**: Save system state periodically, restart from checkpoint on failure.
 
-**States**:
-- **Closed**: Normal operation, calls pass through
-- **Open**: Service failing, calls fail fast
-- **Half-Open**: Testing if service recovered
+**When to Use**: Long-running processes, batch jobs.
 
-**Use when**: Service repeatedly failing, want to fail fast.
+**Implementation**:
+- Save state at checkpoints
+- On failure, restart from last checkpoint
+- Resume processing
 
-**Trade-offs**:
-- ✅ Prevents cascading failures
-- ✅ Reduces load on failing service
-- ⚠️ Requires careful tuning
+**Example**: Data processing job saves progress every 1000 records → crash → restart from checkpoint.
 
-### 3. Graceful Degradation
+### Strategy 3: Rollback
 
-**Strategy**: Continue operating with reduced functionality.
+**Concept**: Revert to previous known-good state.
 
-**Example**: 
-- Recommendation service down → show default recommendations
-- Search service slow → show cached results
+**When to Use**: Failed transactions, bad deployments.
 
-**Use when**: Non-critical features can be disabled.
+**Implementation**:
+- Maintain previous versions
+- Automatic rollback on failure
+- Manual rollback capability
 
-**Trade-offs**:
-- ✅ System remains usable
-- ❌ Reduced user experience
-- ⚠️ Must define what's "critical"
+**Example**: Deployment causes errors → automatically rollback to previous version.
 
-### 4. Failover
+### Strategy 4: Compensation
 
-**Strategy**: Switch to backup when primary fails.
+**Concept**: Undo effects of completed operations.
 
-**Types**:
-- **Automatic**: System detects and switches
-- **Manual**: Requires human intervention
+**When to Use**: Distributed transactions, saga patterns.
 
-**Use when**: Critical components need redundancy.
+**Implementation**:
+- Each operation has compensating action
+- Execute compensations in reverse order
+- Handle partial failures
 
-**Trade-offs**:
-- ✅ Maintains availability
-- ❌ Requires duplicate resources
-- ⚠️ Must handle state synchronization
+**Example**: Payment succeeded but shipping failed → refund payment.
 
-## Designing for Failure
+## Design Patterns for Failure Handling
 
-### Principle 1: Assume Failures Will Happen
+### Pattern 1: Timeout and Circuit Breaker
 
-**Design philosophy**: Failures are normal, not exceptional.
+**Timeout**: Don't wait forever for responses.
 
-**Implications**:
-- Every component can fail
-- Network can partition
-- Data can be lost
-- Design defensively
+**Circuit Breaker**: Stop calling failing service after threshold.
 
-### Principle 2: Fail Fast
+**Combined**: Use timeouts to detect failures, circuit breaker to prevent cascading failures.
 
-**Strategy**: Detect failures quickly and respond immediately.
+### Pattern 2: Bulkhead
 
-**Benefits**:
-- Lower latency for users
-- Prevents resource waste
-- Enables faster recovery
+**Concept**: Isolate failures to prevent cascade.
 
-**Example**: Timeout after 100ms instead of waiting 30 seconds.
+**Implementation**: Separate resources, independent failure domains.
 
-### Principle 3: Isolate Failures
+**Example**: Critical payment service isolated from non-critical analytics.
 
-**Strategy**: Prevent one failure from cascading to others.
+### Pattern 3: Graceful Degradation
 
-**Techniques**:
-- Service boundaries
-- Circuit breakers
-- Rate limiting
-- Resource quotas
+**Concept**: Continue operating with reduced functionality.
 
-### Principle 4: Design for Recovery
+**Example**: Recommendation service down → show default recommendations.
 
-**Strategy**: Make recovery automatic and fast.
+## Failure Prevention
 
-**Techniques**:
-- Health checks
-- Automatic restarts
-- State replication
-- Backup systems
+### Prevention Strategies
 
-## Common Failure Scenarios
-
-### Scenario 1: Database Failure
-
-**Failure**: Primary database crashes.
-
-**Recovery**:
-1. Detect failure (health check timeout)
-2. Route reads to replica
-3. Promote replica to primary
-4. Restore failed database as new replica
-
-**Design considerations**: Replication lag, data consistency.
-
-### Scenario 2: Network Partition
-
-**Failure**: Network splits system into isolated parts.
-
-**Recovery**:
-1. Detect partition (heartbeat failure)
-2. Choose partition to serve (CAP theorem decision)
-3. Continue operating in chosen partition
-4. Reconcile when partition heals
-
-**Design considerations**: Consistency vs availability trade-off.
-
-### Scenario 3: Service Overload
-
-**Failure**: Service receives more requests than it can handle.
-
-**Recovery**:
-1. Rate limit incoming requests
-2. Queue excess requests
-3. Scale up service capacity
-4. Shed non-critical load
-
-**Design considerations**: Load balancing, auto-scaling, queuing.
+1. **Input Validation**: Prevent invalid data from causing failures
+2. **Resource Limits**: Prevent resource exhaustion
+3. **Health Checks**: Detect issues early
+4. **Monitoring**: Proactive issue detection
+5. **Testing**: Find failures before production
 
 ## Key Takeaways
 
-1. **Failures are expected** - design systems to handle them
-2. **Detect failures quickly** - use timeouts, health checks, heartbeats
-3. **Recover automatically** - failover, retry, circuit breakers
-4. **Isolate failures** - prevent cascading effects
-5. **Test failure scenarios** - chaos engineering, failure injection
+1. **Failures are expected** - design for them
+2. **Recovery strategies** - retry, rollback, compensation
+3. **Prevent cascading failures** - isolation and circuit breakers
+4. **Monitor and detect** - catch issues early
+5. **Test failure scenarios** - chaos engineering
 
 ---
 
