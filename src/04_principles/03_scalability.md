@@ -12,6 +12,7 @@ related_topics:
   builds_upon:
     - ../05_building-blocks/02_load-balancers.md
   enables:
+    - ./03_scalability-part2.md
     - ../07_case-studies/01-scalefromzerotomillonusers/README.md
     - ../05_building-blocks/03_databases-part1.md
   cross_refs: []
@@ -142,14 +143,6 @@ Common bottlenecks and solutions:
 | **CPU/Memory Limits** | Horizontal scaling (preferred) or vertical scaling |
 | **State Management** | Externalize state (database, cache, message queue) |
 
-## Key Takeaways
-
-1. **Start simple**: Begin with vertical scaling, evolve to horizontal
-2. **Design for growth**: Plan architecture evolution path
-3. **Stateless is key**: Stateless design enables horizontal scaling
-4. **Consider trade-offs**: Each scaling approach has costs and benefits
-5. **Think incrementally**: Scale in phases, not all at once
-
 ---
 
-*Next: Explore [Load Balancers](../../05_building-blocks/02_load-balancers.md) for horizontal scaling implementation, or study [Scale from Zero to Million Users](../../07_case-studies/01-scalefromzerotomillonusers/README.md) case study.*
+*Next: Continue with [Scaling Strategy Decision Framework and Key Takeaways](./03_scalability-part2.md).*
