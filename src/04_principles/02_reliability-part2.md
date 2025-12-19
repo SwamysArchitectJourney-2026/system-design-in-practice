@@ -4,8 +4,8 @@ prerequisites: ["Reliability (Part 1)", "Understanding of availability"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply testing strategies for reliability"
-  - "Understand reliability monitoring and improvement"
-  - "Design systems with reliability as a first-class concern"
+  - "Design monitoring and alerting for reliability"
+  - "Implement reliability patterns in practice"
 related_topics:
   prerequisites:
     - ./02_reliability.md
@@ -25,128 +25,87 @@ related_topics:
 
 **Purpose**: Test individual components in isolation.
 
-**Focus**:
-- Correctness of logic
-- Edge cases
-- Error handling
+**Focus**: Correctness of logic, error handling, edge cases.
 
-**Example**: Test payment calculation with various inputs and edge cases.
+**Example**: Test data validation, business rule enforcement.
 
 ### Integration Testing
 
 **Purpose**: Test interactions between components.
 
-**Focus**:
-- API contracts
-- Data flow
-- Error propagation
+**Focus**: API contracts, data flow, error propagation.
 
-**Example**: Test payment service calling database and external payment gateway.
+**Example**: Test service-to-service communication, database operations.
 
 ### Chaos Engineering
 
 **Purpose**: Test system behavior under failure conditions.
 
-**Approach**:
-- Intentionally inject failures
-- Observe system response
-- Verify recovery mechanisms
+**Approach**: Intentionally inject failures, observe system response.
 
-**Example**: Randomly kill database connections, observe if system handles gracefully.
-
-### Load Testing
-
-**Purpose**: Test system under expected and peak loads.
-
-**Focus**:
-- Performance degradation
-- Resource exhaustion
-- Failure points
-
-**Example**: Gradually increase load until system breaks, identify bottlenecks.
+**Example**: Kill random services, introduce network delays, simulate database failures.
 
 ## Monitoring for Reliability
 
-### Error Rate Monitoring
+### Key Metrics
 
-**What to track**:
-- Total error count
-- Error rate (errors per request)
-- Error types and patterns
+**Error Rate**: Percentage of failed requests
+- Target: < 0.1%
+- Alert: > 1%
 
-**Alerting**: Alert when error rate exceeds threshold (e.g., > 0.1%).
+**Latency**: Response time distribution
+- Target: p95 < 200ms
+- Alert: p95 > 500ms
 
-### Latency Monitoring
+**Throughput**: Requests per second
+- Monitor: Track capacity trends
+- Alert: Approaching limits
 
-**What to track**:
-- Response time percentiles (p50, p95, p99)
-- Slow queries
-- Timeout rates
+### Alerting Strategy
 
-**Alerting**: Alert when latency degrades significantly.
+**Critical Alerts**:
+- Service completely down
+- Error rate > 5%
+- Data corruption detected
 
-### Resource Monitoring
+**Warning Alerts**:
+- Error rate > 1%
+- Latency degradation
+- Resource utilization high
 
-**What to track**:
-- CPU, memory, disk usage
-- Connection pool usage
-- Queue depths
+## Reliability Patterns in Practice
 
-**Alerting**: Alert before resources are exhausted.
+### Pattern 1: Idempotent Operations
 
-### Health Checks
+**Concept**: Operations can be safely retried.
 
-**What to track**:
-- Component health status
-- Dependency health
-- Overall system health
+**Implementation**: Use idempotency keys, check before processing.
 
-**Alerting**: Alert when components become unhealthy.
+**Example**: Payment processing with idempotency keys prevents duplicate charges.
 
-## Improving Reliability
+### Pattern 2: Transaction Management
 
-### Process 1: Root Cause Analysis
+**Concept**: Ensure atomic operations.
 
-**Steps**:
-1. Detect failure
-2. Collect logs and metrics
-3. Identify root cause
-4. Fix the issue
-5. Prevent recurrence
+**Implementation**: Database transactions, two-phase commits.
 
-**Example**: Database connection pool exhausted → increase pool size → add monitoring.
+**Example**: Transfer money: debit and credit must both succeed or both fail.
 
-### Process 2: Post-Mortem
+### Pattern 3: Data Validation
 
-**Purpose**: Learn from failures, prevent recurrence.
+**Concept**: Validate all inputs and data.
 
-**Structure**:
-- What happened?
-- Why did it happen?
-- What did we do?
-- How do we prevent it?
+**Implementation**: Input validation, schema validation, business rule checks.
 
-**Outcome**: Action items, process improvements, code changes.
-
-### Process 3: Reliability Budget
-
-**Concept**: Allocate acceptable error rate across components.
-
-**Example**:
-- Total system error budget: 0.1%
-- Payment service: 0.05%
-- User service: 0.03%
-- Other services: 0.02%
-
-**Benefit**: Focus reliability efforts where they matter most.
+**Example**: Validate email format, check required fields, verify data types.
 
 ## Key Takeaways
 
-1. **Test failure scenarios** - chaos engineering reveals weaknesses
-2. **Monitor everything** - errors, latency, resources, health
-3. **Learn from failures** - post-mortems drive improvements
-4. **Set reliability budgets** - allocate error rates strategically
-5. **Reliability is ongoing** - continuous monitoring and improvement
+1. **Test failure scenarios** - not just success paths
+2. **Monitor error rates** - catch issues early
+3. **Design for idempotency** - safe retries
+4. **Use transactions** - ensure data integrity
+5. **Validate everything** - prevent bad data
 
 ---
 

@@ -4,8 +4,8 @@ prerequisites: ["Failure Models (Part 1)", "Basic understanding of distributed s
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply failure recovery strategies in system design"
-  - "Design systems that gracefully handle different failure types"
-  - "Understand fault tolerance patterns and trade-offs"
+  - "Design systems that handle failures gracefully"
+  - "Implement fault tolerance patterns"
 related_topics:
   prerequisites:
     - ./04_failure-models.md
@@ -19,161 +19,111 @@ related_topics:
 
 # Failure Models (Part 2): Recovery Strategies and Design Patterns
 
-## Failure Recovery Strategies
+## Failure Recovery
 
-### Strategy 1: Retry
+### Recovery Strategies
 
-**When to use**: Transient failures (network issues, temporary overload)
+**Automatic Recovery**:
+- System detects failure and recovers automatically
+- Example: Service restarts, failover to backup
 
-**How it works**:
-- Automatically retry failed operations
-- Use exponential backoff to avoid overwhelming system
-- Limit retry attempts
+**Manual Recovery**:
+- Requires human intervention
+- Example: Database corruption, configuration errors
 
-**Example**: API call fails → wait 1s, retry → wait 2s, retry → wait 4s, retry → give up
+**Graceful Degradation**:
+- System continues with reduced functionality
+- Example: Recommendation service down → show defaults
 
-**Trade-offs**:
-- ✅ Handles transient issues automatically
-- ❌ Can amplify load if many retries
-- ❌ May delay detection of permanent failures
+### Recovery Time Objectives (RTO)
 
-### Strategy 2: Failover
+**Definition**: Maximum acceptable downtime.
 
-**When to use**: Component failures, need immediate switch
+**Examples**:
+- Critical systems: < 1 minute
+- Important systems: < 1 hour
+- Non-critical: < 24 hours
 
-**How it works**:
-- Detect failure
-- Switch to backup component
-- Resume service
+### Recovery Point Objectives (RPO)
 
-**Example**: Primary database fails → switch to replica → continue serving
+**Definition**: Maximum acceptable data loss.
 
-**Trade-offs**:
-- ✅ Maintains availability
-- ❌ May lose in-flight transactions
-- ❌ Requires state synchronization
-
-### Strategy 3: Graceful Degradation
-
-**When to use**: Non-critical component failures
-
-**How it works**:
-- Continue operating with reduced functionality
-- Disable non-essential features
-- Return cached or default data
-
-**Example**: Recommendation service down → show default recommendations
-
-**Trade-offs**:
-- ✅ System remains usable
-- ❌ Reduced user experience
-- ❌ May hide underlying issues
-
-### Strategy 4: Circuit Breaker
-
-**When to use**: Repeated failures, need to fail fast
-
-**How it works**:
-- Monitor failure rate
-- Open circuit after threshold
-- Stop calling failing service
-- Periodically test if service recovered
-
-**Example**: Payment service failing → stop calling it → return error immediately
-
-**Trade-offs**:
-- ✅ Prevents cascading failures
-- ✅ Fails fast instead of timing out
-- ❌ May delay recovery detection
+**Examples**:
+- Financial systems: Zero data loss
+- User data: < 1 hour of data loss acceptable
+- Analytics: < 24 hours acceptable
 
 ## Designing for Failure
 
 ### Principle 1: Assume Failures Will Happen
 
-**Design philosophy**: Failures are normal, not exceptional.
+**Approach**:
+- Design for failure, not just success
+- Test failure scenarios
+- Plan for recovery
 
-**Implications**:
-- Every component can fail
-- Network can partition
-- Data can be lost
-- Design defensively
+**Example**: Database will fail → design with replicas and failover.
 
 ### Principle 2: Fail Fast
 
-**Concept**: Detect and report failures quickly.
+**Approach**:
+- Detect failures quickly
+- Don't wait indefinitely
+- Return errors promptly
 
-**Benefits**:
-- Faster recovery
-- Better user experience
-- Clearer error messages
+**Example**: Timeout after 5 seconds instead of waiting 5 minutes.
 
-**Implementation**: Timeouts, health checks, circuit breakers.
+### Principle 3: Fail Gracefully
 
-### Principle 3: Isolate Failures
+**Approach**:
+- Don't crash entire system
+- Degrade functionality
+- Provide meaningful errors
 
-**Concept**: Prevent one failure from cascading to others.
+**Example**: Payment service down → show "temporarily unavailable" instead of crashing.
 
-**Strategies**:
-- Service boundaries
-- Bulkheads (resource isolation)
-- Circuit breakers
-- Rate limiting
+### Principle 4: Isolate Failures
 
-### Principle 4: Design for Recovery
+**Approach**:
+- Prevent cascade failures
+- Isolate components
+- Use circuit breakers
 
-**Concept**: Make recovery automatic and fast.
+**Example**: One service failure doesn't bring down entire system.
 
-**Strategies**:
-- Stateless services (easy to restart)
-- Replicated data (failover ready)
-- Health checks (detect issues early)
-- Automated recovery (self-healing)
+## Common Failure Patterns
 
-## Common Failure Scenarios
+### Pattern 1: Retry with Backoff
 
-### Scenario 1: Database Failure
+**When**: Transient failures (network, temporary unavailability)
 
-**Failure**: Primary database crashes
+**How**: Retry with increasing delays (exponential backoff)
 
-**Recovery**:
-1. Detect failure (health check timeout)
-2. Promote replica to primary
-3. Update connection strings
-4. Resume service
+**Example**: Network timeout → retry after 1s, 2s, 4s, 8s.
 
-**Prevention**: Regular backups, replication, monitoring.
+### Pattern 2: Circuit Breaker
 
-### Scenario 2: Network Partition
+**When**: Repeated failures
 
-**Failure**: Network split between data centers
+**How**: Stop calling failing service, test periodically
 
-**Recovery**:
-1. Detect partition (heartbeat failure)
-2. Choose partition to serve (CAP trade-off)
-3. Continue with available partition
-4. Merge when network recovers
+**Example**: Database repeatedly timing out → open circuit → test after 30s.
 
-**Prevention**: Multiple network paths, geographic distribution.
+### Pattern 3: Bulkhead
 
-### Scenario 3: Service Overload
+**When**: Need to isolate failures
 
-**Failure**: Service receives more requests than it can handle
+**How**: Separate resources, independent failure domains
 
-**Recovery**:
-1. Rate limit incoming requests
-2. Queue excess requests
-3. Scale up capacity
-4. Return 503 (Service Unavailable) if overloaded
-
-**Prevention**: Auto-scaling, load balancing, capacity planning.
+**Example**: Critical payment service isolated from analytics service.
 
 ## Key Takeaways
 
 1. **Failures are expected** - design systems to handle them
-2. **Detect failures quickly** - use timeouts, health checks, heartbeats
-3. **Recover automatically** - failover, retry, graceful degradation
-4. **Isolate failures** - prevent cascading to other components
-5. **Test failure scenarios** - chaos engineering, failure injection
+2. **Fail fast** - detect and respond quickly
+3. **Fail gracefully** - don't crash entire system
+4. **Isolate failures** - prevent cascading
+5. **Plan recovery** - have strategies ready
 
 ---
 

@@ -46,6 +46,7 @@
 - Better availability with replicas
 - Still single application instance
 - Cost-effective for medium scale
+- ⚠️ **Vertical scaling delays, but does not eliminate, the need for horizontal scaling**
 
 ### Phase 3: Horizontal Scaling (100K-1M Users)
 
