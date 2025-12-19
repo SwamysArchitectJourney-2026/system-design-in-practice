@@ -4,7 +4,7 @@ prerequisites: ["Failure Models (Part 1)", "Basic understanding of distributed s
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply failure recovery strategies in system design"
-  - "Design systems that handle failures gracefully"
+  - "Design systems that gracefully handle different failure types"
   - "Implement fault tolerance patterns"
 related_topics:
   prerequisites:
@@ -19,113 +19,143 @@ related_topics:
 
 # Failure Models (Part 2): Recovery Strategies and Design Patterns
 
-## Failure Recovery
+## Failure Recovery Strategies
 
-### Recovery Strategies
+### Retry Logic
 
-**Automatic Recovery**:
-- System detects failure and recovers automatically
-- Example: Service restarts, failover to backup
+**Concept**: Automatically retry failed operations.
 
-**Manual Recovery**:
-- Requires human intervention
-- Example: Database corruption, configuration errors
+**When to Retry**:
+- Transient failures (network timeouts, temporary unavailability)
+- Idempotent operations (safe to retry)
 
-**Graceful Degradation**:
-- System continues with reduced functionality
-- Example: Recommendation service down → show defaults
+**Strategies**:
+- **Exponential Backoff**: Wait longer between retries (1s, 2s, 4s, 8s...)
+- **Jitter**: Add randomness to prevent thundering herd
+- **Max Retries**: Limit retry attempts to avoid infinite loops
 
-### Recovery Time Objectives (RTO)
+**Example**: API call fails → wait 1s → retry → wait 2s → retry → give up after 3 attempts.
 
-**Definition**: Maximum acceptable downtime.
+### Circuit Breaker Pattern
 
-**Examples**:
-- Critical systems: < 1 minute
-- Important systems: < 1 hour
-- Non-critical: < 24 hours
+**Concept**: Stop calling failing service after threshold.
 
-### Recovery Point Objectives (RPO)
+**States**:
+- **Closed**: Normal operation, calls go through
+- **Open**: Service failing, calls fail fast without trying
+- **Half-Open**: Testing if service recovered, allow limited calls
 
-**Definition**: Maximum acceptable data loss.
+**Benefits**:
+- Prevents cascading failures
+- Reduces load on failing service
+- Fast failure response
 
-**Examples**:
-- Financial systems: Zero data loss
-- User data: < 1 hour of data loss acceptable
-- Analytics: < 24 hours acceptable
+**Example**: Payment service fails 5 times → circuit opens → all payment requests fail fast for 30 seconds → circuit half-opens to test recovery.
 
-## Designing for Failure
+### Graceful Degradation
 
-### Principle 1: Assume Failures Will Happen
+**Concept**: System continues operating with reduced functionality.
 
-**Approach**:
-- Design for failure, not just success
-- Test failure scenarios
-- Plan for recovery
+**Strategies**:
+- **Fallback Values**: Return default/cached data
+- **Feature Flags**: Disable non-critical features
+- **Read-Only Mode**: Allow reads, block writes
 
-**Example**: Database will fail → design with replicas and failover.
+**Example**: Recommendation service down → show default recommendations instead of failing entire page.
 
-### Principle 2: Fail Fast
+### Redundancy and Failover
 
-**Approach**:
-- Detect failures quickly
-- Don't wait indefinitely
-- Return errors promptly
+**Concept**: Deploy multiple instances, switch to backup on failure.
 
-**Example**: Timeout after 5 seconds instead of waiting 5 minutes.
+**Types**:
+- **Active-Active**: All instances handle traffic
+- **Active-Passive**: Backup ready to take over
 
-### Principle 3: Fail Gracefully
+**Example**: Primary database fails → automatically route to replica.
 
-**Approach**:
-- Don't crash entire system
-- Degrade functionality
-- Provide meaningful errors
+## Design Patterns for Failure Handling
 
-**Example**: Payment service down → show "temporarily unavailable" instead of crashing.
+### Pattern 1: Timeout and Retry
 
-### Principle 4: Isolate Failures
+**Implementation**:
+- Set reasonable timeouts (don't wait forever)
+- Retry with exponential backoff
+- Fail fast if service is down
 
-**Approach**:
-- Prevent cascade failures
-- Isolate components
-- Use circuit breakers
+**Trade-offs**:
+- ✅ Handles transient failures
+- ❌ Adds latency on retries
+- ⚠️ Must ensure idempotency
 
-**Example**: One service failure doesn't bring down entire system.
+### Pattern 2: Bulkhead Isolation
 
-## Common Failure Patterns
+**Concept**: Isolate failures to prevent cascading.
 
-### Pattern 1: Retry with Backoff
+**Implementation**:
+- Separate thread pools for different operations
+- Resource limits per service
+- Independent failure domains
 
-**When**: Transient failures (network, temporary unavailability)
+**Example**: Payment processing isolated from user profile updates → payment failure doesn't affect profile updates.
 
-**How**: Retry with increasing delays (exponential backoff)
+### Pattern 3: Health Checks and Auto-Recovery
 
-**Example**: Network timeout → retry after 1s, 2s, 4s, 8s.
+**Concept**: Continuously monitor health, automatically recover.
 
-### Pattern 2: Circuit Breaker
+**Implementation**:
+- Periodic health check endpoints
+- Automatic restart on failure
+- Gradual traffic increase after recovery
 
-**When**: Repeated failures
+**Example**: Service becomes unhealthy → removed from load balancer → restarted → health check passes → gradually added back.
 
-**How**: Stop calling failing service, test periodically
+## Failure Scenarios and Responses
 
-**Example**: Database repeatedly timing out → open circuit → test after 30s.
+### Scenario 1: Database Failure
 
-### Pattern 3: Bulkhead
+**Detection**: Connection timeout, health check failure
 
-**When**: Need to isolate failures
+**Response**:
+1. Circuit breaker opens
+2. Route reads to replica (if available)
+3. Queue writes for later processing
+4. Alert operations team
 
-**How**: Separate resources, independent failure domains
+**Recovery**: Database restored → circuit breaker half-opens → verify health → resume normal operation.
 
-**Example**: Critical payment service isolated from analytics service.
+### Scenario 2: Network Partition
+
+**Detection**: Cannot reach service, timeout errors
+
+**Response**:
+1. Use cached data if available
+2. Graceful degradation
+3. Queue operations for later
+4. Alert on partition
+
+**Recovery**: Network restored → sync queued operations → verify consistency.
+
+### Scenario 3: Service Overload
+
+**Detection**: High latency, error rate increase
+
+**Response**:
+1. Rate limiting
+2. Load shedding (reject non-critical requests)
+3. Scale up resources
+4. Circuit breaker to protect downstream
+
+**Recovery**: Load decreases → remove rate limits → scale down if needed.
 
 ## Key Takeaways
 
-1. **Failures are expected** - design systems to handle them
-2. **Fail fast** - detect and respond quickly
-3. **Fail gracefully** - don't crash entire system
-4. **Isolate failures** - prevent cascading
-5. **Plan recovery** - have strategies ready
+1. **Failures are expected** - design for them, don't assume they won't happen
+2. **Retry with backoff** - handle transient failures gracefully
+3. **Circuit breakers prevent cascades** - fail fast to protect system
+4. **Graceful degradation** - keep system partially functional
+5. **Monitor and recover** - detect failures quickly, recover automatically
 
 ---
 
 *Previous: [Failure Models (Part 1)](./04_failure-models.md)*  
-*Next: Learn about [Fault Tolerance](../04_principles/05_fault-tolerance.md) or explore [Real-World Failures](../08_failures/01_introduction.md).*
+*Next: Learn about [Fault Tolerance Principles](../04_principles/05_fault-tolerance.md) or explore [Real-World Failures](../08_failures/01_introduction.md).*

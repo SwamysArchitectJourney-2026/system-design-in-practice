@@ -102,6 +102,57 @@
 - Global distribution
 - Complex architecture
 
+## What This System Optimizes For
+
+- ✅ **Gradual Evolution**: System designed to evolve from simple to complex, not over-engineered initially
+- ✅ **Cost Efficiency**: Start small, scale as needed - avoid premature optimization
+- ✅ **Operational Simplicity**: Each phase adds complexity only when necessary
+- ✅ **Migration Path**: Clear evolution strategy that minimizes disruption
+- ✅ **Practical Engineering**: Demonstrates real-world scaling journey, not theoretical perfection
+
+## What This System Does NOT Optimize For
+
+- ❌ **Perfect Architecture from Day 1**: Accepts technical debt in early phases for speed
+- ❌ **Zero-Downtime Migrations**: Some phase transitions may require brief maintenance windows
+- ❌ **Global Scale Initially**: Phase 1-2 are single-region, global distribution comes later
+- ❌ **Microservices from Start**: Monolithic architecture is valid for small scale
+
+## What Breaks First at Scale
+
+### Phase 1 → Phase 2
+- **Bottleneck**: Database becomes bottleneck (CPU, I/O, connections)
+- **Trigger**: Database queries slow down, connection pool exhaustion
+- **Solution**: Read replicas, vertical scaling, basic caching
+
+### Phase 2 → Phase 3
+- **Bottleneck**: Single application server can't handle load
+- **Trigger**: CPU/memory limits, request queueing, high latency
+- **Solution**: Horizontal scaling, load balancer, distributed cache
+
+### Phase 3 → Phase 4
+- **Bottleneck**: Monolith limits independent scaling and deployment
+- **Trigger**: Can't scale components independently, deployment conflicts
+- **Solution**: Microservices, service mesh, distributed architecture
+
+## Interviewer Lens
+
+### What Signals Senior-Level Thinking
+
+- ✅ **Evolutionary Design**: Shows understanding that systems evolve, don't start at scale
+- ✅ **Metrics-Driven Decisions**: Each phase transition triggered by specific bottlenecks, not trends
+- ✅ **Cost Awareness**: Recognizes that over-engineering early wastes resources
+- ✅ **Practical Migration**: Has clear migration strategy, not just final architecture
+- ✅ **Bottleneck Identification**: Understands what breaks first and why
+- ✅ **Trade-off Recognition**: Accepts that each phase has limitations, addresses them in next phase
+
+### Common Candidate Mistakes
+
+- ❌ **Jumping to Phase 4 Immediately**: Starting with microservices for 1K users (over-engineering)
+- ❌ **Ignoring Phase 1-2**: Dismissing simple architectures as "not scalable" (lack of practical judgment)
+- ❌ **No Migration Strategy**: Drawing final architecture without explaining how to get there
+- ❌ **Ignoring Cost**: Not considering infrastructure costs at each phase
+- ❌ **Perfect from Day 1**: Trying to solve all problems immediately (premature optimization)
+
 ## Key Design Decisions
 
 ### Database Strategy

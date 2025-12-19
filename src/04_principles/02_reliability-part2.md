@@ -5,7 +5,7 @@ estimated_time: "25 minutes"
 learning_objectives:
   - "Apply testing strategies for reliability"
   - "Design monitoring and alerting for reliability"
-  - "Implement reliability patterns in practice"
+  - "Implement reliability patterns in production systems"
 related_topics:
   prerequisites:
     - ./02_reliability.md
@@ -13,11 +13,11 @@ related_topics:
     - ./02_reliability.md
   enables:
     - ./05_fault-tolerance.md
-    - ../05_building-blocks/03_databases-part1.md
+    - ../05_building-blocks/07_monitoring.md
   cross_refs: []
 ---
 
-# Reliability (Part 2): Testing and Monitoring
+# Reliability (Part 2): Testing, Monitoring, and Production Patterns
 
 ## Testing for Reliability
 
@@ -25,89 +25,138 @@ related_topics:
 
 **Purpose**: Test individual components in isolation.
 
-**Focus**: Correctness of logic, error handling, edge cases.
+**Focus**:
+- Input validation
+- Error handling
+- Edge cases
+- Boundary conditions
 
-**Example**: Test data validation, business rule enforcement.
+**Example**: Test that user creation validates email format correctly.
 
 ### Integration Testing
 
 **Purpose**: Test interactions between components.
 
-**Focus**: API contracts, data flow, error propagation.
+**Focus**:
+- API contracts
+- Database operations
+- External service interactions
+- Error propagation
 
-**Example**: Test service-to-service communication, database operations.
+**Example**: Test that payment service correctly handles database transaction failures.
 
 ### Chaos Engineering
 
 **Purpose**: Test system behavior under failure conditions.
 
-**Approach**: Intentionally inject failures, observe system response.
+**Techniques**:
+- **Fault Injection**: Intentionally cause failures
+- **Network Partitions**: Simulate network issues
+- **Resource Exhaustion**: Test under load
+- **Service Failures**: Kill services, test recovery
 
-**Example**: Kill random services, introduce network delays, simulate database failures.
+**Example**: Randomly kill database connections to test retry logic and circuit breakers.
 
 ## Monitoring for Reliability
 
 ### Key Metrics
 
-**Error Rate**: Percentage of failed requests
-- Target: < 0.1%
-- Alert: > 1%
+**Error Rate**:
+- Track errors per request
+- Alert when exceeds threshold
+- Categorize by error type
 
-**Latency**: Response time distribution
-- Target: p95 < 200ms
-- Alert: p95 > 500ms
+**Latency**:
+- Monitor p50, p95, p99 latencies
+- Track latency trends
+- Alert on latency spikes
 
-**Throughput**: Requests per second
-- Monitor: Track capacity trends
-- Alert: Approaching limits
+**Throughput**:
+- Requests per second
+- Track capacity utilization
+- Plan for scaling
 
 ### Alerting Strategy
 
 **Critical Alerts**:
-- Service completely down
-- Error rate > 5%
+- Service down
+- Error rate > 1%
 - Data corruption detected
 
 **Warning Alerts**:
-- Error rate > 1%
-- Latency degradation
+- Error rate > 0.1%
+- Latency > threshold
 - Resource utilization high
 
-## Reliability Patterns in Practice
+**Info Alerts**:
+- Deployment events
+- Scaling events
+- Configuration changes
 
-### Pattern 1: Idempotent Operations
+## Reliability Patterns in Production
 
-**Concept**: Operations can be safely retried.
+### Pattern 1: Blue-Green Deployment
 
-**Implementation**: Use idempotency keys, check before processing.
+**Concept**: Deploy new version alongside old, switch traffic.
 
-**Example**: Payment processing with idempotency keys prevents duplicate charges.
+**Benefits**:
+- Zero-downtime deployments
+- Easy rollback
+- Test new version before switching
 
-### Pattern 2: Transaction Management
+**Example**: Deploy v2 → test v2 → switch traffic → monitor → rollback if issues.
 
-**Concept**: Ensure atomic operations.
+### Pattern 2: Canary Deployment
 
-**Implementation**: Database transactions, two-phase commits.
+**Concept**: Gradually roll out new version to subset of users.
 
-**Example**: Transfer money: debit and credit must both succeed or both fail.
+**Benefits**:
+- Limited blast radius
+- Real-world testing
+- Gradual risk mitigation
 
-### Pattern 3: Data Validation
+**Example**: Deploy to 5% of users → monitor → increase to 25% → monitor → full rollout.
 
-**Concept**: Validate all inputs and data.
+### Pattern 3: Feature Flags
 
-**Implementation**: Input validation, schema validation, business rule checks.
+**Concept**: Toggle features without deployment.
 
-**Example**: Validate email format, check required fields, verify data types.
+**Benefits**:
+- Instant rollback
+- A/B testing
+- Gradual feature rollout
+
+**Example**: Enable new recommendation algorithm for 10% of users → monitor performance → increase gradually.
+
+## Reliability in Practice
+
+### Code Quality
+
+- **Code Reviews**: Catch bugs before production
+- **Static Analysis**: Automated code quality checks
+- **Linting**: Enforce coding standards
+
+### Deployment Practices
+
+- **Automated Testing**: Run tests before deployment
+- **Staged Rollouts**: Deploy gradually
+- **Rollback Plan**: Always have a way back
+
+### Operational Excellence
+
+- **Runbooks**: Document common issues and solutions
+- **On-Call Rotation**: 24/7 coverage
+- **Post-Mortems**: Learn from incidents
 
 ## Key Takeaways
 
-1. **Test failure scenarios** - not just success paths
-2. **Monitor error rates** - catch issues early
-3. **Design for idempotency** - safe retries
-4. **Use transactions** - ensure data integrity
-5. **Validate everything** - prevent bad data
+1. **Test thoroughly** - unit, integration, and chaos testing
+2. **Monitor everything** - errors, latency, throughput
+3. **Deploy safely** - blue-green, canary, feature flags
+4. **Learn from failures** - post-mortems improve reliability
+5. **Automate recovery** - reduce manual intervention
 
 ---
 
 *Previous: [Reliability (Part 1)](./02_reliability.md)*  
-*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Database Selection](../05_building-blocks/03_databases-part1.md).*
+*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Monitoring Building Blocks](../05_building-blocks/07_monitoring.md).*

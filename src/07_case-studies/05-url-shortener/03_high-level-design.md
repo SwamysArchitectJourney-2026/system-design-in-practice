@@ -126,6 +126,56 @@ graph TB
 4. Service returns HTTP redirect (301/302) to long URL
 5. User's browser follows redirect to original URL
 
+## What This System Optimizes For
+
+- ✅ **Read Performance**: 100:1 read-to-write ratio - system optimized for fast redirects
+- ✅ **Low Latency Redirects**: Sub-50ms p95 latency for redirect operations (critical for user experience)
+- ✅ **High Write Throughput**: Can handle 100M+ URL creations per day
+- ✅ **Horizontal Scalability**: All components scale horizontally without single points of failure
+- ✅ **Global Distribution**: CDN ensures low latency redirects worldwide
+
+## What This System Does NOT Optimize For
+
+- ❌ **Complex Querying**: No support for complex queries (e.g., "find all URLs created by user X")
+- ❌ **URL Analytics in Real-Time**: Analytics are processed asynchronously, not real-time
+- ❌ **URL Editing**: Once created, URLs cannot be edited (immutable design for simplicity)
+- ❌ **Custom Short URLs**: Users cannot choose their own short URL (ensures uniqueness and simplicity)
+
+## What Breaks First at Scale
+
+1. **Database Write Throughput**: 
+   - **Bottleneck**: Cassandra write capacity becomes limiting factor
+   - **Trigger**: When write QPS exceeds single Cassandra cluster capacity
+   - **Solution**: Shard Cassandra cluster, use multiple token ranges, or move to write-optimized storage
+
+2. **Cache Memory**: 
+   - **Bottleneck**: Redis memory limits for hot URLs
+   - **Trigger**: When cache size exceeds available memory
+   - **Solution**: Implement cache eviction policies (LRU), use distributed cache, or multi-tier caching
+
+3. **Token Service Contention**: 
+   - **Bottleneck**: Token Service becomes bottleneck if too many instances request ranges simultaneously
+   - **Trigger**: When number of service instances grows very large
+   - **Solution**: Pre-allocate larger token ranges, implement token service caching, or use distributed ID generation
+
+## Interviewer Lens
+
+### What Signals Senior-Level Thinking
+
+- ✅ **Token Range Assignment**: Demonstrates understanding of distributed ID generation without single point of failure
+- ✅ **Read-Heavy Optimization**: Recognizes 100:1 ratio and optimizes accordingly (CDN, cache, read replicas)
+- ✅ **Evolutionary Design**: Shows how system evolves from simple to complex (not over-engineered initially)
+- ✅ **Trade-off Awareness**: Understands that simplicity (no URL editing) enables scale
+- ✅ **Multi-Layer Caching**: CDN → Redis → Database strategy shows deep performance thinking
+
+### Common Candidate Mistakes
+
+- ❌ **Using Centralized Counter**: Single Redis counter for ID generation (single point of failure, bottleneck)
+- ❌ **Over-Engineering Early**: Starting with microservices and complex architecture for small scale
+- ❌ **Ignoring Read Optimization**: Not recognizing read-heavy nature and missing CDN/cache opportunities
+- ❌ **Complex Query Support**: Trying to support analytics queries on primary database (should be async)
+- ❌ **Synchronous Analytics**: Blocking redirect response to send analytics (should be async)
+
 ## Key Design Decisions
 
 ### Why Token Service Instead of Centralized Counter?

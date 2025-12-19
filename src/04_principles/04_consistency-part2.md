@@ -4,8 +4,8 @@ prerequisites: ["Consistency (Part 1)", "CAP theorem basics"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply consistency design patterns to real-world scenarios"
+  - "Implement consistency guarantees in distributed systems"
   - "Balance consistency with performance and availability"
-  - "Choose appropriate consistency guarantees for different use cases"
 related_topics:
   prerequisites:
     - ./04_consistency.md
@@ -17,99 +17,107 @@ related_topics:
   cross_refs: []
 ---
 
-# Consistency (Part 2): Design Patterns and Trade-offs
+# Consistency (Part 2): Design Patterns and Implementation
 
 ## Design Patterns for Consistency
 
-### Pattern 1: Read Replicas
+### Pattern 1: Two-Phase Commit (2PC)
 
-**Concept**: Route reads to replicas, writes to primary.
+**Concept**: Coordinate distributed transactions across multiple nodes.
 
-**Consistency Model**: Eventual consistency for reads, strong for writes.
+**How it works**:
+1. **Prepare Phase**: Coordinator asks all participants to prepare
+2. **Commit Phase**: If all prepared, coordinator commits; otherwise aborts
 
-**Benefits**:
-- Scale read operations horizontally
-- Reduce load on primary database
-- Improve read performance
-
-**Trade-offs**:
-- Reads may see stale data
-- Replication lag
-- More complex architecture
-
-### Pattern 2: Quorum Reads/Writes
-
-**Concept**: Require majority of nodes to agree.
-
-**Consistency Model**: Strong consistency.
-
-**Example**: Write to 3 nodes, require 2 confirmations. Read from 3 nodes, require 2 responses.
-
-**Benefits**:
-- Strong consistency
-- Tolerates some node failures
+**Use when**: Strong consistency required across multiple databases.
 
 **Trade-offs**:
-- Higher latency
-- More network calls
+- ✅ Strong consistency
+- ❌ High latency (two round trips)
+- ❌ Blocking (participants wait for coordinator)
+- ❌ Single point of failure (coordinator)
 
-### Pattern 3: Version Vectors
+### Pattern 2: Saga Pattern
 
-**Concept**: Track version numbers to detect conflicts.
+**Concept**: Long-running transactions broken into smaller, compensatable steps.
 
-**Consistency Model**: Eventual consistency with conflict detection.
+**How it works**:
+- Each step has a compensating action
+- If step fails, execute compensating actions for completed steps
+- No global lock, better performance than 2PC
 
-**Benefits**:
-- Detect conflicts
-- Merge changes intelligently
-- Eventual consistency with safety
+**Use when**: Long-running transactions, eventual consistency acceptable.
 
 **Trade-offs**:
-- More complex implementation
-- Storage overhead
+- ✅ Better performance than 2PC
+- ✅ No blocking
+- ❌ Eventual consistency
+- ⚠️ Complex compensation logic
 
-## Consistency in Practice
+### Pattern 3: Event Sourcing
 
-### Financial Systems
+**Concept**: Store events instead of current state, rebuild state from events.
 
-**Requirement**: Strong consistency
+**How it works**:
+- All changes stored as events
+- Current state computed by replaying events
+- Single source of truth (event log)
 
-**Why**: Money must be accurate, can't allow double-spending.
+**Use when**: Audit trail needed, complex state transitions.
 
-**Implementation**: ACID transactions, synchronous replication.
+**Trade-offs**:
+- ✅ Complete audit trail
+- ✅ Time travel (replay to any point)
+- ❌ Complex to implement
+- ❌ Storage overhead
 
-**Trade-off**: Higher latency acceptable for correctness.
+## Consistency in Different Scenarios
 
-### Social Media
+### Financial Transactions
 
-**Requirement**: Eventual consistency
+**Requirement**: Strong consistency (money must be accurate).
 
-**Why**: Acceptable if posts take seconds to propagate globally.
+**Approach**:
+- ACID transactions
+- Two-phase commit
+- Synchronous replication
+- Immediate consistency
 
-**Implementation**: Asynchronous replication, read replicas.
+**Example**: Bank transfer - both accounts updated atomically.
 
-**Trade-off**: Temporary inconsistencies acceptable for performance.
+### Social Media Posts
 
-### E-Commerce
+**Requirement**: Eventual consistency (acceptable if post appears a few seconds late).
 
-**Requirement**: Mixed consistency
+**Approach**:
+- Async replication
+- Eventual consistency
+- Read replicas
+- Cache with TTL
 
-**Why**: Different data has different requirements.
+**Example**: Post appears on your feed immediately, propagates to friends' feeds within seconds.
 
-**Implementation**:
-- Inventory: Strong consistency (prevent overselling)
-- Product catalog: Eventual consistency (acceptable staleness)
-- User reviews: Eventual consistency (not critical)
+### E-Commerce Inventory
+
+**Requirement**: Read-your-writes consistency (after adding to cart, must see it).
+
+**Approach**:
+- Strong consistency for user's own data
+- Eventual consistency for others
+- Session affinity
+- Cache invalidation
+
+**Example**: After adding item to cart, you see it immediately; others see updated inventory eventually.
 
 ## Key Takeaways
 
-1. **Consistency is a design choice** - choose based on requirements
-2. **Different data needs different consistency** - not one-size-fits-all
-3. **Trade-offs are inevitable** - consistency vs availability vs performance
-4. **Patterns help** - read replicas, quorum, version vectors
-5. **Test your assumptions** - verify consistency guarantees in practice
+1. **Choose consistency level based on requirements** - not all data needs strong consistency
+2. **Patterns exist for different needs** - 2PC for strong, Saga for eventual
+3. **Trade-offs are inevitable** - consistency vs performance vs availability
+4. **Consider user experience** - what consistency guarantees do users need?
+5. **Design for failure** - consistency mechanisms must handle failures gracefully
 
 ---
 
 *Previous: [Consistency (Part 1)](./04_consistency.md)*  
-*Next: Learn about [Database Selection](../05_building-blocks/03_databases-part1.md) or explore [Distributed Cache](../05_building-blocks/08_distributed-cache.md).*
+*Next: Learn about [Databases](../05_building-blocks/03_databases-part1.md) or explore [Distributed Cache](../05_building-blocks/08_distributed-cache.md).*
