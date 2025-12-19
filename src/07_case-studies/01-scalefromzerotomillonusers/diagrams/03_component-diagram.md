@@ -122,3 +122,22 @@ C4Component
 2. **Cache Flow**: Business Logic → Cache Service → Cache (if miss, then Data Service → Database)
 3. **Event Flow**: Business Logic → Message Service → Message Queue
 4. **Monitoring**: All components send metrics to Monitoring system
+
+> **LLD Scope Note**:  
+> In interviews, only one service is decomposed to this level. You don't need to show component diagrams for every service—focus on the most critical or complex service.
+
+## Interviewer Lens
+
+This diagram demonstrates:
+
+- **Clear separation of concerns**: Each component has a single responsibility
+- **Layered architecture**: Controller → Business Logic → Data Access pattern
+- **Infrastructure abstraction**: Cache and database access abstracted through services
+- **Event-driven design**: Message service enables async processing
+- **Observability**: Monitoring integrated at component level
+
+**Common candidate mistakes to avoid**:
+- ❌ Over-decomposing every service (only decompose critical ones)
+- ❌ Mixing business logic with data access
+- ❌ Direct database access from controllers
+- ❌ Forgetting error handling at component boundaries

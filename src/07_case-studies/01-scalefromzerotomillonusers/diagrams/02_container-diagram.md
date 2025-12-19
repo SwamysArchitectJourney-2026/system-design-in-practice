@@ -98,6 +98,22 @@ C4Container
 - Distributed Databases
 - Event Streaming
 
+## Trust Boundaries
+
+**Public Edge**:
+- API Gateway (exposed to internet, handles authentication and rate limiting)
+
+**Private Network**:
+- Application Service (internal only, not directly accessible)
+- Database (private subnet, no public access)
+- Cache (internal network only)
+- Message Queue (internal service-to-service communication)
+
+**External Services**:
+- CDN (edge network, public-facing)
+- Auth Provider (third-party, public API)
+- Monitoring (internal metrics, may use VPN)
+
 ## Key Containers
 
 1. **Web Application**: User interface layer
@@ -106,3 +122,19 @@ C4Container
 4. **Cache**: High-speed data access
 5. **Database**: Persistent data storage
 6. **Message Queue**: Async processing and events
+
+## Interviewer Lens
+
+This diagram demonstrates:
+
+- **Clear separation of concerns**: Each container has a specific responsibility
+- **Security boundaries**: Public edge (API Gateway) vs private internal services
+- **Scalability patterns**: Read replicas for read scaling, cache for performance
+- **Event-driven architecture**: Message queue enables async processing
+- **Monitoring integration**: Observability built into the architecture
+
+**Common candidate mistakes to avoid**:
+- ❌ Exposing internal services directly to internet
+- ❌ Missing rate limiting at gateway
+- ❌ Not separating read and write paths
+- ❌ Forgetting monitoring and observability

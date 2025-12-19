@@ -90,6 +90,8 @@ graph TB
 - ❌ **Vertical Scaling Limits**: Hardware upgrade limits (CPU/RAM constraints)
 - ❌ **Cost Increases**: Larger instances are more expensive
 
+❗ **Critical Understanding**: Vertical scaling delays, but does not eliminate, the need for horizontal scaling. As traffic grows, you will eventually hit hardware limits and must move to multiple servers.
+
 ## Scaling Strategy
 
 ### Vertical Scaling Approach
