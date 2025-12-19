@@ -162,4 +162,4 @@ Higher MTBF and lower MTTR = higher reliability.
 
 ---
 
-*Next: Continue with [Testing for Reliability and Key Takeaways](./02_reliability-part2.md).*
+*Next: Continue with [Testing for Reliability and Monitoring](./02_reliability-part2.md).*

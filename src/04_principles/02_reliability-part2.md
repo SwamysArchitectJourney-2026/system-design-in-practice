@@ -4,7 +4,7 @@ prerequisites: ["Reliability (Part 1)", "Understanding of availability"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply testing strategies for reliability"
-  - "Understand monitoring and observability for reliability"
+  - "Understand reliability monitoring and improvement"
   - "Design systems with reliability as a first-class concern"
 related_topics:
   prerequisites:
@@ -13,7 +13,7 @@ related_topics:
     - ./02_reliability.md
   enables:
     - ./05_fault-tolerance.md
-    - ../05_building-blocks/07_monitoring.md
+    - ../05_building-blocks/03_databases-part1.md
   cross_refs: []
 ---
 
@@ -21,7 +21,7 @@ related_topics:
 
 ## Testing for Reliability
 
-### 1. Unit Testing
+### Unit Testing
 
 **Purpose**: Test individual components in isolation.
 
@@ -30,9 +30,9 @@ related_topics:
 - Edge cases
 - Error handling
 
-**Example**: Test payment calculation with various inputs.
+**Example**: Test payment calculation with various inputs and edge cases.
 
-### 2. Integration Testing
+### Integration Testing
 
 **Purpose**: Test interactions between components.
 
@@ -41,142 +41,114 @@ related_topics:
 - Data flow
 - Error propagation
 
-**Example**: Test payment service calling user service and database.
+**Example**: Test payment service calling database and external payment gateway.
 
-### 3. Chaos Engineering
+### Chaos Engineering
 
 **Purpose**: Test system behavior under failure conditions.
 
-**Techniques**:
-- Inject failures (kill processes, drop network)
-- Simulate load spikes
-- Test recovery mechanisms
+**Approach**:
+- Intentionally inject failures
+- Observe system response
+- Verify recovery mechanisms
 
-**Example**: Randomly kill database connections to test retry logic.
+**Example**: Randomly kill database connections, observe if system handles gracefully.
 
-### 4. Load Testing
+### Load Testing
 
 **Purpose**: Test system under expected and peak loads.
 
 **Focus**:
 - Performance degradation
 - Resource exhaustion
-- Error rates under load
+- Failure points
 
-**Example**: Simulate 10x normal traffic to find breaking points.
+**Example**: Gradually increase load until system breaks, identify bottlenecks.
 
 ## Monitoring for Reliability
 
-### Key Metrics
+### Error Rate Monitoring
 
-**Error Rate**: Percentage of failed requests
-- Target: < 0.1%
-- Alert: > 1%
+**What to track**:
+- Total error count
+- Error rate (errors per request)
+- Error types and patterns
 
-**Latency**: Response time distribution
-- Track: p50, p95, p99
-- Alert: p99 > SLA threshold
+**Alerting**: Alert when error rate exceeds threshold (e.g., > 0.1%).
 
-**Throughput**: Requests per second
-- Monitor: Trends, capacity limits
-- Alert: Sudden drops
+### Latency Monitoring
 
-**Resource Usage**: CPU, memory, disk
-- Monitor: Trends, capacity
-- Alert: Approaching limits
+**What to track**:
+- Response time percentiles (p50, p95, p99)
+- Slow queries
+- Timeout rates
 
-### Observability
+**Alerting**: Alert when latency degrades significantly.
 
-**Logging**: Record events for debugging
-- Structured logs (JSON)
-- Appropriate log levels
-- Include context (request ID, user ID)
+### Resource Monitoring
 
-**Tracing**: Track requests across services
-- Distributed tracing
-- Identify bottlenecks
-- Understand failure paths
+**What to track**:
+- CPU, memory, disk usage
+- Connection pool usage
+- Queue depths
 
-**Metrics**: Quantitative measurements
-- Counters, gauges, histograms
-- Time-series data
-- Dashboards and alerts
+**Alerting**: Alert before resources are exhausted.
 
-## Reliability Patterns in Practice
+### Health Checks
 
-### Pattern 1: Health Checks
+**What to track**:
+- Component health status
+- Dependency health
+- Overall system health
 
-**Implementation**: Endpoint that reports system health.
+**Alerting**: Alert when components become unhealthy.
 
-```python
-@app.get("/health")
-def health_check():
-    checks = {
-        "database": check_database(),
-        "cache": check_cache(),
-        "external_api": check_external_api()
-    }
-    if all(checks.values()):
-        return {"status": "healthy"}
-    return {"status": "unhealthy", "checks": checks}, 503
-```
+## Improving Reliability
 
-**Use**: Load balancers, orchestration systems, monitoring.
+### Process 1: Root Cause Analysis
 
-### Pattern 2: Retry Logic
+**Steps**:
+1. Detect failure
+2. Collect logs and metrics
+3. Identify root cause
+4. Fix the issue
+5. Prevent recurrence
 
-**Implementation**: Retry transient failures with backoff.
+**Example**: Database connection pool exhausted → increase pool size → add monitoring.
 
-```python
-def call_service_with_retry(max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            return service.call()
-        except TransientError:
-            if attempt < max_retries - 1:
-                time.sleep(2 ** attempt)  # Exponential backoff
-            else:
-                raise
-```
+### Process 2: Post-Mortem
 
-**Use**: Network calls, database operations, external APIs.
+**Purpose**: Learn from failures, prevent recurrence.
 
-### Pattern 3: Circuit Breaker
+**Structure**:
+- What happened?
+- Why did it happen?
+- What did we do?
+- How do we prevent it?
 
-**Implementation**: Stop calling failing service.
+**Outcome**: Action items, process improvements, code changes.
 
-```python
-class CircuitBreaker:
-    def __init__(self, failure_threshold=5):
-        self.failures = 0
-        self.threshold = failure_threshold
-        self.state = "closed"
-    
-    def call(self, func):
-        if self.state == "open":
-            raise CircuitOpenError()
-        try:
-            result = func()
-            self.failures = 0
-            return result
-        except Exception:
-            self.failures += 1
-            if self.failures >= self.threshold:
-                self.state = "open"
-            raise
-```
+### Process 3: Reliability Budget
 
-**Use**: External dependencies, repeated failures.
+**Concept**: Allocate acceptable error rate across components.
+
+**Example**:
+- Total system error budget: 0.1%
+- Payment service: 0.05%
+- User service: 0.03%
+- Other services: 0.02%
+
+**Benefit**: Focus reliability efforts where they matter most.
 
 ## Key Takeaways
 
 1. **Test failure scenarios** - chaos engineering reveals weaknesses
-2. **Monitor everything** - metrics, logs, traces
-3. **Set clear targets** - error rates, latency SLAs
-4. **Automate recovery** - retry, circuit breakers, failover
-5. **Learn from failures** - post-mortems, continuous improvement
+2. **Monitor everything** - errors, latency, resources, health
+3. **Learn from failures** - post-mortems drive improvements
+4. **Set reliability budgets** - allocate error rates strategically
+5. **Reliability is ongoing** - continuous monitoring and improvement
 
 ---
 
 *Previous: [Reliability (Part 1)](./02_reliability.md)*  
-*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Monitoring](../05_building-blocks/07_monitoring.md).*
+*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Database Selection](../05_building-blocks/03_databases-part1.md).*

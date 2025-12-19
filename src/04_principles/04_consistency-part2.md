@@ -4,8 +4,8 @@ prerequisites: ["Consistency (Part 1)", "CAP theorem basics"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply consistency design patterns to real-world scenarios"
-  - "Understand consistency trade-offs in production systems"
-  - "Design systems with appropriate consistency guarantees"
+  - "Balance consistency with performance and availability"
+  - "Choose appropriate consistency guarantees for different use cases"
 related_topics:
   prerequisites:
     - ./04_consistency.md
@@ -21,101 +21,95 @@ related_topics:
 
 ## Design Patterns for Consistency
 
-### Pattern 1: Read-Your-Writes
+### Pattern 1: Read Replicas
 
-**Requirement**: After writing, subsequent reads must see your write.
+**Concept**: Route reads to replicas, writes to primary.
 
-**Implementation**:
-- Route reads to same replica that handled write
-- Use session affinity
-- Strong consistency for user's own data
+**Consistency Model**: Eventual consistency for reads, strong for writes.
 
-**Example**: After posting a comment, you should immediately see it.
-
-**Trade-offs**:
-- ✅ Better user experience
-- ⚠️ Requires session management
-- ⚠️ May increase latency
-
-### Pattern 2: Monotonic Reads
-
-**Requirement**: Once you read a value, you never see an older value.
-
-**Implementation**:
-- Route all reads for a user to the same replica
-- Use version numbers
-- Sticky sessions
-
-**Example**: Reading your account balance should never show a lower amount.
+**Benefits**:
+- Scale read operations horizontally
+- Reduce load on primary database
+- Improve read performance
 
 **Trade-offs**:
-- ✅ Prevents confusing user experience
-- ⚠️ Limits load balancing flexibility
-- ⚠️ Requires replica selection logic
+- Reads may see stale data
+- Replication lag
+- More complex architecture
 
-### Pattern 3: Causal Consistency
+### Pattern 2: Quorum Reads/Writes
 
-**Requirement**: Causally related updates are seen in order.
+**Concept**: Require majority of nodes to agree.
 
-**Implementation**:
-- Track causal dependencies
-- Vector clocks
-- Dependency graphs
+**Consistency Model**: Strong consistency.
 
-**Example**: Replies must appear after the original post.
+**Example**: Write to 3 nodes, require 2 confirmations. Read from 3 nodes, require 2 responses.
+
+**Benefits**:
+- Strong consistency
+- Tolerates some node failures
 
 **Trade-offs**:
-- ✅ Preserves important relationships
-- ⚠️ More complex to implement
-- ⚠️ Requires dependency tracking
+- Higher latency
+- More network calls
 
-## Consistency in Production Systems
+### Pattern 3: Version Vectors
 
-### Example 1: E-Commerce Platform
+**Concept**: Track version numbers to detect conflicts.
 
-**Requirements**:
-- Inventory must be accurate (strong consistency)
-- Product descriptions can be eventually consistent
-- Shopping cart: session consistency
+**Consistency Model**: Eventual consistency with conflict detection.
 
-**Design**:
+**Benefits**:
+- Detect conflicts
+- Merge changes intelligently
+- Eventual consistency with safety
+
+**Trade-offs**:
+- More complex implementation
+- Storage overhead
+
+## Consistency in Practice
+
+### Financial Systems
+
+**Requirement**: Strong consistency
+
+**Why**: Money must be accurate, can't allow double-spending.
+
+**Implementation**: ACID transactions, synchronous replication.
+
+**Trade-off**: Higher latency acceptable for correctness.
+
+### Social Media
+
+**Requirement**: Eventual consistency
+
+**Why**: Acceptable if posts take seconds to propagate globally.
+
+**Implementation**: Asynchronous replication, read replicas.
+
+**Trade-off**: Temporary inconsistencies acceptable for performance.
+
+### E-Commerce
+
+**Requirement**: Mixed consistency
+
+**Why**: Different data has different requirements.
+
+**Implementation**:
 - Inventory: Strong consistency (prevent overselling)
-- Product catalog: Eventual consistency (acceptable delay)
-- Shopping cart: Session consistency (user's view)
-
-### Example 2: Social Media
-
-**Requirements**:
-- Posts: Eventual consistency (acceptable)
-- Likes: Eventual consistency (acceptable)
-- Direct messages: Strong consistency (important)
-
-**Design**:
-- Posts: Eventual consistency across regions
-- Likes: Eventual consistency (counts can be approximate)
-- Messages: Strong consistency (must be accurate)
-
-### Example 3: Financial System
-
-**Requirements**:
-- Account balances: Strong consistency (critical)
-- Transaction history: Strong consistency (audit requirement)
-- Analytics: Eventual consistency (acceptable)
-
-**Design**:
-- Core transactions: Strong consistency
-- Read replicas: For reporting only
-- Analytics: Separate eventually consistent system
+- Product catalog: Eventual consistency (acceptable staleness)
+- User reviews: Eventual consistency (not critical)
 
 ## Key Takeaways
 
-1. **Choose consistency level based on requirements** - not all data needs strong consistency
-2. **Use patterns for common scenarios** - read-your-writes, monotonic reads, causal consistency
-3. **Balance consistency with performance** - strong consistency has costs
-4. **Consider user experience** - what's acceptable for your use case
-5. **Design for the common case** - optimize for normal operation
+1. **Consistency is a design choice** - choose based on requirements
+2. **Different data needs different consistency** - not one-size-fits-all
+3. **Trade-offs are inevitable** - consistency vs availability vs performance
+4. **Patterns help** - read replicas, quorum, version vectors
+5. **Test your assumptions** - verify consistency guarantees in practice
 
 ---
 
 *Previous: [Consistency (Part 1)](./04_consistency.md)*  
-*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Databases](../05_building-blocks/03_databases-part1.md).*
+*Next: Learn about [Database Selection](../05_building-blocks/03_databases-part1.md) or explore [Distributed Cache](../05_building-blocks/08_distributed-cache.md).*
