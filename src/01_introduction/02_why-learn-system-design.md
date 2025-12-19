@@ -3,17 +3,17 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "15 minutes"
 learning_objectives:
-	- "Explain how system design supports career growth and scope"
-	- "Describe how design thinking improves everyday engineering decisions"
-	- "Identify what system design interviews actually evaluate"
+  - "Explain how system design supports career growth and scope"
+  - "Describe how design thinking improves everyday engineering decisions"
+  - "Identify what system design interviews actually evaluate"
 related_topics:
-	prerequisites: []
-	builds_upon:
-		- "01_modern-system-design.md"
-	enables:
-		- "03_course-structure.md"
-	cross_refs:
-		- "../02_interview-prep/README.md"
+  prerequisites: []
+  builds_upon:
+    - "01_modern-system-design.md"
+  enables:
+    - "03_course-structure.md"
+  cross_refs:
+    - "../02_interview-prep/README.md"
 ---
 
 # Why Every Developer Should Learn System Design
@@ -93,6 +93,12 @@ System design interviews test:
 Candidates who think in terms of **systems, not just code**, consistently perform better.
 
 ---
+
+## Common Misconception
+
+System design is not about memorizing architectures.
+It is about learning how to reason when requirements are unclear
+and constraints conflict.
 
 ## Key Takeaway
 

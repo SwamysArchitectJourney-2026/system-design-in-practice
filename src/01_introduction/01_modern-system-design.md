@@ -3,17 +3,17 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "20 minutes"
 learning_objectives:
-	- "Define what system design is and what it optimizes for"
-	- "Explain how distributed system styles evolved and why trade-offs matter"
-	- "Recognize modern constraints: latency, failures, cost, security, and operability"
+  - "Define what system design is and what it optimizes for"
+  - "Explain how distributed system styles evolved and why trade-offs matter"
+  - "Recognize modern constraints: latency, failures, cost, security, and operability"
 related_topics:
-	prerequisites: []
-	builds_upon: []
-	enables:
-		- "02_why-learn-system-design.md"
-		- "03_course-structure.md"
-	cross_refs:
-		- "../03_foundations/README.md"
+  prerequisites: []
+  builds_upon: []
+  enables:
+    - "02_why-learn-system-design.md"
+    - "03_course-structure.md"
+  cross_refs:
+    - "../03_foundations/README.md"
 ---
 
 # Introduction to Modern System Design
@@ -111,6 +111,16 @@ Strong system designers:
 In senior engineering interviews, **system design is often the primary signal of readiness** for higher responsibility.
 
 ---
+
+## Interviewer Lens
+
+Interviewers use this discussion to assess:
+
+- Whether you think beyond code
+- How you reason about scale and failure
+- If you can articulate trade-offs clearly
+
+Strong candidates frame design as a sequence of decisions, not a final diagram.
 
 ## Key Takeaway
 

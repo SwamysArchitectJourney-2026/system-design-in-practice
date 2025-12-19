@@ -35,6 +35,8 @@ Interviewers expect candidates to:
 
 This section ensures you approach every later topic with the **right perspective**.
 
+This perspective ensures you approach every design problem as a decision-making exercise rather than a diagramming task.
+
 ---
 
 ## Recommended Reading Order
