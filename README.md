@@ -72,6 +72,16 @@ This repository represents a learning journey in system design. The content has 
 
 ---
 
+## Daily Prompt
+
+```text
+1. Read .cursor rules / copilot-instructions.md
+2. Review the content of the entire worspace.
+3. Do deep dive. Go through each and every file
+```
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
