@@ -21,141 +21,126 @@ related_topics:
 
 ## Failure Recovery Strategies
 
-### Retry Logic
+### Strategy 1: Retry with Exponential Backoff
 
-**Concept**: Automatically retry failed operations.
+**How it works**:
+- Retry failed operation with increasing delays
+- Delay = base_delay × 2^attempt_number
+- Example: 100ms, 200ms, 400ms, 800ms...
 
-**When to Retry**:
-- Transient failures (network timeouts, temporary unavailability)
+**When to use**:
+- Transient failures (network issues, temporary overload)
 - Idempotent operations (safe to retry)
 
-**Strategies**:
-- **Exponential Backoff**: Wait longer between retries (1s, 2s, 4s, 8s...)
-- **Jitter**: Add randomness to prevent thundering herd
-- **Max Retries**: Limit retry attempts to avoid infinite loops
+**Trade-offs**:
+- ✅ Handles transient failures automatically
+- ❌ Increases latency for persistent failures
+- ❌ Can amplify load on failing service
 
-**Example**: API call fails → wait 1s → retry → wait 2s → retry → give up after 3 attempts.
+### Strategy 2: Circuit Breaker
 
-### Circuit Breaker Pattern
-
-**Concept**: Stop calling failing service after threshold.
+**How it works**:
+- Monitor failure rate
+- If failures exceed threshold, "open" circuit
+- Fail fast instead of waiting for timeout
+- Periodically attempt to "close" circuit
 
 **States**:
-- **Closed**: Normal operation, calls go through
-- **Open**: Service failing, calls fail fast without trying
-- **Half-Open**: Testing if service recovered, allow limited calls
+- **Closed**: Normal operation
+- **Open**: Failing fast, not calling service
+- **Half-Open**: Testing if service recovered
 
-**Benefits**:
-- Prevents cascading failures
-- Reduces load on failing service
-- Fast failure response
+**When to use**:
+- Downstream service failures
+- Cascading failure prevention
+- Resource protection
 
-**Example**: Payment service fails 5 times → circuit opens → all payment requests fail fast for 30 seconds → circuit half-opens to test recovery.
+### Strategy 3: Graceful Degradation
 
-### Graceful Degradation
+**How it works**:
+- System continues operating with reduced functionality
+- Fallback to simpler behavior or cached data
 
-**Concept**: System continues operating with reduced functionality.
+**Example**:
+- Recommendation service down → show default recommendations
+- Search service down → show cached results
 
-**Strategies**:
-- **Fallback Values**: Return default/cached data
-- **Feature Flags**: Disable non-critical features
-- **Read-Only Mode**: Allow reads, block writes
+**When to use**:
+- Non-critical features
+- Better than complete failure
+- User experience priority
 
-**Example**: Recommendation service down → show default recommendations instead of failing entire page.
+### Strategy 4: Failover
 
-### Redundancy and Failover
-
-**Concept**: Deploy multiple instances, switch to backup on failure.
+**How it works**:
+- Automatically switch to backup when primary fails
+- Can be automatic or manual
 
 **Types**:
-- **Active-Active**: All instances handle traffic
-- **Active-Passive**: Backup ready to take over
+- **Active-Passive**: Backup ready but not serving traffic
+- **Active-Active**: All instances serve traffic
 
-**Example**: Primary database fails → automatically route to replica.
+**When to use**:
+- Critical components
+- High availability requirements
+- Database primary/replica setups
 
 ## Design Patterns for Failure Handling
 
 ### Pattern 1: Timeout and Retry
 
 **Implementation**:
-- Set reasonable timeouts (don't wait forever)
-- Retry with exponential backoff
-- Fail fast if service is down
+- Set reasonable timeouts
+- Retry transient failures
+- Give up after max attempts
 
-**Trade-offs**:
-- ✅ Handles transient failures
-- ❌ Adds latency on retries
-- ⚠️ Must ensure idempotency
+**Example**:
+```python
+max_retries = 3
+timeout = 5  # seconds
+for attempt in range(max_retries):
+    try:
+        result = service.call(timeout=timeout)
+        return result
+    except TimeoutError:
+        if attempt < max_retries - 1:
+            sleep(2 ** attempt)  # exponential backoff
+        else:
+            raise
+```
 
 ### Pattern 2: Bulkhead Isolation
 
 **Concept**: Isolate failures to prevent cascading.
 
 **Implementation**:
-- Separate thread pools for different operations
-- Resource limits per service
+- Separate thread pools per service
+- Resource limits per component
 - Independent failure domains
 
-**Example**: Payment processing isolated from user profile updates → payment failure doesn't affect profile updates.
+**Example**: User service failures don't affect payment service.
 
-### Pattern 3: Health Checks and Auto-Recovery
-
-**Concept**: Continuously monitor health, automatically recover.
+### Pattern 3: Health Checks and Monitoring
 
 **Implementation**:
 - Periodic health check endpoints
-- Automatic restart on failure
-- Gradual traffic increase after recovery
+- Monitor key metrics (latency, error rate)
+- Alert on anomalies
 
-**Example**: Service becomes unhealthy → removed from load balancer → restarted → health check passes → gradually added back.
-
-## Failure Scenarios and Responses
-
-### Scenario 1: Database Failure
-
-**Detection**: Connection timeout, health check failure
-
-**Response**:
-1. Circuit breaker opens
-2. Route reads to replica (if available)
-3. Queue writes for later processing
-4. Alert operations team
-
-**Recovery**: Database restored → circuit breaker half-opens → verify health → resume normal operation.
-
-### Scenario 2: Network Partition
-
-**Detection**: Cannot reach service, timeout errors
-
-**Response**:
-1. Use cached data if available
-2. Graceful degradation
-3. Queue operations for later
-4. Alert on partition
-
-**Recovery**: Network restored → sync queued operations → verify consistency.
-
-### Scenario 3: Service Overload
-
-**Detection**: High latency, error rate increase
-
-**Response**:
-1. Rate limiting
-2. Load shedding (reject non-critical requests)
-3. Scale up resources
-4. Circuit breaker to protect downstream
-
-**Recovery**: Load decreases → remove rate limits → scale down if needed.
+**Benefits**:
+- Early failure detection
+- Proactive recovery
+- Better observability
 
 ## Key Takeaways
 
-1. **Failures are expected** - design for them, don't assume they won't happen
-2. **Retry with backoff** - handle transient failures gracefully
-3. **Circuit breakers prevent cascades** - fail fast to protect system
-4. **Graceful degradation** - keep system partially functional
-5. **Monitor and recover** - detect failures quickly, recover automatically
+1. **Failures are expected** - design for them, don't ignore them
+2. **Retry transient failures** - but not permanent ones
+3. **Use circuit breakers** - prevent cascading failures
+4. **Graceful degradation** - better than complete failure
+5. **Monitor everything** - detect failures early
 
 ---
 
 *Previous: [Failure Models (Part 1)](./04_failure-models.md)*  
-*Next: Learn about [Fault Tolerance Principles](../04_principles/05_fault-tolerance.md) or explore [Real-World Failures](../08_failures/01_introduction.md).*
+*Next: Learn about [Fault Tolerance](../04_principles/05_fault-tolerance.md) or explore [Real-World Failures](../08_failures/01_introduction.md).*

@@ -4,8 +4,8 @@ prerequisites: ["Reliability (Part 1)", "Understanding of availability"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply testing strategies for reliability"
-  - "Design monitoring and alerting for reliability"
-  - "Implement reliability patterns in production systems"
+  - "Implement monitoring and alerting for reliability"
+  - "Design error recovery mechanisms"
 related_topics:
   prerequisites:
     - ./02_reliability.md
@@ -17,146 +17,120 @@ related_topics:
   cross_refs: []
 ---
 
-# Reliability (Part 2): Testing, Monitoring, and Production Patterns
+# Reliability (Part 2): Testing, Monitoring, and Recovery
 
 ## Testing for Reliability
 
 ### Unit Testing
 
-**Purpose**: Test individual components in isolation.
+**Focus**: Test individual components in isolation.
 
-**Focus**:
+**Coverage**:
 - Input validation
-- Error handling
-- Edge cases
-- Boundary conditions
+- Business logic correctness
+- Error handling paths
 
-**Example**: Test that user creation validates email format correctly.
+**Example**: Test that password hashing always produces same hash for same input.
 
 ### Integration Testing
 
-**Purpose**: Test interactions between components.
+**Focus**: Test interactions between components.
 
-**Focus**:
-- API contracts
-- Database operations
-- External service interactions
-- Error propagation
+**Coverage**:
+- Service-to-service communication
+- Database transactions
+- Cache consistency
 
-**Example**: Test that payment service correctly handles database transaction failures.
+**Example**: Test that user creation updates both database and cache correctly.
 
 ### Chaos Engineering
 
-**Purpose**: Test system behavior under failure conditions.
+**Concept**: Intentionally inject failures to test system resilience.
 
 **Techniques**:
-- **Fault Injection**: Intentionally cause failures
-- **Network Partitions**: Simulate network issues
-- **Resource Exhaustion**: Test under load
-- **Service Failures**: Kill services, test recovery
+- Kill random services
+- Inject network delays
+- Simulate database failures
+- Trigger resource exhaustion
 
-**Example**: Randomly kill database connections to test retry logic and circuit breakers.
+**Benefits**:
+- Discover hidden failure modes
+- Validate recovery mechanisms
+- Build confidence in production
 
 ## Monitoring for Reliability
 
 ### Key Metrics
 
 **Error Rate**:
-- Track errors per request
-- Alert when exceeds threshold
-- Categorize by error type
+- Track percentage of failed requests
+- Alert if exceeds threshold (e.g., >0.1%)
 
 **Latency**:
 - Monitor p50, p95, p99 latencies
-- Track latency trends
-- Alert on latency spikes
+- Detect performance degradation
 
 **Throughput**:
-- Requests per second
-- Track capacity utilization
-- Plan for scaling
+- Track requests per second
+- Identify capacity limits
 
 ### Alerting Strategy
 
 **Critical Alerts**:
-- Service down
 - Error rate > 1%
-- Data corruption detected
+- Latency p99 > 1 second
+- Service unavailable
 
 **Warning Alerts**:
 - Error rate > 0.1%
-- Latency > threshold
-- Resource utilization high
+- Latency p95 > 500ms
+- Resource utilization > 80%
 
-**Info Alerts**:
-- Deployment events
-- Scaling events
-- Configuration changes
+### Logging Best Practices
 
-## Reliability Patterns in Production
+- **Structured logging**: JSON format for parsing
+- **Log levels**: ERROR, WARN, INFO, DEBUG
+- **Context**: Include request ID, user ID, timestamps
+- **Sensitive data**: Never log passwords, tokens, PII
 
-### Pattern 1: Blue-Green Deployment
+## Error Recovery Mechanisms
 
-**Concept**: Deploy new version alongside old, switch traffic.
+### Automatic Recovery
 
-**Benefits**:
-- Zero-downtime deployments
-- Easy rollback
-- Test new version before switching
+**Self-Healing Systems**:
+- Automatic restarts on crashes
+- Health check-based recovery
+- Circuit breaker auto-reset
 
-**Example**: Deploy v2 → test v2 → switch traffic → monitor → rollback if issues.
+**Example**: Container orchestrator restarts failed pods automatically.
 
-### Pattern 2: Canary Deployment
+### Manual Recovery
 
-**Concept**: Gradually roll out new version to subset of users.
+**Runbooks**:
+- Documented recovery procedures
+- Step-by-step instructions
+- Rollback procedures
 
-**Benefits**:
-- Limited blast radius
-- Real-world testing
-- Gradual risk mitigation
+**Example**: Database corruption → restore from backup → verify data integrity.
 
-**Example**: Deploy to 5% of users → monitor → increase to 25% → monitor → full rollout.
+### Data Recovery
 
-### Pattern 3: Feature Flags
+**Backup Strategies**:
+- Regular backups (daily, hourly)
+- Point-in-time recovery
+- Geographic redundancy
 
-**Concept**: Toggle features without deployment.
-
-**Benefits**:
-- Instant rollback
-- A/B testing
-- Gradual feature rollout
-
-**Example**: Enable new recommendation algorithm for 10% of users → monitor performance → increase gradually.
-
-## Reliability in Practice
-
-### Code Quality
-
-- **Code Reviews**: Catch bugs before production
-- **Static Analysis**: Automated code quality checks
-- **Linting**: Enforce coding standards
-
-### Deployment Practices
-
-- **Automated Testing**: Run tests before deployment
-- **Staged Rollouts**: Deploy gradually
-- **Rollback Plan**: Always have a way back
-
-### Operational Excellence
-
-- **Runbooks**: Document common issues and solutions
-- **On-Call Rotation**: 24/7 coverage
-- **Post-Mortems**: Learn from incidents
+**Testing**: Regularly test backup restoration to ensure it works.
 
 ## Key Takeaways
 
 1. **Test thoroughly** - unit, integration, and chaos testing
-2. **Monitor everything** - errors, latency, throughput
-3. **Deploy safely** - blue-green, canary, feature flags
-4. **Learn from failures** - post-mortems improve reliability
-5. **Automate recovery** - reduce manual intervention
+2. **Monitor continuously** - track error rates, latency, throughput
+3. **Alert appropriately** - critical vs warning thresholds
+4. **Recover automatically** - when possible, self-healing
+5. **Document recovery** - runbooks for manual intervention
 
 ---
 
 *Previous: [Reliability (Part 1)](./02_reliability.md)*  
-*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Monitoring Building Blocks](../05_building-blocks/07_monitoring.md).*
+*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Monitoring](../05_building-blocks/07_monitoring.md).*

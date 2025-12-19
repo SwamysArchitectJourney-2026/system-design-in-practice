@@ -4,8 +4,8 @@ prerequisites: ["Maintainability (Part 1)", "Software engineering basics"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Manage technical debt effectively"
-  - "Apply maintainability best practices"
-  - "Balance maintainability with other design concerns"
+  - "Apply documentation and testing strategies"
+  - "Design for long-term maintainability"
 related_topics:
   prerequisites:
     - ./06_maintainability.md
@@ -13,7 +13,6 @@ related_topics:
     - ./06_maintainability.md
   enables:
     - ../05_building-blocks/07_monitoring.md
-    - ../05_building-blocks/13_distributed-logging.md
     - ../05_building-blocks/16_ci-cd-and-devops.md
   cross_refs: []
 ---
@@ -27,91 +26,97 @@ related_topics:
 **Definition**: Shortcuts taken for speed that need to be paid back later.
 
 **Types**:
-- **Code debt**: Quick fixes, hacks
+- **Code debt**: Quick hacks, poor structure
 - **Architecture debt**: Suboptimal design decisions
 - **Documentation debt**: Missing or outdated docs
 - **Test debt**: Insufficient test coverage
 
 ### Managing Technical Debt
 
-**Strategies**:
-- **Track debt**: Document known issues
-- **Prioritize**: Fix high-impact debt first
-- **Allocate time**: Regular refactoring sprints
-- **Prevent**: Code reviews, architecture reviews
+**Strategy 1: Track Debt**
+- Document known issues
+- Prioritize by impact
+- Schedule time for cleanup
 
-**Example**: Track technical debt in issue tracker, allocate 20% of sprint to debt reduction.
+**Strategy 2: Pay Down Debt**
+- Allocate time regularly (e.g., 20% of sprint)
+- Refactor incrementally
+- Don't let it accumulate
 
-## Maintainability Best Practices
+**Strategy 3: Prevent New Debt**
+- Code reviews
+- Architecture reviews
+- Set quality standards
 
-### 1. Code Organization
+## Documentation Best Practices
 
-**Principles**:
-- Clear module structure
-- Consistent naming conventions
-- Logical file organization
-- Separation of concerns
+### Architecture Documentation
 
-**Example**: Group related functionality together, use clear package/module names.
+**Include**:
+- System overview
+- Component diagrams
+- Data flow diagrams
+- Technology choices and rationale
+- Deployment architecture
 
-### 2. Documentation
+**Keep Updated**: Update docs when architecture changes.
 
-**Types**:
-- **Code comments**: Explain why, not what
-- **API documentation**: Clear contracts
-- **Architecture docs**: System design decisions
-- **Runbooks**: Operational procedures
+### API Documentation
 
-**Example**: Document API endpoints, explain design decisions, maintain runbooks.
+**Include**:
+- Endpoint descriptions
+- Request/response formats
+- Authentication requirements
+- Error codes
+- Examples
 
-### 3. Testing
+**Tools**: OpenAPI/Swagger, Postman collections.
 
-**Levels**:
-- **Unit tests**: Test individual components
-- **Integration tests**: Test component interactions
-- **End-to-end tests**: Test complete flows
-- **Load tests**: Test under load
+### Runbooks
 
-**Example**: Comprehensive test suite with good coverage, automated testing in CI/CD.
+**Include**:
+- Common operations
+- Troubleshooting steps
+- Recovery procedures
+- Escalation paths
 
-### 4. Monitoring
+**Purpose**: Enable anyone to operate the system.
 
-**Components**:
-- **Metrics**: Performance, error rates
-- **Logs**: Events, errors, state changes
-- **Traces**: Request flows
-- **Alerts**: Proactive issue detection
+## Testing for Maintainability
 
-**Example**: Comprehensive observability stack, dashboards, alerting.
+### Test Coverage
 
-## Maintainability vs Other Principles
+**Aim for**:
+- High coverage of critical paths
+- Unit tests for business logic
+- Integration tests for workflows
+- End-to-end tests for key flows
 
-### Maintainability vs Performance
+**Balance**: 100% coverage isn't always necessary, focus on important paths.
 
-**Trade-off**: Highly optimized code may be harder to maintain.
+### Test Quality
 
-**Balance**: Optimize where it matters, keep code readable elsewhere.
+**Good Tests**:
+- Fast (run in seconds)
+- Independent (no dependencies)
+- Repeatable (same results)
+- Clear (easy to understand)
 
-**Example**: Database query optimization is worth complexity, but don't over-optimize simple loops.
-
-### Maintainability vs Speed to Market
-
-**Trade-off**: Quick hacks vs proper design.
-
-**Balance**: Technical debt is acceptable if managed and paid back.
-
-**Example**: Prototype with shortcuts, but refactor before production scale.
+**Bad Tests**:
+- Slow (minutes to run)
+- Flaky (unpredictable)
+- Complex (hard to understand)
+- Brittle (break on minor changes)
 
 ## Key Takeaways
 
-1. **Maintainability is a long-term investment** - pays off over time
-2. **Modular design** - independent, well-defined components
-3. **Observability is essential** - logs, metrics, traces
-4. **Documentation matters** - code, architecture, decisions
-5. **Balance with other concerns** - don't sacrifice everything for maintainability
+1. **Manage technical debt** - track, prioritize, pay down
+2. **Document thoroughly** - architecture, APIs, operations
+3. **Test comprehensively** - but focus on what matters
+4. **Refactor regularly** - don't let code rot
+5. **Balance** - maintainability vs speed to market
 
 ---
 
 *Previous: [Maintainability (Part 1)](./06_maintainability.md)*  
-*Next: Learn about [Security](./07_security.md) or explore [Monitoring](../05_building-blocks/07_monitoring.md).*
-
+*Next: Learn about [Monitoring](../05_building-blocks/07_monitoring.md) or explore [CI/CD](../05_building-blocks/16_ci-cd-and-devops.md).*

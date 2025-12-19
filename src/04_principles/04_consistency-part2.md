@@ -23,101 +23,94 @@ related_topics:
 
 ### Pattern 1: Two-Phase Commit (2PC)
 
-**Concept**: Coordinate distributed transactions across multiple nodes.
+**Concept**: Ensure all participants agree before committing.
 
-**How it works**:
-1. **Prepare Phase**: Coordinator asks all participants to prepare
-2. **Commit Phase**: If all prepared, coordinator commits; otherwise aborts
+**Phases**:
+1. **Prepare**: All participants prepare to commit
+2. **Commit**: If all agree, commit; otherwise abort
 
-**Use when**: Strong consistency required across multiple databases.
+**Use when**: Strong consistency required across multiple systems.
 
 **Trade-offs**:
 - ✅ Strong consistency
-- ❌ High latency (two round trips)
-- ❌ Blocking (participants wait for coordinator)
+- ❌ Blocking (waits for all participants)
 - ❌ Single point of failure (coordinator)
 
 ### Pattern 2: Saga Pattern
 
-**Concept**: Long-running transactions broken into smaller, compensatable steps.
+**Concept**: Long-running transaction broken into steps with compensation.
 
-**How it works**:
-- Each step has a compensating action
-- If step fails, execute compensating actions for completed steps
-- No global lock, better performance than 2PC
+**Approach**:
+- Each step is a local transaction
+- If step fails, execute compensating actions
+- No global lock required
 
-**Use when**: Long-running transactions, eventual consistency acceptable.
+**Use when**: Distributed transactions across services.
 
 **Trade-offs**:
-- ✅ Better performance than 2PC
-- ✅ No blocking
+- ✅ Better availability than 2PC
+- ✅ No global locks
+- ❌ More complex (compensation logic)
 - ❌ Eventual consistency
-- ⚠️ Complex compensation logic
 
 ### Pattern 3: Event Sourcing
 
-**Concept**: Store events instead of current state, rebuild state from events.
+**Concept**: Store events, not current state.
 
-**How it works**:
+**Approach**:
 - All changes stored as events
-- Current state computed by replaying events
-- Single source of truth (event log)
+- Current state derived from events
+- Replay events to rebuild state
 
-**Use when**: Audit trail needed, complex state transitions.
+**Use when**: Audit trail needed, time travel queries.
 
 **Trade-offs**:
-- ✅ Complete audit trail
-- ✅ Time travel (replay to any point)
-- ❌ Complex to implement
+- ✅ Complete history
+- ✅ Audit trail
 - ❌ Storage overhead
+- ❌ Complexity
 
-## Consistency in Different Scenarios
+## Consistency in Practice
 
-### Financial Transactions
+### Database Consistency
 
-**Requirement**: Strong consistency (money must be accurate).
-
-**Approach**:
+**Strong Consistency**:
 - ACID transactions
-- Two-phase commit
+- Primary database for writes
 - Synchronous replication
-- Immediate consistency
 
-**Example**: Bank transfer - both accounts updated atomically.
-
-### Social Media Posts
-
-**Requirement**: Eventual consistency (acceptable if post appears a few seconds late).
-
-**Approach**:
-- Async replication
-- Eventual consistency
+**Eventual Consistency**:
+- Asynchronous replication
 - Read replicas
-- Cache with TTL
+- Conflict resolution
 
-**Example**: Post appears on your feed immediately, propagates to friends' feeds within seconds.
+### Cache Consistency
 
-### E-Commerce Inventory
+**Strategies**:
+- **Write-through**: Write to cache and DB
+- **Write-behind**: Write to cache, async to DB
+- **Cache-aside**: Application manages cache
+- **Invalidation**: Invalidate on updates
 
-**Requirement**: Read-your-writes consistency (after adding to cart, must see it).
+### Message Queue Consistency
 
-**Approach**:
-- Strong consistency for user's own data
-- Eventual consistency for others
-- Session affinity
-- Cache invalidation
+**At-least-once delivery**:
+- Messages may be delivered multiple times
+- Requires idempotent processing
 
-**Example**: After adding item to cart, you see it immediately; others see updated inventory eventually.
+**Exactly-once delivery**:
+- More complex, higher overhead
+- Use when duplicates are unacceptable
 
 ## Key Takeaways
 
-1. **Choose consistency level based on requirements** - not all data needs strong consistency
-2. **Patterns exist for different needs** - 2PC for strong, Saga for eventual
-3. **Trade-offs are inevitable** - consistency vs performance vs availability
-4. **Consider user experience** - what consistency guarantees do users need?
-5. **Design for failure** - consistency mechanisms must handle failures gracefully
+1. **Choose consistency level** based on requirements
+2. **Use patterns** like 2PC, Saga, Event Sourcing appropriately
+3. **Balance** consistency with performance and availability
+4. **Implement** consistency at right layer (database, cache, application)
+5. **Test** consistency guarantees thoroughly
 
 ---
 
 *Previous: [Consistency (Part 1)](./04_consistency.md)*  
-*Next: Learn about [Databases](../05_building-blocks/03_databases-part1.md) or explore [Distributed Cache](../05_building-blocks/08_distributed-cache.md).*
+*Next: Learn about [Fault Tolerance](./05_fault-tolerance.md) or explore [Database Selection](../05_building-blocks/03_databases-part1.md).*

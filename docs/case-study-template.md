@@ -1,50 +1,44 @@
-# Canonical Case Study Template
+# Case Study Template
 
 **Version**: 1.0  
 **Last Updated**: December 19, 2025  
-**Purpose**: Standardized template for all system design case studies
+**Purpose**: Standardized template for all case studies in this repository
 
 ---
 
 ## Case Study Structure
 
-Each case study follows this standardized structure to ensure consistency and interview-readiness.
+Each case study should follow this structure:
 
-### Core Documentation Files
-
-1. **`README.md`** - Overview, learning objectives, case study structure
-2. **`01_requirements.md`** - Functional and non-functional requirements
-3. **`02_back-of-envelope.md`** - Capacity planning calculations
-4. **`03_high-level-design.md`** - System architecture (HLD)
-5. **`04_low-level-design.md`** - Detailed component design (LLD)
-6. **`05_scalability.md`** - Scaling strategies and evolution
-7. **`06_observability.md`** - Monitoring, logging, SLIs/SLOs
-8. **`07_security.md`** - Security considerations
-9. **`08_trade-offs.md`** - Design decisions and alternatives
-
-### Diagrams Folder
-
-All diagrams are co-located in `diagrams/` folder:
-
-- **C4 Diagrams**:
-  - `01_context-diagram.md` - System context (Level 1)
-  - `02_container-diagram.md` - Container architecture (Level 2)
-  - `03_component-diagram.md` - Component details (Level 3)
-
-- **Sequence Diagrams**:
-  - `sequence-diagrams/01_[flow-name].md` - Key interaction flows
-  - `sequence-diagrams/02_[flow-name].md` - Additional flows
+```
+case-study-name/
+├── README.md                    # Overview and navigation
+├── 01_requirements.md           # Functional and non-functional requirements
+├── 02_back-of-envelope.md        # Capacity planning calculations
+├── 03_high-level-design.md       # System architecture (HLD)
+├── 04_low-level-design.md        # Detailed design (LLD)
+├── 05_scalability.md             # Scaling strategies
+├── 06_observability.md           # Monitoring, logging, SLIs/SLOs
+├── 07_security.md                # Security considerations
+├── 08_trade-offs.md              # Design decisions and alternatives
+└── diagrams/                     # Case study specific diagrams
+    ├── 01_context-diagram.md     # C4 Level 1
+    ├── 02_container-diagram.md    # C4 Level 2
+    ├── 03_component-diagram.md   # C4 Level 3
+    └── sequence-diagrams/        # Interaction flows
+        ├── 01_primary-flow.md
+        ├── 02_secondary-flow.md
+        └── ...
+```
 
 ---
 
-## Template Sections
-
-### README.md Template
+## README.md Template
 
 ```markdown
 # [System Name] Case Study
 
-A comprehensive system design case study for building [system description].
+A comprehensive system design case study for [system description].
 
 ## Overview
 
@@ -52,26 +46,33 @@ A comprehensive system design case study for building [system description].
 
 ## Case Study Structure
 
-[Standard structure listing]
+### Core Documentation
+
+1. **[Requirements](./01_requirements.md)** - Functional and non-functional requirements
+2. **[Back-of-Envelope](./02_back-of-envelope.md)** - Capacity planning
+3. **[High-Level Design](./03_high-level-design.md)** - System architecture
+4. **[Low-Level Design](./04_low-level-design.md)** - Detailed implementation
+5. **[Scalability](./05_scalability.md)** - Scaling strategies
+6. **[Observability](./06_observability.md)** - Monitoring and SLIs/SLOs
+7. **[Security](./07_security.md)** - Security considerations
+8. **[Trade-offs](./08_trade-offs.md)** - Design decisions
+
+### Diagrams
+
+[Link to diagrams folder with descriptions]
 
 ## Key Design Highlights
 
-### Problem Statement
-- **What this system optimizes for**: [Primary optimization goal]
-- **What is intentionally NOT optimized**: [Explicit trade-offs]
-- **What breaks first at scale**: [First bottleneck]
+### Architecture
+- [Key architectural decisions]
+- [Notable patterns used]
 
-### Interviewer Lens
+### Technology Stack
+- [Primary technologies]
 
-**What signals senior-level thinking**:
-- [Signal 1: e.g., "Evolutionary design approach"]
-- [Signal 2: e.g., "Explicit trade-off reasoning"]
-- [Signal 3: e.g., "Failure scenario consideration"]
-
-**Common candidate mistakes**:
-- [Mistake 1: e.g., "Jumping to microservices too early"]
-- [Mistake 2: e.g., "Ignoring consistency guarantees"]
-- [Mistake 3: e.g., "Over-engineering for scale not needed"]
+### Scale
+- [Capacity numbers]
+- [Performance targets]
 
 ## Learning Objectives
 
@@ -82,12 +83,12 @@ After studying this case study, you should be able to:
 
 ## Related Topics
 
-- [Links to relevant building blocks, patterns, principles]
+- [Links to related building blocks, patterns, principles]
 ```
 
 ---
 
-### 01_requirements.md Template
+## 01_requirements.md Template
 
 ```markdown
 # [System Name] - Requirements
@@ -101,140 +102,134 @@ After studying this case study, you should be able to:
 ## Non-Functional Requirements
 
 ### Performance
-- **Response Time**: [Target latency, e.g., <200ms p95]
+- **Response Time**: [Target latency]
 - **Throughput**: [Target QPS/RPS]
-- **Availability**: [Target uptime, e.g., 99.9%]
+- **Availability**: [Target uptime]
 
 ### Scalability
-- **Scale Target**: [e.g., 100M users, 1M requests/second]
-- **Growth Rate**: [e.g., 10x growth in 2 years]
+- **User Scale**: [Target user count]
+- **Data Scale**: [Target data volume]
+- **Geographic Distribution**: [Regions/requirements]
 
-### Consistency
-- **Consistency Requirements**: [Strong/Eventual/Read-your-writes]
-- **Data Criticality**: [What happens if data is stale?]
+### Reliability
+- **Error Rate**: [Target error percentage]
+- **Data Durability**: [Requirements]
+- **Consistency**: [Consistency requirements]
 
 ## Constraints
 
-- **Budget**: [If relevant]
-- **Time to Market**: [If relevant]
-- **Team Size**: [If relevant]
-- **Technical Constraints**: [Legacy systems, compliance, etc.]
-
-## Out of Scope
-
-- [Explicitly state what is NOT included]
-- [Future considerations that are deferred]
+- **Budget**: [Constraints]
+- **Time to Market**: [Timeline]
+- **Team Size**: [Constraints]
+- **Technical Constraints**: [Any limitations]
 ```
 
 ---
 
-### 02_back-of-envelope.md Template
+## 02_back-of-envelope.md Template
 
 ```markdown
 # [System Name] - Back-of-Envelope Calculations
 
 ## Assumptions
 
-- [Assumption 1: e.g., 100M users]
-- [Assumption 2: e.g., 10 requests/user/day]
-- [Assumption 3: e.g., 1KB average request size]
+- [Assumption 1]
+- [Assumption 2]
+- [Assumption 3]
 
-## Storage Calculations
+## Capacity Planning
 
-**Formula**: [Formula used]
+### Storage Requirements
 
 **Calculation**:
 ```
-[Step-by-step calculation]
-= [Result]
+[Show calculation steps]
 ```
 
-## Bandwidth Calculations
+**Result**: [Total storage needed]
 
-[Similar structure]
+### Bandwidth Requirements
 
-## Server Capacity
+**Calculation**:
+```
+[Show calculation steps]
+```
 
-[Similar structure]
+**Result**: [Total bandwidth needed]
+
+### Compute Requirements
+
+**Calculation**:
+```
+[Show calculation steps]
+```
+
+**Result**: [Servers/instances needed]
 
 ## Key Metrics Summary
 
 | Metric | Value |
 |--------|-------|
-| Total Storage | [X] TB |
-| Peak QPS | [X] requests/second |
-| Bandwidth | [X] Mbps |
-| Servers Needed | [X] servers |
-
-## Scaling Considerations
-
-- **Read/Write Ratio**: [e.g., 100:1]
-- **Cache Hit Ratio**: [e.g., 80%]
-- **Data Growth**: [e.g., 3-5 years retention]
+| Storage | [Value] |
+| Bandwidth | [Value] |
+| QPS | [Value] |
+| Servers | [Value] |
 ```
 
 ---
 
-### 03_high-level-design.md Template
+## 03_high-level-design.md Template
 
 ```markdown
 # [System Name] - High-Level Design
 
 ## System Architecture
 
-[Architecture diagram - Mermaid with ASCII fallback]
+[Architecture diagram - Mermaid or ASCII]
 
 ## Core Components
 
 ### Component 1: [Name]
 - **Purpose**: [What it does]
-- **Technology**: [If specified]
-- **Scaling Strategy**: [How it scales]
+- **Technology**: [Tech stack]
+- **Responsibilities**: [Key responsibilities]
 
 ### Component 2: [Name]
-[Similar structure]
+[Same structure]
 
 ## Data Flow
 
-### Write Flow
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-### Read Flow
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+[Describe how data flows through the system]
 
 ## Key Design Decisions
 
-### Decision 1: [Technology/Pattern Choice]
-- **Rationale**: [Why this choice]
-- **Alternatives Considered**: [What else was considered]
-- **Trade-offs**: [What we gain/lose]
+1. **[Decision 1]**: [Rationale]
+2. **[Decision 2]**: [Rationale]
+3. **[Decision 3]**: [Rationale]
 
 ## Interviewer Lens
 
-**This HLD demonstrates**:
-- [Signal 1: e.g., "Clear separation of concerns"]
-- [Signal 2: "Appropriate technology choices"]
-- [Signal 3: "Scalability considerations"]
+This design demonstrates:
+- [Signal 1]: [Why it matters]
+- [Signal 2]: [Why it matters]
+- [Signal 3]: [Why it matters]
 
-**Common mistakes avoided**:
-- [Mistake 1: e.g., "Not over-engineering"]
-- [Mistake 2: "Not ignoring failure scenarios"]
+**What interviewers look for**:
+- ✅ [Positive signal]
+- ❌ [Common mistake to avoid]
 ```
 
 ---
 
-### 04_low-level-design.md Template
+## 04_low-level-design.md Template
 
 ```markdown
 # [System Name] - Low-Level Design
 
 ## Data Models
 
-### [Entity Name]
+### [Entity 1]
+
 ```json
 {
   "field1": "type",
@@ -245,98 +240,81 @@ After studying this case study, you should be able to:
 ## API Design
 
 ### Endpoint 1: [Name]
-- **Method**: [GET/POST/etc.]
-- **Path**: `/api/v1/...`
-- **Request**: [Structure]
-- **Response**: [Structure]
-- **Error Codes**: [List]
+
+**Request**:
+```
+[Method] /api/path
+[Headers]
+[Body]
+```
+
+**Response**:
+```
+[Status Code]
+[Body]
+```
 
 ## Database Schema
 
 ```sql
 CREATE TABLE [table_name] (
-  [column definitions]
+  [columns]
 );
 ```
 
 ## Service Logic
 
-### [Service/Component Name]
-
-**Responsibilities**:
-- [Responsibility 1]
-- [Responsibility 2]
-
-**Key Algorithms**:
-- [Algorithm description if relevant]
-
-## Consistency Considerations
-
-- **Read Path**: [Consistency guarantees]
-- **Write Path**: [Consistency guarantees]
-- **Cache Invalidation**: [Strategy]
-- **Replica Usage**: [When to use replicas vs primary]
+[Describe key algorithms, workflows, business logic]
 
 ## Interviewer Lens
 
-**LLD Scope Note**:
-> In interviews, only one service is typically decomposed to this level. This demonstrates understanding of component-level design without over-engineering.
+This LLD demonstrates:
+- [Signal 1]
+- [Signal 2]
 
-**This LLD shows**:
-- [Signal 1: e.g., "Clear component responsibilities"]
-- [Signal 2: "Proper abstraction layers"]
+**Common candidate mistakes**:
+- ❌ [Mistake 1]
+- ❌ [Mistake 2]
 ```
 
 ---
 
-### 05_scalability.md Template
+## 05_scalability.md Template
 
 ```markdown
 # [System Name] - Scalability
 
-## Scaling Evolution
-
-### Phase 1: [Initial Scale]
-- **Traffic**: [QPS/users]
-- **Architecture**: [Description]
-- **Bottleneck**: [What breaks first]
-- **Solution**: [How to address]
-
-### Phase 2: [Next Scale]
-[Similar structure]
-
-### Phase 3: [Large Scale]
-[Similar structure]
-
 ## Scaling Strategies
 
 ### Horizontal Scaling
-- **When**: [Triggers]
-- **How**: [Implementation]
-- **Trade-offs**: [Costs/benefits]
+- [How to scale horizontally]
+- [Components that scale]
 
 ### Vertical Scaling
-- **When**: [Triggers]
-- **Limitations**: [Why it's temporary]
+- [When vertical scaling is used]
+- [Limitations]
 
-## Database Scaling
+### Database Scaling
+- [Database scaling approach]
+- [Sharding/replication strategy]
 
-- **Read Replicas**: [Strategy]
-- **Sharding**: [If applicable]
-- **Caching**: [Strategy]
+## Bottlenecks and Solutions
 
-## Interviewer Lens
+| Bottleneck | Solution |
+|------------|----------|
+| [Bottleneck 1] | [Solution] |
+| [Bottleneck 2] | [Solution] |
 
-> **Interview Note**: Skipping phases is a common mistake. Each phase exists to solve a specific bottleneck, not to follow trends.
+## Performance Optimization
 
-**This demonstrates**:
-- [Signal: "Evolutionary thinking"]
-- [Signal: "Understanding of bottlenecks"]
+- [Optimization 1]
+- [Optimization 2]
+- [Optimization 3]
 ```
 
 ---
 
-### 06_observability.md Template
+## 06_observability.md Template
 
 ```markdown
 # [System Name] - Observability
@@ -345,15 +323,15 @@ CREATE TABLE [table_name] (
 
 ### Service Level Indicators (SLIs)
 
-- **Availability**: [Metric, e.g., uptime %]
-- **Latency**: [Metric, e.g., p95 latency]
-- **Error Rate**: [Metric, e.g., error %]
-- **Throughput**: [Metric, e.g., QPS]
+- **Availability**: [Metric definition]
+- **Latency**: [Metric definition]
+- **Error Rate**: [Metric definition]
+- **Throughput**: [Metric definition]
 
 ### Service Level Objectives (SLOs)
 
 - **Availability**: [Target, e.g., 99.9%]
-- **Latency**: [Target, e.g., <200ms p95]
+- **Latency p95**: [Target, e.g., <200ms]
 - **Error Rate**: [Target, e.g., <0.1%]
 
 ## Monitoring Strategy
@@ -363,173 +341,123 @@ CREATE TABLE [table_name] (
 - [Metric 2]
 - [Metric 3]
 
-### Alerting Strategy
-- **Critical**: [What triggers critical alerts]
-- **Warning**: [What triggers warnings]
+### Alerting
+- **Critical**: [When to alert]
+- **Warning**: [When to warn]
 
 ## Logging Strategy
 
-- **Structured Logging**: [Format]
-- **Log Levels**: [What to log at each level]
-- **Retention**: [How long to keep logs]
+- [What to log]
+- [Log levels]
+- [Log retention]
 
 ## Distributed Tracing
 
-- **Trace Collection**: [How traces are collected]
-- **Key Spans**: [Important operations to trace]
-
-## Interviewer Lens
-
-**This demonstrates**:
-- [Signal: "Production-ready thinking"]
-- [Signal: "Understanding of observability"]
+- [Tracing strategy]
+- [Key spans to track]
 ```
 
 ---
 
-### 07_security.md Template
+## 07_security.md Template
 
 ```markdown
 # [System Name] - Security
 
 ## Authentication
 
-- **Method**: [OAuth, JWT, etc.]
-- **Implementation**: [Details]
+- [Authentication method]
+- [Token management]
+- [Session handling]
 
 ## Authorization
 
-- **Model**: [RBAC, ABAC, etc.]
-- **Enforcement**: [Where/how]
+- [Authorization model]
+- [Access control]
+- [Permission model]
 
 ## Data Protection
 
-- **Encryption at Rest**: [Strategy]
-- **Encryption in Transit**: [Strategy]
-- **PII Handling**: [How sensitive data is protected]
+- **Encryption at Rest**: [Approach]
+- **Encryption in Transit**: [Approach]
+- **Key Management**: [Approach]
 
-## Network Security
+## Threat Mitigation
 
-- **Trust Boundaries**: [Public vs private]
-- **Firewall Rules**: [If relevant]
-- **DDoS Protection**: [Strategy]
+| Threat | Mitigation |
+|--------|------------|
+| [Threat 1] | [Mitigation] |
+| [Threat 2] | [Mitigation] |
 
-## Interviewer Lens
+## Security Best Practices
 
-**Security considerations show**:
-- [Signal: "Production awareness"]
-- [Signal: "Defense in depth"]
+- [Practice 1]
+- [Practice 2]
+- [Practice 3]
 ```
 
 ---
 
-### 08_trade-offs.md Template
+## 08_trade-offs.md Template
 
 ```markdown
 # [System Name] - Trade-offs
 
 ## Architecture Trade-offs
 
-### Decision 1: [Technology/Pattern]
-- **Chosen**: [What we chose]
-- **Alternatives**: [What we didn't choose]
-- **Trade-offs**: [What we gain/lose]
+### [Decision 1]
+
+**Option A**: [Description]
+- ✅ [Pros]
+- ❌ [Cons]
+
+**Option B**: [Description]
+- ✅ [Pros]
+- ❌ [Cons]
+
+**Chosen**: [Option] because [Rationale]
 
 ## Performance Trade-offs
 
-### Consistency vs Availability
-- **Choice**: [What we chose]
-- **Rationale**: [Why]
-- **Impact**: [What this means]
+### [Trade-off 1]
 
-### Latency vs Throughput
-[Similar structure]
+[Description of trade-off and decision]
 
 ## Cost Trade-offs
 
-### Managed vs Self-Hosted
-[Similar structure]
+### [Trade-off 1]
 
-## Operational Trade-offs
+[Description of trade-off and decision]
 
-### Complexity vs Flexibility
-[Similar structure]
+## Consistency vs Availability
+
+[How consistency and availability are balanced]
 
 ## Interviewer Lens
 
-**Trade-off discussions demonstrate**:
-- [Signal: "Understanding of engineering decisions"]
-- [Signal: "Ability to reason about alternatives"]
+This demonstrates:
+- [Signal 1]: [Why it matters]
+- [Signal 2]: [Why it matters]
+
+**What interviewers look for**:
+- ✅ Understanding trade-offs explicitly
+- ✅ Clear rationale for decisions
+- ❌ Ignoring trade-offs
+- ❌ Over-optimizing one dimension
 ```
 
 ---
 
-## Sequence Diagram Template
+## Diagram Templates
 
-```markdown
-# [Flow Name] Sequence Diagram
-
-## Flow Description
-
-[Brief description of what this flow represents]
-
-## Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant A as Component A
-    participant B as Component B
-    participant C as Component C
-    
-    A->>B: Request
-    B->>C: Query
-    C-->>B: Response
-    B-->>A: Response
-```
-
-## ASCII Fallback
-
-```text
-A -> B: Request
-B -> C: Query
-C -> B: Response
-B -> A: Response
-```
-
-## Error Scenarios
-
-1. **Scenario 1**: [What happens]
-2. **Scenario 2**: [What happens]
-
-## Consistency Considerations
-
-- [Consistency note if relevant]
-- [Cache invalidation if relevant]
-- [Replica usage if relevant]
-
-## Interviewer Lens
-
-**This flow demonstrates**:
-- [Signal 1: e.g., "Stateless design"]
-- [Signal 2: "Defensive validation"]
-- [Signal 3: "Event-driven extensibility"]
-
-**Interview Note**:
-> [Any specific interview guidance, e.g., "In interviews, explain this flow slowly and clearly"]
-```
-
----
-
-## C4 Diagram Template
-
-### Context Diagram
+### Context Diagram (C4 Level 1)
 
 ```markdown
 # [System Name] - C4 Level 1: System Context
 
 ## System Context Diagram
 
-[Diagram with Mermaid and ASCII fallback]
+[Mermaid C4Context diagram]
 
 ## Description
 
@@ -537,89 +465,144 @@ B -> A: Response
 
 **System**: [What the system does]
 
-**External Systems**: [What external dependencies exist]
-
-## Interviewer Lens
-
-**This context diagram shows**:
-- [Signal: "Clear system boundaries"]
-- [Signal: "Understanding of external dependencies"]
+**External Systems**: [External dependencies]
 ```
 
-### Container Diagram
+### Container Diagram (C4 Level 2)
 
 ```markdown
 # [System Name] - C4 Level 2: Container Architecture
 
 ## Container Diagram
 
-[Diagram with Mermaid and ASCII fallback]
-
-## Container Descriptions
-
-[Description of each container]
+[Mermaid C4Container diagram]
 
 ## Trust Boundaries
 
-- **Public Edge**: [What's exposed publicly]
-- **Private Network**: [What's internal]
+**Public Edge**: [Public-facing components]
 
-## Interviewer Lens
+**Private Network**: [Internal components]
 
-**This HLD demonstrates**:
-- [Signal: "Appropriate technology choices"]
-- [Signal: "Security awareness"]
-- [Signal: "Scalability considerations"]
+## Container Descriptions
+
+[Describe each container]
 ```
 
-### Component Diagram
+### Component Diagram (C4 Level 3)
 
 ```markdown
 # [System Name] - C4 Level 3: Component Details
 
 ## Component Diagram
 
-[Diagram with Mermaid and ASCII fallback]
+[Mermaid C4Component diagram]
 
-## Component Descriptions
+> **LLD Scope Note**:  
+> In interviews, only one service is decomposed to this level.
 
-[Description of each component]
+## Component Responsibilities
+
+[Describe each component]
+```
+
+### Sequence Diagrams
+
+```markdown
+# [Flow Name] - Sequence Diagram
+
+## [Flow Description]
+
+[Mermaid sequence diagram]
+
+## Flow Description
+
+[Step-by-step description]
+
+## Error Scenarios
+
+- [Error 1]: [How handled]
+- [Error 2]: [How handled]
 
 ## Interviewer Lens
 
-> **LLD Scope Note**: In interviews, only one service is decomposed to this level. This prevents over-designing.
+This flow demonstrates:
+- [Signal 1]
+- [Signal 2]
 
-**This LLD shows**:
-- [Signal: "Clear component responsibilities"]
-- [Signal: "Proper abstraction layers"]
+**Common candidate mistakes**:
+- ❌ [Mistake 1]
+- ❌ [Mistake 2]
 ```
 
 ---
 
-## Best Practices
+## Interviewer Lens Section (Required)
 
-### Interview Readiness
+Every case study should include an **"Interviewer Lens"** section that explicitly answers:
 
-1. **Practice Verbal Explanation**: Be able to explain any diagram or flow clearly
-2. **Know Trade-offs**: Understand why each decision was made
-3. **Evolutionary Thinking**: Show how system evolves, not just final state
-4. **Failure Scenarios**: Be ready to discuss what breaks and how to handle it
+1. **What problem does this system optimize for?**
+   - [Answer]
 
-### Content Quality
+2. **What is intentionally NOT optimized?**
+   - [Answer]
 
-1. **Be Specific**: Include actual numbers, not just "high" or "low"
-2. **Show Evolution**: Demonstrate how system grows over time
-3. **Explicit Trade-offs**: State what you're optimizing for and what you're not
-4. **Consistency Notes**: Always discuss consistency guarantees around caches/replicas
+3. **What breaks first at scale?**
+   - [Answer]
 
-### Common Mistakes to Avoid
+4. **What signals senior-level thinking?**
+   - [List of signals]
 
-1. **Over-engineering**: Don't jump to microservices too early
-2. **Ignoring Consistency**: Always discuss consistency guarantees
-3. **No Evolution**: Show how system grows, not just final architecture
-4. **Missing Failure Scenarios**: Discuss what breaks and how to handle it
+5. **Common candidate mistakes?**
+   - [List of mistakes]
+
+---
+
+## Failure Scenario Analysis (Required)
+
+Each case study should include at least one realistic failure scenario:
+
+### Failure Scenario: [Name]
+
+**What fails**: [Component/service]
+
+**Blast radius**: [What's affected]
+
+**Detection**: [How detected]
+
+**Recovery**: [How to recover]
+
+**Prevention**: [How to prevent]
+
+**SLI Impact**: [Impact on SLIs/SLOs]
+
+---
+
+## Cross-Linking Requirements
+
+Each case study should cross-link to:
+
+- **Observability**: Reference SLIs/SLOs from `06_observability.md`
+- **Failures**: Link to relevant failure scenarios in `src/08_failures/`
+- **Building Blocks**: Reference relevant building blocks used
+- **Patterns**: Reference architectural patterns applied
+
+---
+
+## Quality Checklist
+
+Before finalizing a case study, verify:
+
+- [ ] All 8 core files present
+- [ ] C4 diagrams (context, container, component) included
+- [ ] At least 2-3 sequence diagrams
+- [ ] Interviewer Lens section in each relevant file
+- [ ] Failure scenario analysis included
+- [ ] SLIs/SLOs defined in observability section
+- [ ] Cross-links to related topics
+- [ ] Back-of-envelope calculations shown
+- [ ] Trade-offs explicitly discussed
+- [ ] Security considerations addressed
 
 ---
 
 **Last Updated**: December 19, 2025
-

@@ -179,3 +179,34 @@ When making trade-off decisions, consider:
 6. **Risk Tolerance**: How much risk can you accept?
 
 **Key Principle**: Start simple, optimize as you scale. Don't over-engineer for scale you don't have yet.
+
+## Interviewer Lens
+
+This case study demonstrates:
+
+- **Problem optimization**: Optimizes for gradual growth and cost efficiency, not maximum performance from day 1
+- **Intentional non-optimization**: Phase 1 intentionally simple (not optimized for scale), Phase 2-3 accept some limitations (not optimized for global distribution)
+- **What breaks first at scale**: 
+  - Phase 1: Single server resource limits
+  - Phase 2: Database becomes bottleneck
+  - Phase 3: Application server capacity
+  - Phase 4: Monolith deployment conflicts
+
+**What signals senior-level thinking**:
+- ✅ **Evolutionary thinking**: Systems evolve, don't start at final scale
+- ✅ **Metrics-driven decisions**: Each phase triggered by specific bottlenecks
+- ✅ **Cost awareness**: Start simple, scale as needed
+- ✅ **Practical judgment**: Phase 1 is valid for small scale
+- ✅ **Migration strategy**: Clear path from simple to complex
+
+**Common candidate mistakes to avoid**:
+- ❌ Jumping to Phase 4 immediately (over-engineering)
+- ❌ Dismissing Phase 1 as "not scalable" (lack of practical judgment)
+- ❌ No migration strategy (just final architecture)
+- ❌ Ignoring cost implications
+- ❌ Trying to solve all problems from day 1
+
+**Interview evaluation criteria**:
+- **Senior Level**: Can design for current scale, identify bottlenecks, plan evolution
+- **Staff Level**: Can explain why each phase exists, what triggers transitions, cost implications
+- **Architect Level**: Can design migration paths, balance competing concerns, optimize for business goals

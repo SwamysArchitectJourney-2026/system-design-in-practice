@@ -1,11 +1,11 @@
 ---
 learning_level: "Intermediate"
-prerequisites: ["Security in System Design (Part 1)", "System design fundamentals"]
+prerequisites: ["Security (Part 1)", "System design fundamentals"]
 estimated_time: "25 minutes"
 learning_objectives:
-  - "Apply security best practices to system design"
-  - "Design secure service-to-service communication"
-  - "Balance security with usability and performance"
+  - "Implement security best practices in system design"
+  - "Apply security patterns and controls"
+  - "Design secure authentication and authorization systems"
 related_topics:
   prerequisites:
     - ./07_security.md
@@ -17,70 +17,127 @@ related_topics:
   cross_refs: []
 ---
 
-# Security in System Design (Part 2): Best Practices
+# Security (Part 2): Best Practices and Implementation
 
-## Security in Practice
+## Security Best Practices
 
-### API Security
+### Input Validation
 
-**Requirements**:
-- Authentication required
+**Principle**: Never trust user input.
+
+**Practices**:
+- Validate all inputs
+- Sanitize data
+- Use parameterized queries
+- Encode output
+
+**Example**: SQL injection prevention through parameterized queries.
+
+### Secure Communication
+
+**Principle**: Encrypt data in transit.
+
+**Implementation**:
+- Use TLS/SSL for all connections
+- Enforce HTTPS
+- Certificate pinning for mobile apps
+- Secure service-to-service communication
+
+### Secret Management
+
+**Principle**: Never hardcode secrets.
+
+**Practices**:
+- Use secret management services
+- Rotate secrets regularly
+- Limit secret access
+- Audit secret usage
+
+**Example**: AWS Secrets Manager, HashiCorp Vault.
+
+### Security Monitoring
+
+**Principle**: Monitor for security events.
+
+**Practices**:
+- Log security events
+- Monitor for anomalies
+- Alert on suspicious activity
+- Regular security audits
+
+## Security Patterns
+
+### Pattern 1: API Gateway Security
+
+**Responsibilities**:
+- Authentication
 - Rate limiting
-- Input validation
-- HTTPS only
-- Error messages don't leak information
+- Request validation
+- SSL termination
 
-**Example**: API Gateway enforces authentication, rate limits, and validates all inputs before forwarding to services.
+**Benefits**: Centralized security, consistent enforcement.
 
-### Database Security
+### Pattern 2: Zero Trust Architecture
 
-**Requirements**:
-- Encrypted connections
+**Principle**: Never trust, always verify.
+
+**Approach**:
+- Verify every request
 - Least privilege access
-- Encrypted sensitive data
-- Regular backups
-- Audit logging
+- Continuous monitoring
+- Assume breach
 
-**Example**: Database user has read-only access for application, separate admin user for migrations.
+### Pattern 3: Defense in Depth
 
-### Service-to-Service Security
+**Principle**: Multiple security layers.
 
-**Requirements**:
-- Service authentication
-- Mutual TLS (mTLS)
-- API keys or tokens
-- Network isolation
+**Layers**:
+- Network (firewalls, VPNs)
+- Application (authentication, authorization)
+- Data (encryption, access controls)
+- Monitoring (logging, alerts)
 
-**Example**: Services authenticate using mTLS certificates, communicate over private network.
+## Security in System Design
 
-## Security vs Other Principles
+### Authentication Design
 
-### Security vs Usability
+**Considerations**:
+- Password policies
+- Multi-factor authentication
+- Session management
+- Token expiration
 
-**Trade-off**: More security often means less convenience.
+**Example**: JWT tokens with short expiration, refresh tokens.
 
-**Balance**: Find acceptable security level for use case.
+### Authorization Design
 
-**Example**: MFA adds security but requires extra step.
+**Considerations**:
+- Role-based access control (RBAC)
+- Attribute-based access control (ABAC)
+- Fine-grained permissions
+- Principle of least privilege
 
-### Security vs Performance
+**Example**: Users have roles, roles have permissions.
 
-**Trade-off**: Encryption and validation add overhead.
+### Data Protection
 
-**Balance**: Secure by default, optimize where needed.
+**Considerations**:
+- Encryption at rest
+- Encryption in transit
+- Key management
+- Data masking
 
-**Example**: TLS adds latency but is essential for security.
+**Example**: Encrypt sensitive fields, use separate encryption keys.
 
 ## Key Takeaways
 
-1. **Security is fundamental** - design it in from the start
-2. **Defense in depth** - multiple layers of protection
-3. **Least privilege** - grant minimum necessary permissions
-4. **Encrypt everything** - data at rest and in transit
-5. **Monitor and detect** - security is ongoing, not one-time
+1. **Validate all inputs** - never trust user data
+2. **Encrypt everything** - in transit and at rest
+3. **Manage secrets securely** - use secret management services
+4. **Monitor security** - detect and respond to threats
+5. **Defense in depth** - multiple security layers
 
 ---
 
-*Previous: [Security in System Design (Part 1)](./07_security.md)*  
-*Next: Learn about [Availability](./01_availability.md) or explore [Rate Limiting](../06_patterns/02_rate-limiting.md).*
-
+*Previous: [Security (Part 1)](./07_security.md)*  
+*Next: Learn about [Load Balancers](../05_building-blocks/02_load-balancers.md) or explore [Rate Limiting](../06_patterns/02_rate-limiting.md).*
