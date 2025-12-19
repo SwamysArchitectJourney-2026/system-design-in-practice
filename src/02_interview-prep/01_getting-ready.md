@@ -9,12 +9,13 @@ learning_objectives:
 related_topics:
   prerequisites: []
   builds_upon:
-	 - "../01_introduction/03_course-structure.md"
+      - "../01_introduction/03_course-structure.md"
   enables:
-	 - "02_dos-and-donts.md"
-	 - "04_mock-interviews.md"
+      - "02_dos-and-donts.md"
+      - "04_mock-interviews.md"
   cross_refs:
-	 - "../03_foundations/README.md"
+      - "06_hld-vs-lld.md"
+      - "../03_foundations/README.md"
 ---
 
 # Getting Ready for System Design Interviews
@@ -25,7 +26,7 @@ System design interviews evaluate **how you think**, not how much you remember. 
 
 ## Understanding the Interview Format
 
-Most system design interviews follow this structure:
+Most system design interviews follow a predictable flow. Strong candidates recognize it and keep the conversation moving intentionally.
 
 1. **Problem statement**
    Example: “Design a URL shortener” or “Design a news feed”.
@@ -34,13 +35,16 @@ Most system design interviews follow this structure:
    Functional vs non-functional requirements.
 
 3. **High-level design (HLD)**
-   Major components and data flow.
+   Major components, boundaries, and end-to-end data flow.
 
-4. **Deep dives**
-   Scaling, data models, APIs, failure handling.
+4. **Low-level design (LLD)**
+   A focused deep dive into one or two critical components (APIs, data model, caching logic, concurrency).
 
-5. **Trade-offs & alternatives**
-   Why one approach over another.
+5. **Scaling & failure deep dives**
+   Bottlenecks, scaling strategies, and graceful degradation.
+
+6. **Trade-offs & alternatives**
+   What you optimized for and what you consciously gave up.
 
 Interviewers are assessing:
 
@@ -55,7 +59,7 @@ Interviewers are assessing:
 
 - Practice **structured thinking**, not scripts
 - Get comfortable **thinking out loud**
-- Always start broad, then go deep
+- Always start broad (HLD), then go deep (LLD)
 - Use estimation to guide design choices
 - Justify decisions with trade-offs
 
@@ -91,3 +95,5 @@ Weak fundamentals cannot be hidden by good diagrams.
 ## Key Takeaway
 
 Being “ready” means you can **start any system design problem without panic** and progress methodically.
+
+If you want a reusable reference, see [06_hld-vs-lld.md](06_hld-vs-lld.md).

@@ -28,6 +28,7 @@ This document provides a comprehensive index of all topics covered in this repos
 ## Interview Preparation
 
 - [Getting Ready for System Design Interviews](02_interview-prep/01_getting-ready.md)
+- [High-Level vs Low-Level Design (HLD vs LLD)](02_interview-prep/06_hld-vs-lld.md)
 - [Do's and Don'ts](02_interview-prep/02_dos-and-donts.md)
 - [Preparation Timeline](02_interview-prep/03_preparation-timeline.md)
 - [Mock Interview Strategies](02_interview-prep/04_mock-interviews.md)
@@ -182,4 +183,4 @@ This document provides a comprehensive index of all topics covered in this repos
 
 ---
 
-Last Updated: December 18, 2025
+Last Updated: December 19, 2025

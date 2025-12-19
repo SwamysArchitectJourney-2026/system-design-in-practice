@@ -49,7 +49,8 @@ This repository is designed to support all three.
 ## Reading Order
 
 1. [Getting Ready for System Design Interviews](./01_getting-ready.md)
-2. [The Do’s and Don’ts of System Design Interviews](./02_dos-and-donts.md)
-3. [How Long Does It Take to Prepare for System Design Interviews?](./03_preparation-timeline.md)
-4. [System Design Mock Interviews](./04_mock-interviews.md)
-5. [Let AI Evaluate Your System Design Interview Preparation](./05_ai-evaluation.md)
+2. [High-Level vs Low-Level Design (HLD vs LLD)](./06_hld-vs-lld.md)
+3. [The Do’s and Don’ts of System Design Interviews](./02_dos-and-donts.md)
+4. [How Long Does It Take to Prepare for System Design Interviews?](./03_preparation-timeline.md)
+5. [System Design Mock Interviews](./04_mock-interviews.md)
+6. [Let AI Evaluate Your System Design Interview Preparation](./05_ai-evaluation.md)

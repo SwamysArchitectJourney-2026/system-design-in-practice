@@ -1,7 +1,7 @@
 # Repository Structure
 
 **Version**: 2.0  
-**Last Updated**: December 15, 2025  
+**Last Updated**: December 19, 2025  
 **Purpose**: Single source of truth for repository structure
 
 > **Note**: This document should be referenced from `.github/copilot-instructions.md`, `.cursor/rules/02_repository-structure.mdc`, `README.md`, and other documentation files. When the structure changes, update this file first, then update references.
@@ -51,6 +51,7 @@ system-design-in-practice/
 │   │   ├── 03_preparation-timeline.md
 │   │   ├── 04_mock-interviews.md
 │   │   ├── 05_ai-evaluation.md
+│   │   ├── 06_hld-vs-lld.md
 │   │   └── README.md
 │   │
 │   ├── 03_foundations/                    # Foundational concepts
