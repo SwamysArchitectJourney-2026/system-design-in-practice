@@ -1,10 +1,10 @@
 ---
 learning_level: "Intermediate"
-prerequisites: ["C4 Model Introduction (Part 1)"]
+prerequisites: ["C4 Model for System Design (Part 1)"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Understand Level 3 (Component) and Level 4 (Code) diagrams"
-  - "Learn why C4 is ideal for system design interviews"
+  - "Learn interview strategies for using C4 diagrams"
   - "Apply best practices for creating and maintaining C4 diagrams"
 related_topics:
   prerequisites:
@@ -19,8 +19,6 @@ related_topics:
 ---
 
 # C4 Model for System Design (Part 2)
-
-*Previous: [C4 Model Introduction - Levels 1 and 2](./06_c4-diagrams.md)*
 
 ## Level 3: Component Diagram
 
@@ -121,6 +119,5 @@ See the [URL Shortener case study](../07_case-studies/05-url-shortener/diagrams/
 
 ---
 
-*Previous: [C4 Model Introduction - Levels 1 and 2](./06_c4-diagrams.md)*  
+*Previous: [C4 Model for System Design (Part 1)](./06_c4-diagrams.md)*  
 *Next: Apply C4 diagrams in [URL Shortener case study](../07_case-studies/05-url-shortener/diagrams/01_context-diagram.md) or explore [other foundations](./README.md).*
-

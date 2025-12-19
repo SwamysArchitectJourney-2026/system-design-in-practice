@@ -1,17 +1,15 @@
 ---
 learning_level: "Beginner"
-prerequisites: ["Request Flow and Basic Architecture (Part 1)", "Request Flow and Basic Architecture (Part 2-A)"]
+prerequisites: ["Request Flow and Basic Architecture (Part 2)"]
 estimated_time: "25 minutes"
 learning_objectives:
-  - "Understand architectural evolution from single server to distributed systems"
-  - "Recognize when to transition between architectural phases"
-  - "Apply evolution principles to system design"
+  - "Understand architectural evolution from simple to complex"
+  - "Identify key decision points in system growth"
+  - "Apply architectural evolution principles to system design"
 related_topics:
   prerequisites:
-    - ./07_request-flow-and-basic-architecture-part1.md
     - ./07_request-flow-and-basic-architecture-part2.md
   builds_upon:
-    - ./07_request-flow-and-basic-architecture-part1.md
     - ./07_request-flow-and-basic-architecture-part2.md
   enables:
     - ../04_principles/03_scalability.md
@@ -21,8 +19,6 @@ related_topics:
 ---
 
 # Request Flow and Basic Architecture (Part 2-B)
-
-*Previous: [Request Flow and Basic Architecture (Part 2-A)](./07_request-flow-and-basic-architecture-part2.md)*
 
 ## Architectural Evolution Path
 
@@ -67,6 +63,5 @@ Multiple web servers with load balancer:
 
 ---
 
-*Previous: [Request Flow and Basic Architecture (Part 2-A)](./07_request-flow-and-basic-architecture-part2.md)*  
-*Next: Learn about [Scalability Principles](../../04_principles/03_scalability.md) or explore [DNS](../../05_building-blocks/01_dns.md) in detail.*
-
+*Previous: [Request Flow and Basic Architecture (Part 2)](./07_request-flow-and-basic-architecture-part2.md)*  
+*Next: Learn about [Scalability Principles](../04_principles/03_scalability.md) or explore [DNS](../05_building-blocks/01_dns.md) in detail.*
