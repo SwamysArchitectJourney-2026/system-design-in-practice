@@ -17,7 +17,7 @@ related_topics:
   cross_refs: []
 ---
 
-# C4 Model for System Design
+# C4 Model for System Design (Part 1)
 
 ## What is the C4 Model?
 

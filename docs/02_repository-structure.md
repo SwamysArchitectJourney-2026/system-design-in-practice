@@ -60,7 +60,7 @@ system-design-in-practice/
 │   │   ├── 03_consistency-models.md
 │   │   ├── 04_failure-models.md
 │   │   ├── 05_back-of-envelope.md
-│   │   ├── 06_c4-diagrams.md
+│   │   ├── 06_c4-diagrams-part1.md
 │   │   ├── 07_scaling-fundamentals.md
 │   │   ├── 07_scaling-fundamentals-part1.md
 │   │   ├── 07_scaling-fundamentals-part2.md

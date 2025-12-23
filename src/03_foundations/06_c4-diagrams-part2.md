@@ -8,9 +8,9 @@ learning_objectives:
   - "Apply best practices for creating and maintaining C4 diagrams"
 related_topics:
   prerequisites:
-    - ./06_c4-diagrams.md
+    - ./06_c4-diagrams-part1.md
   builds_upon:
-    - ./06_c4-diagrams.md
+    - ./06_c4-diagrams-part1.md
   enables:
     - ../07_case-studies/05-url-shortener/diagrams/01_context-diagram.md
     - ../07_case-studies/05-url-shortener/diagrams/02_container-diagram.md
@@ -119,5 +119,5 @@ See the [URL Shortener case study](../07_case-studies/05-url-shortener/diagrams/
 
 ---
 
-*Previous: [C4 Model for System Design (Part 1)](./06_c4-diagrams.md)*  
+*Previous: [C4 Model for System Design (Part 1)](./06_c4-diagrams-part1.md)*  
 *Next: Apply C4 diagrams in [URL Shortener case study](../07_case-studies/05-url-shortener/diagrams/01_context-diagram.md) or explore [other foundations](./README.md).*

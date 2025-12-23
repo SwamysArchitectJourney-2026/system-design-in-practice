@@ -13,7 +13,7 @@ related_topics:
   enables:
     - "04_mock-interviews.md"
   cross_refs:
-    - "../03_foundations/06_c4-diagrams.md"
+    - "../03_foundations/06_c4-diagrams-part1.md"
     - "../07_case-studies/05-url-shortener/03_high-level-design.md"
     - "../07_case-studies/05-url-shortener/04_low-level-design.md"
 ---
