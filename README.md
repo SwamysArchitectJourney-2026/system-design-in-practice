@@ -15,11 +15,15 @@ This repository will evolve as my understanding deepens.
 - Diagrams (C4, sequence, flow)
 - Trade-offs and failure scenarios
 
-## Who This Is For
+## Who Might Find This Useful
+
+While this repository documents *my* learning journey, others might find it useful if they are:
 
 - Software Engineers preparing for system design interviews
 - Senior engineers transitioning to architect roles
 - Engineers designing scalable systems in production
+
+**Note**: This is not a curriculum designed for others—it's my personal learning structure that happens to be publicly accessible.
 
 ## Philosophy
 
@@ -47,17 +51,21 @@ Design is about **trade-offs**, not perfect solutions.
 
 ---
 
-## Getting Started
+## How I Navigate This Repository
 
-1. Review the [01_road-map.md](docs/01_road-map.md) to understand the learning path
+When I'm learning a new area, I typically:
+
+1. Review the [01_road-map.md](docs/01_road-map.md) to understand the learning path I'm following
 2. Check [src/CONTENT_INDEX.md](src/CONTENT_INDEX.md) for a complete topic index
 3. Start with **src/01_introduction/** for an overview
-4. Review **src/02_interview-prep/** if preparing for interviews
+4. Review **src/02_interview-prep/** when preparing for interviews
 5. Study **src/03_foundations/** for fundamental concepts
 6. Explore **src/04_principles/** for system design principles
 7. Learn **src/05_building-blocks/** to understand core components
 8. Study **src/07_case-studies/** for end-to-end system designs
 9. Review **src/08_failures/** to learn from real-world incidents
+
+**For others reading along**: Feel free to explore in any order that makes sense for your own learning journey.
 
 ## Why This Learning Journey Is Public
 

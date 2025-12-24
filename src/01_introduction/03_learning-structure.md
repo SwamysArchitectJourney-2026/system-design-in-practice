@@ -1,11 +1,11 @@
 ---
-learning_level: "Beginner"
+learning_stage: "Early exploration"
 prerequisites: []
-estimated_time: "15 minutes"
-learning_objectives:
-  - "Navigate the repository by learning phase and intent"
-  - "Understand why the sequence mirrors real design reasoning"
-  - "Pick a reading path that fits my current goal (interview prep vs deeper study)"
+time_spent_estimate: "15 minutes"
+focus_areas:
+  - "Navigating the repository by learning phase and intent"
+  - "Understanding why the sequence mirrors real design reasoning"
+  - "Picking a reading path that fits my current goal (interview prep vs deeper study)"
 related_topics:
   prerequisites: []
   builds_upon:
