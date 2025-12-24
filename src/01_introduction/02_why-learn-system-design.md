@@ -11,7 +11,7 @@ related_topics:
   builds_upon:
     - "01_modern-system-design.md"
   enables:
-    - "03_course-structure.md"
+    - "03_learning-structure.md"
   cross_refs:
     - "../02_interview-prep/README.md"
 ---

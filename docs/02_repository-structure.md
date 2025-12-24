@@ -27,8 +27,8 @@ system-design-in-practice/
 │   ├── copilot-instructions.md            # GitHub Copilot instructions
 │   └── prompts/                           # Reusable prompt templates
 ├── docs/                                  # Documentation
-│   ├── ROADMAP.md                         # Learning path and roadmap
-│   ├── RepositoryStructure.md             # THIS FILE - Single source of truth
+│   ├── 01_road-map.md                     # Learning path and roadmap
+│   ├── 02_repository-structure.md         # THIS FILE - Single source of truth
 │   └── review-reports/                    # Review and migration reports
 │       └── 15Dec2025-comprehensive-review.md
 ├── source-material/                       # Staging area for source content (git-ignored)
@@ -42,7 +42,7 @@ system-design-in-practice/
 │   ├── 01_introduction/                   # Getting started
 │   │   ├── 01_modern-system-design.md
 │   │   ├── 02_why-learn-system-design.md
-│   │   ├── 03_course-structure.md
+│   │   ├── 03_learning-structure.md
 │   │   └── README.md
 │   │
 │   ├── 02_interview-prep/                 # Interview preparation
@@ -178,7 +178,7 @@ system-design-in-practice/
   - ✅ Use zero-padded numeric prefixes: `01_`, `02_`, etc.
   - ❌ **NEVER** use `00_` prefix - **NO EXCEPTIONS**
   - ✅ Use hyphens for multi-word names: `01_modern-system-design.md`
-  - ✅ Split files use: `Topic-Part1-A.md`, `Topic-Part1-B.md` (not `Part1A.md`)
+  - ✅ Split files use: `topic-slug-part1.md`, `topic-slug-part2.md` (avoid `A/B/C`)
 
 - **Case Studies** (`src/07_case-studies/`):
   - ✅ Can use numbered files: `01_requirements.md`, `02_back-of-envelope.md`, etc.
@@ -214,20 +214,20 @@ system-design-in-practice/
 
 **When repository structure changes**:
 
-1. ✅ **Update this file first** (`docs/RepositoryStructure.md`)
+1. ✅ **Update this file first** (`docs/02_repository-structure.md`)
 2. ✅ **Update references** in:
    - `.github/copilot-instructions.md` - Reference this file
    - `.cursor/rules/02_repository-structure.mdc` - Reference this file
    - `README.md` - Reference this file
 3. ✅ **Verify consistency** across all documentation
 
-**Self-Check Question**: "Did I update `docs/RepositoryStructure.md` first?" - If no, STOP and do it NOW.
+**Self-Check Question**: "Did I update `docs/02_repository-structure.md` first?" - If no, STOP and do it NOW.
 
 ---
 
 ## References
 
-- **Repository Structure**: This file (`docs/RepositoryStructure.md`)
+- **Repository Structure**: This file (`docs/02_repository-structure.md`)
 - **Content Rules**: `.cursor/rules/01_educational-content-rules.mdc`
 - **Learning Path**: `docs/ROADMAP.md`
 - **Content Index**: `src/CONTENT_INDEX.md`

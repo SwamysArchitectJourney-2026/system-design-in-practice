@@ -23,7 +23,7 @@ This document provides a comprehensive index of all topics covered in this repos
 
 - [Introduction to Modern System Design](01_introduction/01_modern-system-design.md)
 - [Why Learn System Design](01_introduction/02_why-learn-system-design.md)
-- [Course Structure](01_introduction/03_course-structure.md)
+- [Learning Structure](01_introduction/03_learning-structure.md)
 
 ## Interview Preparation
 

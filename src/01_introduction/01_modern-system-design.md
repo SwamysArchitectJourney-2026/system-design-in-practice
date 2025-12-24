@@ -11,7 +11,7 @@ related_topics:
   builds_upon: []
   enables:
     - "02_why-learn-system-design.md"
-    - "03_course-structure.md"
+    - "03_learning-structure.md"
   cross_refs:
     - "../03_foundations/README.md"
 ---
