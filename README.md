@@ -1,10 +1,16 @@
 # System Design in Practice
 
-This repository documents **my personal learning journey in system design** — the concepts I’m studying, the mental models I’m building, and how my thinking evolves over time.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-learning--journey-green.svg)
+![System Design](https://img.shields.io/badge/System-Design-orange.svg)
 
-It is **not a course**, not a certification guide, and not a step-by-step tutorial. The structure exists to support *my thinking*, not to prescribe how others must learn.
-
-This repository will evolve as my understanding deepens.
+> **⚠️ IMPORTANT: This is NOT an official course or syllabus. This is Swamy's personal learning journey and study materials.**
+>
+> This repository documents **my personal learning journey in system design** — the concepts I'm studying, the mental models I'm building, and how my thinking evolves over time.
+>
+> It is **not a course**, not a certification guide, and not a step-by-step tutorial. The structure exists to support *my thinking*, not to prescribe how others must learn.
+>
+> This repository will evolve as my understanding deepens.
 
 ## What This Repository Covers
 
