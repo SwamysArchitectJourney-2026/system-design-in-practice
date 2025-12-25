@@ -31,6 +31,7 @@ If you discover a security vulnerability in this repository, please report it re
 ### What to Report
 
 Please report:
+
 - Security vulnerabilities in code examples
 - Security issues in documentation that could mislead users
 - Vulnerabilities in any scripts or automation tools
@@ -58,4 +59,3 @@ We appreciate responsible disclosure of security vulnerabilities. Contributors w
 ---
 
 **Note**: This is a learning repository focused on system design concepts. While we take security seriously, the primary focus is educational content rather than production code.
-
