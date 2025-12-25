@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/Swamy-s-Tech-Skills-Academy-2026/system-design-in-practice/discussions
+    about: Ask questions, share ideas, or discuss system design concepts
+  - name: 📚 Documentation
+    url: https://github.com/Swamy-s-Tech-Skills-Academy-2026/system-design-in-practice#readme
+    about: Check the README and documentation for more information
+
