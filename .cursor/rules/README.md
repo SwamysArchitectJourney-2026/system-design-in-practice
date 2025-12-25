@@ -29,11 +29,17 @@ This directory contains modular rule files for Cursor AI, following the recommen
 
 ### `05_primary-directives.mdc`
 
-**Content**: Primary directives, automation-first approach, update verification protocol
+**Content**: Primary directives, automation-first approach, update verification protocol, Chain-of-Thought + ReAct methodology
 
 ### `06_cross-domain-integration.mdc`
 
 **Content**: Cross-domain integration requirements, connection patterns
+
+### `07_file-naming-conventions.mdc`
+
+**Priority**: MANDATORY  
+**Content**: File naming conventions, semantic naming patterns, splitting strategies, folder structure best practices  
+**Applicability**: All new content must follow these conventions. Existing content may use `-part1`, `-part2` patterns (acceptable for mechanical splitting)
 
 ---
 

@@ -9,7 +9,7 @@ learning_objectives:
 related_topics:
   prerequisites: []
   builds_upon:
-      - "../01_introduction/03_course-structure.md"
+     - "../01_introduction/03_learning-structure.md"
   enables:
       - "02_dos-and-donts.md"
       - "04_mock-interviews.md"

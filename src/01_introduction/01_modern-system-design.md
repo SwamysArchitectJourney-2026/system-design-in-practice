@@ -1,17 +1,17 @@
 ---
-learning_level: "Beginner"
+learning_stage: "Early exploration"
 prerequisites: []
-estimated_time: "20 minutes"
-learning_objectives:
-  - "Define what system design is and what it optimizes for"
-  - "Explain how distributed system styles evolved and why trade-offs matter"
-  - "Recognize modern constraints: latency, failures, cost, security, and operability"
+time_spent_estimate: "20 minutes"
+focus_areas:
+  - "Understanding what system design is and what it optimizes for"
+  - "Exploring how distributed system styles evolved and why trade-offs matter"
+  - "Recognizing modern constraints: latency, failures, cost, security, and operability"
 related_topics:
   prerequisites: []
   builds_upon: []
   enables:
     - "02_why-learn-system-design.md"
-    - "03_course-structure.md"
+    - "03_learning-structure.md"
   cross_refs:
     - "../03_foundations/README.md"
 ---
@@ -126,4 +126,4 @@ Strong candidates frame design as a sequence of decisions, not a final diagram.
 
 System design is not about drawing diagrams—it is about **reasoning under constraints** and **making defensible decisions**.
 
-This repository focuses on building that mindset.
+I'm using this repository to build that mindset through structured exploration and reflection.

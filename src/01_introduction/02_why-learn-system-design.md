@@ -1,17 +1,17 @@
 ---
-learning_level: "Beginner"
+learning_stage: "Early exploration"
 prerequisites: []
-estimated_time: "15 minutes"
-learning_objectives:
-  - "Explain how system design supports career growth and scope"
-  - "Describe how design thinking improves everyday engineering decisions"
-  - "Identify what system design interviews actually evaluate"
+time_spent_estimate: "15 minutes"
+focus_areas:
+  - "Understanding how system design supports career growth and scope"
+  - "Exploring how design thinking improves everyday engineering decisions"
+  - "Identifying what system design interviews actually evaluate"
 related_topics:
   prerequisites: []
   builds_upon:
     - "01_modern-system-design.md"
   enables:
-    - "03_course-structure.md"
+    - "03_learning-structure.md"
   cross_refs:
     - "../02_interview-prep/README.md"
 ---
@@ -102,5 +102,7 @@ and constraints conflict.
 
 ## Key Takeaway
 
-System design is not an “advanced topic.”
+System design is not an "advanced topic."
 It is a **fundamental skill for long-term engineering success**.
+
+This is why I'm investing time in building a structured understanding of these concepts.

@@ -1,6 +1,10 @@
 # System Design in Practice
 
-This repository is a practical guide to system design, focusing on real-world architectural decisions, trade-offs, and scalability patterns.
+This repository documents **my personal learning journey in system design** — the concepts I’m studying, the mental models I’m building, and how my thinking evolves over time.
+
+It is **not a course**, not a certification guide, and not a step-by-step tutorial. The structure exists to support *my thinking*, not to prescribe how others must learn.
+
+This repository will evolve as my understanding deepens.
 
 ## What This Repository Covers
 
@@ -11,11 +15,15 @@ This repository is a practical guide to system design, focusing on real-world ar
 - Diagrams (C4, sequence, flow)
 - Trade-offs and failure scenarios
 
-## Who This Is For
+## Who Might Find This Useful
+
+While this repository documents *my* learning journey, others might find it useful if they are:
 
 - Software Engineers preparing for system design interviews
 - Senior engineers transitioning to architect roles
 - Engineers designing scalable systems in production
+
+**Note**: This is not a curriculum designed for others—it's my personal learning structure that happens to be publicly accessible.
 
 ## Philosophy
 
@@ -25,9 +33,9 @@ Design is about **trade-offs**, not perfect solutions.
 
 ## Repository Structure
 
-> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/RepositoryStructure.md`](docs/RepositoryStructure.md). This file contains the authoritative structure with all file names, conventions, and organization details.
+> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/02_repository-structure.md`](docs/02_repository-structure.md). This file contains the authoritative structure with all file names, conventions, and organization details.
 
-**For the complete repository structure**, see: **[docs/RepositoryStructure.md](docs/RepositoryStructure.md)**
+**For the complete repository structure**, see: **[docs/02_repository-structure.md](docs/02_repository-structure.md)**
 
 **Quick Overview**:
 
@@ -43,17 +51,32 @@ Design is about **trade-offs**, not perfect solutions.
 
 ---
 
-## Getting Started
+## How I Navigate This Repository
 
-1. Review the [ROADMAP.md](docs/ROADMAP.md) to understand the learning path
+When I'm learning a new area, I typically:
+
+1. Review the [01_road-map.md](docs/01_road-map.md) to understand the learning path I'm following
 2. Check [src/CONTENT_INDEX.md](src/CONTENT_INDEX.md) for a complete topic index
 3. Start with **src/01_introduction/** for an overview
-4. Review **src/02_interview-prep/** if preparing for interviews
+4. Review **src/02_interview-prep/** when preparing for interviews
 5. Study **src/03_foundations/** for fundamental concepts
 6. Explore **src/04_principles/** for system design principles
 7. Learn **src/05_building-blocks/** to understand core components
 8. Study **src/07_case-studies/** for end-to-end system designs
 9. Review **src/08_failures/** to learn from real-world incidents
+
+**For others reading along**: Feel free to explore in any order that makes sense for your own learning journey.
+
+## Why This Learning Journey Is Public
+
+I believe learning becomes clearer when ideas are written down, structured, and revisited.
+Making this repository public helps me:
+
+- Hold myself accountable
+- Refine my thinking through clarity
+- Share mental models with others on a similar path
+
+Others are welcome to read along, but this repository primarily reflects *my* journey.
 
 ## Contributing
 

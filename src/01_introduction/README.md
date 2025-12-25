@@ -20,12 +20,12 @@ These documents establish the **mental model** used throughout the rest of the c
 - **Why Learn System Design**
   Career impact, real-world relevance, and interview importance.
 
-- **Course Structure**
-  How the content is organized and how to navigate it effectively.
+- **Learning Structure**
+  How I’m organizing the content and navigating it over time.
 
 ---
 
-## How This Section Helps in Interviews
+## How This Section Can Help in Interviews
 
 Interviewers expect candidates to:
 
@@ -43,7 +43,7 @@ This perspective ensures you approach every design problem as a decision-making 
 
 1. [Introduction to Modern System Design](./01_modern-system-design.md)
 2. [Why Every Developer Should Learn System Design](./02_why-learn-system-design.md)
-3. [Course Structure](./03_course-structure.md)
+3. [Learning Structure](./03_learning-structure.md)
 
 Then proceed to **Foundations**.
 

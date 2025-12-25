@@ -195,33 +195,33 @@ related_topics:
 
 ### File Naming Convention for Split Files
 
-**CRITICAL**: When files are split into multiple parts, use simplified letter suffixes.
+**CRITICAL**: When files are split into multiple parts, use `-part1`, `-part2` pattern (not `Part1-A`, `Part1-B`).
 
-**Pattern**:
+**Current Repository Pattern**:
 
-- `Topic-Part1-Part1.md` → `Topic-Part1-A.md`
-- `Topic-Part1-Part2.md` → `Topic-Part1-B.md`
-- `Topic-Part2-Part1.md` → `Topic-Part2-A.md`
-- `Topic-Part2-Part2.md` → `Topic-Part2-B.md`
-- `Topic-Part1-Part2-Part1.md` → `Topic-Part1-B-A.md`
-- `Topic-Part1-Part2-Part2.md` → `Topic-Part1-B-B.md`
+- ✅ `02_network-abstractions-part1.md`
+- ✅ `02_network-abstractions-part2.md`
+- ✅ `03_consistency-models-part1.md`
+- ✅ `03_consistency-models-part2.md`
 
 **Rules**:
-1. ✅ **Keep first Part number** - First `Part1`, `Part2`, etc. stays as-is
-2. ✅ **Convert subsequent Part numbers to letters** - `Part1` → `A`, `Part2` → `B`, etc.
-3. ✅ **Use uppercase letters** - A, B, C, D, etc. (not a, b, c)
-4. ✅ **Maintain order** - Letters reflect the original Part number sequence
+1. ✅ **Use `-part1`, `-part2` suffixes** - Preserves base slug for predictable links
+2. ✅ **Keep the numbered prefix** - Maintains learning sequence (e.g., `02_network-abstractions-part1.md`)
+3. ✅ **Avoid letter suffixes** - Don't use `Part1-A`, `Part1-B` patterns
+4. ✅ **Maintain order** - Parts reflect sequential content flow
 
-**Examples**:
-- ✅ `01_OOP-Introduction-Part1-A.md` (was `Part1-Part1`)
-- ✅ `01_OOP-Introduction-Part1-B.md` (was `Part1-Part2`)
-- ✅ `02_Classes-and-Objects-Part2-A.md` (was `Part2-Part1`)
-- ✅ `03_Encapsulation-Part1-B-A.md` (was `Part1-Part2-Part1`)
+**When to Use This Pattern**:
+- Content exceeds 150 lines
+- Cannot be split into distinct semantic concepts
+- Content is a single cohesive topic that must be split mechanically
+
+**For Better Approaches**: See [File Naming Conventions](../.cursor/rules/07_file-naming-conventions.mdc) for semantic naming patterns and decision framework.
 
 **Benefits**:
 - Cleaner, more readable file names
 - Easier to understand part relationships
-- Consistent naming pattern
+- Maintains file reference stability
+- Better than `Part1-A`, `Part1-B` patterns
 
 ---
 

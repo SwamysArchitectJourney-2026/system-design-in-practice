@@ -37,9 +37,9 @@
 
 ## 📁 Repository Structure
 
-> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/RepositoryStructure.md`](../docs/RepositoryStructure.md). This file should be referenced for the authoritative structure. When the structure changes, update that file first, then update references here.
+> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/02_repository-structure.md`](../docs/02_repository-structure.md). This file should be referenced for the authoritative structure. When the structure changes, update that file first, then update references here.
 
-For the complete repository structure, see: **[docs/RepositoryStructure.md](../docs/RepositoryStructure.md)**
+For the complete repository structure, see: **[docs/02_repository-structure.md](../docs/02_repository-structure.md)**
 
 **Quick Overview**:
 
@@ -72,6 +72,54 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../d
 - ✅ Use zero-padded numeric prefixes: `01_`, `02_`, etc.
 - ❌ **NEVER** use `00_` prefix - **NO EXCEPTIONS**
 - ✅ Use hyphens for multi-word names: `01_modern-system-design.md`
+
+#### Naming Model (Decision Framework)
+
+**Rule of thumb**: folders represent structure; files represent concepts; numbers represent ordering (sparingly).
+
+- Prefer **semantic filenames** over editorial artifacts.
+- Avoid encoding hierarchy/versioning in filenames (e.g., avoid `Part1-A`, `A/B/C`). If you feel you need `A/B/C`, you likely need a folder.
+- Use `-part1`, `-part2` only for **mechanical splitting** (e.g., to respect the ~150 line modularity guideline), not as a long-term hierarchy.
+
+**Recommended patterns in this repo**
+
+- In main learning folders (e.g., `src/03_foundations/`):
+   - Use ordered files: `NN_topic-slug.md`.
+   - If you must split: `NN_topic-slug-part1.md`, `NN_topic-slug-part2.md` (keep the same `NN_` prefix).
+- In reference-style subfolders (e.g., a future `glossary/` folder):
+   - Prefer `README.md` as the index + semantic topic files like `core-concepts.md`, `security.md`.
+   - Add ordering numbers only if there is a deliberate reading sequence.
+
+#### Applying Naming Conventions When Creating New Content
+
+Before writing:
+
+1. Choose the **right folder** based on learning progression (01 → 09). If the content is a new “cluster” (e.g., glossary), create a folder and put a `README.md` index inside it.
+2. Choose a filename that matches the **concept boundary**:
+    - Prefer `NN_concept-name.md` for sequence-based modules.
+    - Prefer `concept-name.md` inside reference-style folders.
+3. Keep names URL-friendly: lowercase, hyphen-separated words, avoid spaces.
+
+When splitting a file:
+
+- First try to split by concept (new file) instead of by “Part”.
+- If you still need parts, use `-part1`, `-part2` (not `A/B/C`).
+- Preserve the base slug so links remain predictable (e.g., `03_consistency-models-part1.md`).
+
+After adding/renaming:
+
+- Update the local `README.md` index (if present) and the global `src/CONTENT_INDEX.md` as needed.
+- Run link checks (Lychee) if you renamed files.
+
+#### Applying Naming Conventions When Reviewing/Editing Content
+
+During review, treat naming as part of “maintainability”:
+
+- **Does the filename match the scope?** If the file title/scope drifted, rename the file or split it.
+- **Is hierarchy in the right place?** Move structure into folders + `README.md` indexes instead of growing filename suffixes.
+- **Is ordering intentional?** If numbers exist, they should reflect a real learning sequence. Don’t renumber casually (it creates churn and breaks links).
+- **Are split files clean?** Prefer `-partN` over letter suffixes; ensure parts are similarly sized and self-contained.
+- **Are links updated?** If any rename happened, update all inbound links and re-run `lychee`.
 
 #### Content Structure
 
@@ -317,7 +365,7 @@ docker run --rm -v "${PWD}:/input:ro" lycheeverse/lychee --config /input/lychee.
 
 ## 🔗 Quick Links
 
-- [Learning Path](../docs/ROADMAP.md)
+- [Learning Path](../docs/01_road-map.md)
 - [Content Index](../src/CONTENT_INDEX.md)
 - [System Design Principles](../src/04_principles/)
 - [Building Blocks](../src/05_building-blocks/)
@@ -338,10 +386,10 @@ docker run --rm -v "${PWD}:/input:ro" lycheeverse/lychee --config /input/lychee.
 
 **After ANY structural change, IMMEDIATELY update**:
 
-1. ✅ **`docs/RepositoryStructure.md`** - **UPDATE THIS FIRST** (Single source of truth)
-2. ✅ `.github/copilot-instructions.md` - Reference to RepositoryStructure.md (THIS FILE)
-3. ✅ `README.md` - Reference to RepositoryStructure.md
-4. ✅ `.cursor/rules/02_repository-structure.mdc` - Reference to RepositoryStructure.md
+1. ✅ **`docs/02_repository-structure.md`** - **UPDATE THIS FIRST** (Single source of truth)
+2. ✅ `.github/copilot-instructions.md` - Reference to the repository structure doc (THIS FILE)
+3. ✅ `README.md` - Reference to the repository structure doc
+4. ✅ `.cursor/rules/02_repository-structure.mdc` - Reference to the repository structure doc
 5. ✅ Relevant documentation files
 
-**Self-Check Question**: "Did I update `docs/RepositoryStructure.md` first?" - If no, STOP and do it NOW.
+**Self-Check Question**: "Did I update `docs/02_repository-structure.md` first?" - If no, STOP and do it NOW.
