@@ -21,7 +21,7 @@ This repository is **actively evolving** as I progress through my system design 
 
 ## 📌 Disclaimer
 
-This is a **personal learning repository**, not official course material or a structured curriculum.
+This is **Swamy's personal learning** repository, not official course material or a structured curriculum.
 
 ---
 
