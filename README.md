@@ -3,6 +3,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/status-learning--journey-green.svg)
 ![System Design](https://img.shields.io/badge/System-Design-orange.svg)
+![Maintainer](https://img.shields.io/badge/maintainer-Viswanatha%20Swamy%20P%20K-blue)
 
 > **⚠️ IMPORTANT: This is NOT an official course or syllabus. This is Swamy's personal learning journey and study materials.**
 >
@@ -20,7 +21,7 @@ This repository is **actively evolving** as I progress through my system design 
 
 ## 📌 Disclaimer
 
-This is a **personal learning repository**, not official course material or a structured curriculum.
+This is **Swamy's personal learning** repository, not official course material or a structured curriculum.
 
 ---
 
