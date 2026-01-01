@@ -111,8 +111,8 @@ if (Test-Path -LiteralPath $srcPath) {
 
 if ($failed) {
     Write-Host "\nContent compliance: FAILED" -ForegroundColor Red
-    exit 1
+    throw "Content compliance failed."
 }
 
 Write-Host "\nContent compliance: PASSED" -ForegroundColor Green
-exit 0
+return

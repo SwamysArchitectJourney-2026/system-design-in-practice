@@ -125,8 +125,8 @@ Write-Host ""
 
 if ($mdExitCode -ne 0 -or $lycheeExitCode -ne 0) {
   Write-Host "Overall: ISSUES FOUND" -ForegroundColor Yellow
-  exit 1
+  throw "Markdown/Lychee validation failed."
 }
 
 Write-Host "Overall: PASSED" -ForegroundColor Green
-exit 0
+return

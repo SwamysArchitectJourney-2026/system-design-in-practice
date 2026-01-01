@@ -213,7 +213,7 @@ Write-Host "=" * 60 -ForegroundColor Cyan
 if ($errors.Count -eq 0) {
     Write-Host "SUCCESS: All file references are valid" -ForegroundColor Green
     Write-Host ""
-    exit 0
+    return
 } else {
     Write-Host "FAILED: Found $($errors.Count) broken file reference(s)" -ForegroundColor Red
     Write-Host ""
@@ -221,7 +221,7 @@ if ($errors.Count -eq 0) {
         Write-ValidationError $error
     }
     Write-Host ""
-    exit 1
+    throw "Found broken file references."
 }
 
 

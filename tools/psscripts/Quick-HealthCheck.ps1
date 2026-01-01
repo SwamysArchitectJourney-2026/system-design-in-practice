@@ -130,10 +130,10 @@ Write-Host ""
 Write-Host "=== Summary ===" -ForegroundColor Cyan
 if ($structureOk) {
     Write-Host "✅ Health Check: PASSED" -ForegroundColor Green
-    exit 0
+    return
 }
 
 Write-Host "❌ Health Check: FAILED" -ForegroundColor Red
 Write-Host "  - Missing expected folders" -ForegroundColor Red
-exit 1
+throw "Health Check failed: missing expected folders."
 

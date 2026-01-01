@@ -43,7 +43,7 @@ if ($SourceFiles.Count -gt 0) {
 if ($sourceFiles.Count -eq 0) {
     Write-Host "No source material files found to check against." -ForegroundColor Yellow
     Write-Host "This check requires source material files in 'source-material/' directory." -ForegroundColor Yellow
-    exit 0
+    return
 }
 
 # Get content files to check
@@ -162,7 +162,7 @@ Write-Host ""
 if ($violations.Count -eq 0 -and $warnings.Count -eq 0) {
     Write-ZeroCopySuccess "No zero-copy violations detected!"
     Write-Host ""
-    exit 0
+    return
 }
 
 if ($violations.Count -gt 0) {
@@ -196,7 +196,7 @@ Write-Host "Even quotes and 'Key Principle' sections must use original phrasing.
 Write-Host ""
 
 if ($violations.Count -gt 0) {
-    exit 1
-} else {
-    exit 0
+    throw "Zero-copy violations found."
 }
+
+return
