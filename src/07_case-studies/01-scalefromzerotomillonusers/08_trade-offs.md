@@ -180,7 +180,7 @@ When making trade-off decisions, consider:
 
 **Key Principle**: Start simple, optimize as you scale. Don't over-engineer for scale you don't have yet.
 
-## Interviewer Lens
+## Evaluator Lens
 
 This case study demonstrates:
 

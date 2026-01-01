@@ -88,7 +88,7 @@ Weak fundamentals cannot be hidden by good diagrams.
 - This repository (primary)
 - Real-world postmortems
 - Architecture blogs from large tech companies
-- Mock interviews (human or AI)
+- Mock evaluations (human or AI)
 
 ---
 

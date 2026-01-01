@@ -83,4 +83,4 @@ They want to see how you respond to feedback and uncertainty.
 
 ## Key Takeaway
 
-A good system design interview feels like a **technical discussion**, not a performance.
+A good system design evaluation feels like a **technical discussion**, not a performance.

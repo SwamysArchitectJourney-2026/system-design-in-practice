@@ -49,7 +49,7 @@ graph TB
 
 **Purpose**: Show classes, interfaces, and implementation details.
 
-**Note**: This level is **rarely used** in system design interviews because:
+**Note**: This level is **rarely used** in system design evaluations because:
 
 - Code is the source of truth
 - UML already covers this level
@@ -57,19 +57,19 @@ graph TB
 
 **When to Use**: Code reviews, detailed implementation documentation (seldom in system design).
 
-## Why C4 for System Design Interviews?
+## Why C4 for System Design Evaluations?
 
 ### Advantages Over Traditional Approaches
 
 | Aspect | C4 Model | Traditional UML |
 | ------ | -------- | --------------- |
 | **Learning Curve** | Low - intuitive hierarchy | High - many diagram types |
-| **Interview Suitability** | Excellent - structured approach | Poor - too detailed |
+| **Evaluation Suitability** | Excellent - structured approach | Poor - too detailed |
 | **Scalability** | Excellent - zoom in/out easily | Limited - fixed granularity |
 | **Focus** | Structure and intent | Implementation details |
 | **Real-world Adoption** | High - widely used | Medium - less common |
 
-### Interview Strategy
+### Evaluation Strategy
 
 1. **Start with Context**: Always begin with Level 1 to establish boundaries
 2. **Zoom to Containers**: Break down into major components (Level 2)
@@ -114,7 +114,7 @@ See the [URL Shortener case study](../07_case-studies/05-url-shortener/diagrams/
 1. **C4 provides a structured, hierarchical approach** to visualizing architecture
 2. **Start broad, zoom in progressively** - Context → Container → Component
 3. **Focus on structure and intent**, not implementation details
-4. **Ideal for interviews** - clear, scalable, technology-agnostic
+4. **Ideal for evaluations** - clear, scalable, technology-agnostic
 5. **Widely adopted** in industry for architectural documentation
 
 ---

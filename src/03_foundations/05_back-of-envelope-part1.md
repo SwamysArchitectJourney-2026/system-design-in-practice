@@ -26,7 +26,7 @@ Back-of-the-envelope calculations are **quick, rough estimates** that help you:
 - Communicate scale and requirements clearly
 - Make informed technology choices
 
-In system design interviews, these calculations demonstrate **practical engineering judgment** and show you can think quantitatively about systems.
+In system design evaluations, these calculations demonstrate **practical engineering judgment** and show you can think quantitatively about systems.
 
 ## Core Calculation Principles
 

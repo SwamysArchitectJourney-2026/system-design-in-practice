@@ -23,7 +23,7 @@ related_topics:
 
 The C4 model is a **hierarchical visualization technique** for documenting software architecture. The name "C4" represents the four levels of detail: **Context, Container, Component, and Code**.
 
-Unlike traditional UML diagrams that focus on implementation details, C4 diagrams emphasize **structure, relationships, and intent** at different levels of abstraction. This makes them ideal for system design interviews and architectural communication.
+Unlike traditional UML diagrams that focus on implementation details, C4 diagrams emphasize **structure, relationships, and intent** at different levels of abstraction. This makes them ideal for system design evaluations and architectural communication.
 
 ## Core Principle: Progressive Zoom
 

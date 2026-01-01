@@ -3,7 +3,7 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "20 minutes"
 learning_objectives:
-  - "Explain what High-Level Design (HLD) and Low-Level Design (LLD) mean in interviews"
+  - "Explain what High-Level Design (HLD) and Low-Level Design (LLD) mean in evaluations"
   - "Use HLD to establish architecture clarity and LLD to prove execution depth"
   - "Choose the right component for a deep dive and cover scale, correctness, and failures"
 related_topics:
@@ -20,12 +20,12 @@ related_topics:
 
 # High-Level vs Low-Level Design (HLD vs LLD)
 
-System design interviews reward two different kinds of clarity:
+System design evaluations reward two different kinds of clarity:
 
 - **HLD**: Can you structure a system that meets requirements?
 - **LLD**: Do you understand the mechanics of what you proposed?
 
-A strong interview performance moves smoothly between both.
+A strong evaluation performance moves smoothly between both.
 
 ---
 
@@ -42,7 +42,7 @@ High-Level Design describes the system’s **major components**, **boundaries**,
 - Where do we handle scale (caching, sharding, async)?
 - Where do we handle reliability (retries, timeouts, redundancy)?
 
-### What interviewers look for
+### What evaluators look for
 
 Positive signals:
 
@@ -70,7 +70,7 @@ LLD is selective: you do not design every class. You show depth where it matters
 
 Switch after HLD alignment, when:
 
-- The interviewer asks for a deep dive
+- The evaluator asks for a deep dive
 - Correctness depends on details (idempotency, ordering, consistency)
 - Scale depends on details (indexes, partitioning, caching strategy)
 
@@ -107,7 +107,7 @@ Pick **X** based on impact:
 | Scope | Whole system | One/few components |
 | Focus | Architecture | Mechanics |
 | Artifacts | Block / C4 | Sequence / data flow + schema |
-| Interview signal | Senior-level reasoning | Execution depth |
+| Evaluation signal | Senior-level reasoning | Execution depth |
 
 ---
 
@@ -116,4 +116,4 @@ Pick **X** based on impact:
 - **HLD builds trust**.
 - **LLD earns conviction**.
 
-If you can explain *why* a design exists (HLD) and *how* it behaves under pressure (LLD), you’ll read as senior in both interviews and production.
+If you can explain *why* a design exists (HLD) and *how* it behaves under pressure (LLD), you'll read as senior in both evaluations and production.

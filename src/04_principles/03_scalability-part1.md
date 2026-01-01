@@ -22,7 +22,7 @@ related_topics:
 
 ## What Is Scalability?
 
-Scalability is the ability of a system to handle increasing amounts of work by adding resources. In system design interviews, demonstrating scalable thinking means showing how your architecture can grow from handling a few users to millions without fundamental redesign.
+Scalability is the ability of a system to handle increasing amounts of work by adding resources. In system design evaluations, demonstrating scalable thinking means showing how your architecture can grow from handling a few users to millions without fundamental redesign.
 
 ## Two Fundamental Scaling Approaches
 
