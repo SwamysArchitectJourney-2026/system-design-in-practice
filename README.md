@@ -46,7 +46,7 @@ This is **Swamy's personal learning** repository and reference workspace, not of
 
 ### ✅ Who This Is For
 
-- Software Engineers preparing for system design interviews
+- Software Engineers preparing for system design evaluations
 - Senior engineers transitioning to architect roles
 - Engineers designing scalable systems in production
 - Developers learning distributed systems concepts
@@ -75,7 +75,7 @@ This is **Swamy's personal learning** repository and reference workspace, not of
 
 - A course or official curriculum
 - A replacement for hands-on experience
-- An interview cheat sheet
+- An evaluation cheat sheet
 - A collection of ready-made solutions
 
 ### Core Topics
@@ -99,7 +99,7 @@ This is **Swamy's personal learning** repository and reference workspace, not of
 ```text
 src/
 ├── 01_introduction/          → Getting started with system design
-├── 02_interview-prep/        → Interview preparation strategies
+├── 02_interview-prep/        → Preparation strategies
 ├── 03_foundations/           → Foundational concepts (abstractions, consistency, failures, C4 diagrams)
 ├── 04_principles/            → System design principles (availability, scalability, etc.)
 ├── 05_building-blocks/       → Core components (DNS, load balancers, databases, etc.)
@@ -174,7 +174,7 @@ For the complete repository structure with all file names and details, see: **[`
 3. Explore `src/04_principles/` (design fundamentals)
 4. Practice with `src/07_case-studies/` (start with URL Shortener)
 
-### For Interview Preparation
+### For Preparation
 
 1. Review `src/02_interview-prep/README.md`
 2. Study `src/05_building-blocks/` (core components)

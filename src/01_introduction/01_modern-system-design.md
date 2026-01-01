@@ -22,7 +22,7 @@ Modern system design is the discipline of **architecting software systems that o
 
 Unlike application development—which focuses on implementing features—system design focuses on **how components interact**, **how systems scale**, and **how failures are handled gracefully**.
 
-In interviews and in production, system design answers questions such as:
+In evaluations and in production, system design answers questions such as:
 
 - How does this system behave at 10× or 100× traffic?
 - What happens when a dependency fails?
@@ -108,13 +108,13 @@ Strong system designers:
 - Design systems that evolve over time
 - Communicate clearly with both engineers and stakeholders
 
-In senior engineering interviews, **system design is often the primary signal of readiness** for higher responsibility.
+In senior engineering evaluations, **system design is often the primary signal of readiness** for higher responsibility.
 
 ---
 
-## Interviewer Lens
+## Evaluator Lens
 
-Interviewers use this discussion to assess:
+Evaluators use this discussion to assess:
 
 - Whether you think beyond code
 - How you reason about scale and failure
