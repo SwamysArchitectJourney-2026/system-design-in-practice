@@ -1,7 +1,8 @@
-# PowerShell Scripts for ArchitectJourney
+# PowerShell Scripts for system-design-in-practice
 
-**Location**: `tools/psscripts/`  
-**Purpose**: Automation scripts for content validation, health checks, and repository maintenance
+**Location**: `tools/psscripts/`
+
+**Purpose**: Automation scripts for validation and repository maintenance (Windows 11 + PowerShell).
 
 ---
 
@@ -10,31 +11,37 @@
 ### Health Check & Validation
 
 #### `Quick-HealthCheck.ps1`
+
 Fast workspace health check - validates basic structure, file counts, and compliance.
 
 **Usage:**
+
 ```powershell
 .\tools\psscripts\Quick-HealthCheck.ps1
 ```
 
 **Checks:**
-- File structure (01_Reference, 02_Learning, 03_Interview-Prep)
+
+- File structure (`src/01_introduction` through `src/09_ai-ml-systems`, plus `src/references`)
 - Markdown file counts
 - Basic naming conventions
-- YAML frontmatter presence
+- YAML frontmatter presence (warning-only)
 
 ---
 
 #### `Validate-FileReferences.ps1`
+
 Validates all file references in markdown files to ensure they point to existing files.
 
 **Usage:**
+
 ```powershell
 .\tools\psscripts\Validate-FileReferences.ps1
-.\tools\psscripts\Validate-FileReferences.ps1 -Path "src\03_Interview-Prep"
+.\tools\psscripts\Validate-FileReferences.ps1 -Path "src\07_case-studies"
 ```
 
 **Features:**
+
 - Scans all markdown files for references
 - Validates relative paths
 - Reports broken references
@@ -42,129 +49,46 @@ Validates all file references in markdown files to ensure they point to existing
 
 ---
 
-#### `Review-EducationalContent.ps1`
-General compliance review for educational content rules.
+### Linting & Link Checking
+
+#### `Run-MarkdownLintAndLychee.ps1`
+
+Runs Markdown lint (`markdownlint-cli2`) and link checking (Lychee) for the repository.
 
 **Usage:**
+
 ```powershell
-.\tools\psscripts\Review-EducationalContent.ps1
-.\tools\psscripts\Review-EducationalContent.ps1 -Path "src\01_Reference"
-```
-
-**Checks:**
-- YAML frontmatter compliance
-- Line count (≤150 lines)
-- File naming conventions
-- Cross-reference validation
-
----
-
-### Analysis & Statistics
-
-#### `Get-FileStats.ps1`
-File statistics analysis - provides detailed statistics about files in the repository.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Get-FileStats.ps1
-.\tools\psscripts\Get-FileStats.ps1 -Path "src\03_Interview-Prep"
+.\tools\psscripts\Run-MarkdownLintAndLychee.ps1
 ```
 
 ---
 
-#### `Get-MarkdownSummary.ps1`
-Markdown file analysis - summarizes markdown files with key metrics.
+### One-off Maintenance
 
-**Usage:**
-```powershell
-.\tools\psscripts\Get-MarkdownSummary.ps1
-```
+#### `reorder-url-shortener.ps1`
 
----
-
-#### `Get-RepoStats.ps1`
-Repository overview - provides high-level repository statistics.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Get-RepoStats.ps1
-```
-
----
-
-### Comparison & Duplication
-
-#### `Compare-DocFiles.ps1`
-Compare multiple files for similarities and differences.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Compare-DocFiles.ps1 -File1 "path1.md" -File2 "path2.md"
-```
-
----
-
-#### `Find-DuplicateContent.ps1`
-Find duplicate headings and content patterns across files.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Find-DuplicateContent.ps1
-```
-
----
-
-### Comprehensive Reviews
-
-#### `Comprehensive-ReferenceReview.ps1`
-Deep dive review with CoT/ReAct methodology for file references.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Comprehensive-ReferenceReview.ps1
-```
-
----
-
-#### `Comprehensive-WorkspaceReview.ps1`
-Full workspace validation - comprehensive review of all content.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Comprehensive-WorkspaceReview.ps1
-```
-
----
-
-### Fix & Repair
-
-#### `Fix-BrokenFileReferences.ps1`
-Automatically fixes broken file references where possible.
-
-**Usage:**
-```powershell
-.\tools\psscripts\Fix-BrokenFileReferences.ps1
-```
-
-**Warning**: Review changes before committing!
+Legacy helper for a past rename/reorder of the URL Shortener case study. The repository is already in the final naming scheme.
 
 ---
 
 ## 🚀 Quick Start
 
 1. **Health Check** (start here):
+
    ```powershell
    .\tools\psscripts\Quick-HealthCheck.ps1
    ```
 
 2. **Validate References** (after adding content):
+
    ```powershell
    .\tools\psscripts\Validate-FileReferences.ps1
    ```
 
-3. **Review Content** (before committing):
+3. **Lint + Link Check** (before committing):
+
    ```powershell
-   .\tools\psscripts\Review-EducationalContent.ps1
+   .\tools\psscripts\Run-MarkdownLintAndLychee.ps1
    ```
 
 ---
@@ -204,5 +128,5 @@ When creating new scripts:
 
 ---
 
-**Note**: These scripts are referenced in `.cursor` rules and `copilot-instructions.md`. They should be created as needed for automation and validation tasks.
+**Note**: These scripts are referenced in `.cursor` rules and `copilot-instructions.md`. Keep them accurate to this repository’s structure.
 

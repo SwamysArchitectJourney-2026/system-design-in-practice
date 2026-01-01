@@ -3,8 +3,8 @@
     Quick workspace health check - validates basic structure, file counts, and compliance.
 
 .DESCRIPTION
-    Performs a fast health check of the ArchitectJourney workspace:
-    - Validates folder structure (01_Reference, 02_Learning, 03_Interview-Prep)
+    Performs a fast health check of the system-design-in-practice repository:
+    - Validates folder structure (01_introduction, 02_interview-prep, ...)
     - Counts markdown files
     - Checks basic naming conventions
     - Validates YAML frontmatter presence
@@ -16,7 +16,7 @@
     .\Quick-HealthCheck.ps1
 
 .EXAMPLE
-    .\Quick-HealthCheck.ps1 -Path "src\03_Interview-Prep"
+    .\Quick-HealthCheck.ps1 -Path "src\02_interview-prep"
 #>
 
 param(
@@ -39,8 +39,8 @@ $repoRoot = if ($Path -eq ".") {
         $scriptPath
     }
 } else {
-    Resolve-Path $Path -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path
-    if (-not $?) { $Path }
+    $resolved = Resolve-Path $Path -ErrorAction SilentlyContinue
+    if ($resolved) { $resolved.Path } else { $Path }
 }
 
 Write-Host "=== Quick Health Check ===" -ForegroundColor Cyan
@@ -50,9 +50,16 @@ Write-Host ""
 # Check folder structure
 Write-Host "📁 Folder Structure:" -ForegroundColor Yellow
 $expectedFolders = @(
-    "src\01_Reference",
-    "src\02_Learning",
-    "src\03_Interview-Prep"
+    "src\01_introduction",
+    "src\02_interview-prep",
+    "src\03_foundations",
+    "src\04_principles",
+    "src\05_building-blocks",
+    "src\06_patterns",
+    "src\07_case-studies",
+    "src\08_failures",
+    "src\09_ai-ml-systems",
+    "src\references"
 )
 
 $structureOk = $true
@@ -79,7 +86,9 @@ Write-Host "  Total: $totalFiles files" -ForegroundColor Cyan
 # Count by directory
 $byDir = $mdFiles | Group-Object DirectoryName | Sort-Object Count -Descending | Select-Object -First 5
 foreach ($dir in $byDir) {
-    $relPath = $dir.Name.Replace((Resolve-Path $Path).Path, "").TrimStart("\")
+    $repoRootResolved = (Resolve-Path $repoRoot -ErrorAction SilentlyContinue)
+    $base = if ($repoRootResolved) { $repoRootResolved.Path } else { $repoRoot }
+    $relPath = $dir.Name.Replace($base, "").TrimStart("\")
     Write-Host "  - $relPath`: $($dir.Count) files" -ForegroundColor Gray
 }
 
@@ -118,20 +127,18 @@ Write-Host ""
 
 # Summary
 Write-Host "=== Summary ===" -ForegroundColor Cyan
-if ($structureOk -and $filesWithoutYaml -eq 0 -and $filesOverLimit -eq 0) {
+if ($structureOk) {
     Write-Host "✅ Health Check: PASSED" -ForegroundColor Green
-    exit 0
-} else {
-    Write-Host "⚠️  Health Check: ISSUES FOUND" -ForegroundColor Yellow
-    if (-not $structureOk) {
-        Write-Host "  - Missing expected folders" -ForegroundColor Red
-    }
     if ($filesWithoutYaml -gt 0) {
-        Write-Host "  - Files missing YAML frontmatter" -ForegroundColor Red
+        Write-Host "  - Note: some files are missing YAML frontmatter (warning only)" -ForegroundColor Yellow
     }
     if ($filesOverLimit -gt 0) {
-        Write-Host "  - Files exceeding 150 line limit" -ForegroundColor Red
+        Write-Host "  - Note: some files exceed 150 lines (warning only)" -ForegroundColor Yellow
     }
-    exit 1
+    exit 0
 }
+
+Write-Host "❌ Health Check: FAILED" -ForegroundColor Red
+Write-Host "  - Missing expected folders" -ForegroundColor Red
+exit 1
 

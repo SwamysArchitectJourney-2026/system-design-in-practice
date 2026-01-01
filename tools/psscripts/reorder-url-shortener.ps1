@@ -1,7 +1,17 @@
-# Script to reorder URL Shortener case study files
-# Run this from the repository root
+<#
+.SYNOPSIS
+	Legacy helper for a past URL Shortener rename/reorder.
 
-$basePath = "src\07_case-studies\url-shortener"
+.DESCRIPTION
+	The URL Shortener case study is already in the desired naming scheme under:
+	src\07_case-studies\05-url-shortener
+
+	This script is kept only for historical reference.
+#>
+
+Write-Host "This script is legacy and no longer needs to be run." -ForegroundColor Yellow
+Write-Host "URL Shortener case study path: src\07_case-studies\05-url-shortener" -ForegroundColor Gray
+exit 0
 
 # Step 1: Rename files to temporary names to avoid conflicts
 Write-Host "Step 1: Renaming to temporary names..."
