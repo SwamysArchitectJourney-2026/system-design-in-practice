@@ -122,9 +122,9 @@ When creating new scripts:
 
 ## 🔗 Related Documentation
 
-- [Educational Content Rules](../.cursor/rules/01_educational-content-rules.mdc)
-- [Repository Structure](../.cursor/rules/02_repository-structure.mdc)
-- [Quality Assurance](../.cursor/rules/03_quality-assurance.mdc)
+- [Educational Content Rules](../../.cursor/rules/01_educational-content-rules.mdc)
+- [Repository Structure](../../.cursor/rules/02_repository-structure.mdc)
+- [Quality Assurance](../../.cursor/rules/03_quality-assurance.mdc)
 
 ---
 
