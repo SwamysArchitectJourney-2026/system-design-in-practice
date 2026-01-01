@@ -162,10 +162,10 @@ Phase 4 (1M+ Users): Microservices
 - **Monitoring**: Monitor metrics during transitions
 - **Rollback Plan**: Always have a rollback strategy
 
-> **Interview Note**:  
+> **Evaluation Note**:  
 > Skipping phases is a common mistake. Each phase exists to solve a specific bottleneck, not to follow trends. Jumping straight to microservices (Phase 4) without solving Phase 2-3 bottlenecks shows lack of practical engineering judgment.
 
-## Interviewer Lens
+## Evaluator Lens
 
 This evolution demonstrates:
 
@@ -175,7 +175,7 @@ This evolution demonstrates:
 - **Realistic migration**: Acknowledges that systems evolve, don't start at scale
 - **Production thinking**: Considers operational complexity at each phase
 
-**What interviewers look for**:
+**What evaluators look for**:
 - ✅ Understanding that Phase 1 is valid for small scale
 - ✅ Clear triggers for each phase transition
 - ✅ Cost awareness (not over-engineering)
