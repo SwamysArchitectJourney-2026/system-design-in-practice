@@ -97,7 +97,7 @@ End-to-end designs of real-world systems:
 - Observability and security
 - Trade-offs and alternatives
 
-Case studies help me practice **reasoning end-to-end**, similar to real interviews and real production decisions.
+Case studies help me practice **reasoning end-to-end**, similar to real evaluations and real production decisions.
 
 ---
 
@@ -108,7 +108,7 @@ Case studies help me practice **reasoning end-to-end**, similar to real intervie
 - Revisit foundations often—they matter more than I expect
 
 > Personal note:
-> For interviews, I find depth on 2–3 case studies more valuable than shallow familiarity with many systems.
+> For evaluations, I find depth on 2–3 case studies more valuable than shallow familiarity with many systems.
 
 ---
 

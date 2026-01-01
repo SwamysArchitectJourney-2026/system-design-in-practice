@@ -3,7 +3,7 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "10 minutes"
 learning_objectives:
-	- "Use AI as an interview practice partner with realistic prompts"
+	- "Use AI as an evaluation practice partner with realistic prompts"
 	- "Apply an improvement loop to increase practice frequency"
 	- "Understand limitations and avoid over-reliance on AI feedback"
 related_topics:

@@ -5,7 +5,7 @@ estimated_time: "10 minutes"
 learning_objectives:
 	- "Estimate a realistic preparation timeline based on experience"
 	- "Sequence preparation to maximize compounding learning"
-	- "Avoid common preparation traps that reduce interview performance"
+	- "Avoid common preparation traps that reduce evaluation performance"
 related_topics:
 	prerequisites: []
 	builds_upon:
@@ -17,7 +17,7 @@ related_topics:
 		- "../CONTENT_INDEX.md"
 ---
 
-# How Long Does It Take to Prepare for System Design Interviews?
+# How Long Does It Take to Prepare for System Design Evaluations?
 
 Preparation time depends on experience, but most engineers need **6–10 focused weeks** to reach confidence.
 
@@ -53,7 +53,7 @@ Preparation time depends on experience, but most engineers need **6–10 focused
 - Payment system
 - Rate limiter
 
-### Weeks 9–10: Mock Interviews
+### Weeks 9–10: Mock Evaluations
 
 - Timed practice
 - Feedback loops
