@@ -24,7 +24,7 @@ related_topics:
 ## Why DevOps Matters for System Design
 
 DevOps is about shortening the path from **idea → code → production** while keeping systems **reliable, secure, and observable**.
-In system design interviews, you do not need tool-specific detail, but you are expected to show how teams **build, test, deploy, and operate** the system safely at scale.
+In system design evaluations, you do not need tool-specific detail, but you are expected to show how teams **build, test, deploy, and operate** the system safely at scale.
 
 Key outcomes:
 

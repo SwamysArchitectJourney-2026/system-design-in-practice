@@ -22,7 +22,7 @@ related_topics:
 
 ## 1. Capacity Planning (Back-of-the-Envelope)
 
-In an interview, you rarely have exact numbers. What matters is how you **structure
+In an evaluation, you rarely have exact numbers. What matters is how you **structure
 assumptions** and reason about scale.
 
 ### 1.1 Viewership & Traffic Assumptions
@@ -81,7 +81,7 @@ different points on that curve.
 
 ### 2.2 Choosing the Right Point
 
-Interview framing:
+Evaluation framing:
 
 - For **massive fan-out** (sports finals, concerts):
   - Prefer LL-HLS / CMAF or conventional HLS with carefully tuned segments.
@@ -175,7 +175,7 @@ Technical metrics must connect back to **viewer-perceived quality**.
   - Adjust ABR ladder (disable highest bitrate temporarily).
   - Shift traffic away from a troubled CDN PoP.
 
-## 5. Interview Walkthrough Pattern
+## 5. Evaluation Walkthrough Pattern
 
 When asked "How would you scale live streaming to millions of users?":
 

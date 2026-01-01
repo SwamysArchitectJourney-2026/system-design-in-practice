@@ -91,4 +91,4 @@ graph TB
 
 ---
 
-*Next: Continue with [Level 3 and 4, Interview Strategy, and Best Practices](./06_c4-diagrams-part2.md).*
+*Next: Continue with [Level 3 and 4, Evaluation Strategy, and Best Practices](./06_c4-diagrams-part2.md).*

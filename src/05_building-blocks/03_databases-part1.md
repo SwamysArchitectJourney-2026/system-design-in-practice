@@ -20,7 +20,7 @@ related_topics:
 
 ## Why Database Choice Matters
 
-In system design interviews, your database selection significantly impacts how well your architecture scales and meets non-functional requirements. While functional requirements can typically be satisfied with any database, non-functional requirements—such as query patterns, data structure characteristics, and scale—are heavily influenced by your database choice.
+In system design evaluations, your database selection significantly impacts how well your architecture scales and meets non-functional requirements. While functional requirements can typically be satisfied with any database, non-functional requirements—such as query patterns, data structure characteristics, and scale—are heavily influenced by your database choice.
 
 ## Key Decision Factors
 

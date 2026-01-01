@@ -78,4 +78,4 @@ After studying this case study, you should be able to:
 
 ---
 
-*This case study demonstrates real-world system design patterns and trade-offs commonly discussed in system design interviews.*
+*This case study demonstrates real-world system design patterns and trade-offs commonly discussed in system design evaluations.*

@@ -179,7 +179,7 @@ This document provides a comprehensive index of all topics covered in this repos
 1. Complex Case Studies (YouTube, Uber, ChatGPT)
 2. Advanced Patterns (CQRS, Event-Driven)
 3. Real-world Failure Analysis
-4. Interview Preparation & Mock Interviews
+4. Preparation & Mock Evaluations
 
 ---
 

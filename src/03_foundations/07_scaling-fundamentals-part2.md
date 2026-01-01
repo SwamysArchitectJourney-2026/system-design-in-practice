@@ -5,7 +5,7 @@ estimated_time: "25 minutes"
 learning_objectives:
   - "Choose between SQL and NoSQL based on access patterns"
   - "Compare vertical scaling vs horizontal scaling"
-  - "Explain common bottlenecks and interview-ready next steps"
+  - "Explain common bottlenecks and evaluation-ready next steps"
 related_topics:
   prerequisites: []
   builds_upon:
@@ -23,7 +23,7 @@ related_topics:
 
 Once you’ve separated tiers, scaling becomes a sequence of decisions driven by your workload (reads vs writes, latency targets, data shape, and failure tolerance).
 
-## Choosing a database (interview framing)
+## Choosing a database (evaluation framing)
 
 Think in terms of constraints and access patterns, not brand names.
 
@@ -68,7 +68,7 @@ Add more machines.
 - Pros: better availability and capacity; you can keep adding nodes.
 - Cons: requires coordination (load balancing, statelessness, data partitioning).
 
-In interviews, horizontal scaling is the default path for large systems.
+In evaluations, horizontal scaling is the default path for large systems.
 
 ## Bottlenecks of a single web server
 

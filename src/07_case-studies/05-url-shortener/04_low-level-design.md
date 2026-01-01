@@ -49,7 +49,7 @@ Service Instance 1 exhausts range → Requests next range → Gets 5001-6000
 
 - With 7-character URLs supporting 3.5 trillion unique URLs, losing thousands of tokens is negligible
 - Alternative (tracking used tokens) adds significant complexity
-- Simpler design preferred for interview scenarios
+- Simpler design preferred for evaluation scenarios
 
 ## Database Schema
 

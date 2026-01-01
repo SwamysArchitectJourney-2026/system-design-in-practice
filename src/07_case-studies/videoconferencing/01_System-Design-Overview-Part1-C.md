@@ -13,7 +13,7 @@ related_topics:
 
 # System Design: AI-Enhanced Video Conferencing - Part 1-C
 
-## 4. Key Discussion Points (Interview Focus)
+## 4. Key Discussion Points (Evaluation Focus)
 
 ### Handling Concurrency & Real-Time Media
 

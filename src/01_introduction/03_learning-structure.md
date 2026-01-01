@@ -5,7 +5,7 @@ time_spent_estimate: "15 minutes"
 focus_areas:
   - "Navigating the repository by learning phase and intent"
   - "Understanding why the sequence mirrors real design reasoning"
-  - "Picking a reading path that fits my current goal (interview prep vs deeper study)"
+  - "Picking a reading path that fits my current goal (preparation vs deeper study)"
 related_topics:
   prerequisites: []
   builds_upon:

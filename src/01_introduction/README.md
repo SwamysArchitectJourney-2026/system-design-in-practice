@@ -18,16 +18,16 @@ These documents establish the **mental model** used throughout the rest of the c
   What system design is, how it has evolved, and why it is critical today.
 
 - **Why Learn System Design**
-  Career impact, real-world relevance, and interview importance.
+  Career impact, real-world relevance, and evaluation importance.
 
 - **Learning Structure**
   How I’m organizing the content and navigating it over time.
 
 ---
 
-## How This Section Can Help in Interviews
+## How This Section Can Help in Evaluations
 
-Interviewers expect candidates to:
+Evaluators expect candidates to:
 
 - Think at a system level
 - Explain trade-offs clearly

@@ -4,7 +4,7 @@ prerequisites: ["C4 Model for System Design (Part 1)"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Understand Level 3 (Component) and Level 4 (Code) diagrams"
-  - "Learn interview strategies for using C4 diagrams"
+  - "Learn evaluation strategies for using C4 diagrams"
   - "Apply best practices for creating and maintaining C4 diagrams"
 related_topics:
   prerequisites:
