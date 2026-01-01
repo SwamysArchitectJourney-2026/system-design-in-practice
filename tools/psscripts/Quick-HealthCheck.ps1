@@ -1,71 +1,67 @@
 <#
 .SYNOPSIS
-    Quick workspace health check - validates basic structure, file counts, and compliance.
+    Quick workspace health check (repo-aware via RepoConfig.psd1).
 
 .DESCRIPTION
-    Performs a fast health check of the system-design-in-practice repository:
-    - Validates folder structure (01_introduction, 02_interview-prep, ...)
+    Consistent, fast health check across repositories:
+    - Validates expected folder structure from tools/psscripts/RepoConfig.psd1
     - Counts markdown files
-    - Checks basic naming conventions
-    - Validates YAML frontmatter presence
+    - Reports YAML frontmatter presence and 150-line guideline as warnings
+
+    Exit code:
+    - 0 if expected folders exist
+    - 1 if any expected folder is missing
 
 .PARAMETER Path
-    Optional path to check. Defaults to repository root.
+    Optional subpath (relative to repo root) to limit markdown counting/YAML checks.
 
 .EXAMPLE
-    .\Quick-HealthCheck.ps1
+    .\tools\psscripts\Quick-HealthCheck.ps1
 
 .EXAMPLE
-    .\Quick-HealthCheck.ps1 -Path "src\02_interview-prep"
+    .\tools\psscripts\Quick-HealthCheck.ps1 -Path "src"
 #>
 
+[CmdletBinding()]
 param(
     [string]$Path = "."
 )
 
-# Resolve path to absolute and find repository root
-$scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
-$repoRoot = if ($Path -eq ".") {
-    # Try to find repository root (look for src folder)
-    $current = $scriptPath
-    while ($current -and -not (Test-Path (Join-Path $current "src"))) {
-        $parent = Split-Path -Parent $current
-        if ($parent -eq $current) { break }
-        $current = $parent
-    }
-    if (Test-Path (Join-Path $current "src")) {
-        $current
-    } else {
-        $scriptPath
-    }
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\.." )).Path
+$configPath = Join-Path $repoRoot "tools\psscripts\RepoConfig.psd1"
+if (-not (Test-Path -LiteralPath $configPath)) {
+    throw "Missing repo config: $configPath"
+}
+
+$config = Import-PowerShellDataFile -Path $configPath
+$repoName = if ($config.RepoName) { $config.RepoName } else { (Split-Path -Leaf $repoRoot) }
+
+$scanRoot = if ($Path -eq ".") {
+    $repoRoot
 } else {
-    $resolved = Resolve-Path $Path -ErrorAction SilentlyContinue
-    if ($resolved) { $resolved.Path } else { $Path }
+    $resolved = Resolve-Path -LiteralPath (Join-Path $repoRoot $Path) -ErrorAction SilentlyContinue
+    if ($resolved) { $resolved.Path } else { $repoRoot }
 }
 
 Write-Host "=== Quick Health Check ===" -ForegroundColor Cyan
-Write-Host "Repository Root: $repoRoot" -ForegroundColor Gray
+Write-Host "Repo: $repoName" -ForegroundColor Gray
+Write-Host "Root: $repoRoot" -ForegroundColor Gray
+Write-Host "Scan: $scanRoot" -ForegroundColor Gray
 Write-Host ""
 
-# Check folder structure
 Write-Host "📁 Folder Structure:" -ForegroundColor Yellow
-$expectedFolders = @(
-    "src\01_introduction",
-    "src\02_interview-prep",
-    "src\03_foundations",
-    "src\04_principles",
-    "src\05_building-blocks",
-    "src\06_patterns",
-    "src\07_case-studies",
-    "src\08_failures",
-    "src\09_ai-ml-systems",
-    "src\references"
-)
+$expectedFolders = @($config.ExpectedFolders)
+if (-not $expectedFolders -or $expectedFolders.Count -eq 0) {
+    throw "RepoConfig.psd1 must define ExpectedFolders"
+}
 
 $structureOk = $true
 foreach ($folder in $expectedFolders) {
     $fullPath = Join-Path $repoRoot $folder
-    if (Test-Path $fullPath) {
+    if (Test-Path -LiteralPath $fullPath) {
         Write-Host "  ✅ $folder" -ForegroundColor Green
     } else {
         Write-Host "  ❌ $folder - MISSING" -ForegroundColor Red
@@ -75,42 +71,48 @@ foreach ($folder in $expectedFolders) {
 
 Write-Host ""
 
-# Count markdown files
 Write-Host "📄 Markdown Files:" -ForegroundColor Yellow
-$mdFiles = Get-ChildItem -Path $repoRoot -Recurse -Filter "*.md" -ErrorAction SilentlyContinue | 
-    Where-Object { $_.FullName -notmatch "node_modules|\.git" }
+$mdFiles = Get-ChildItem -Path $scanRoot -Recurse -Filter '*.md' -ErrorAction SilentlyContinue |
+    Where-Object { $_.FullName -notmatch 'node_modules|\\.git' }
 
-$totalFiles = $mdFiles.Count
-Write-Host "  Total: $totalFiles files" -ForegroundColor Cyan
-
-# Count by directory
+Write-Host "  Total: $($mdFiles.Count) files" -ForegroundColor Cyan
 $byDir = $mdFiles | Group-Object DirectoryName | Sort-Object Count -Descending | Select-Object -First 5
 foreach ($dir in $byDir) {
-    $repoRootResolved = (Resolve-Path $repoRoot -ErrorAction SilentlyContinue)
-    $base = if ($repoRootResolved) { $repoRootResolved.Path } else { $repoRoot }
-    $relPath = $dir.Name.Replace($base, "").TrimStart("\")
+    $relPath = $dir.Name.Replace($repoRoot, '').TrimStart('\\')
     Write-Host "  - $relPath`: $($dir.Count) files" -ForegroundColor Gray
 }
 
 Write-Host ""
 
-# Check YAML frontmatter
-Write-Host "📋 YAML Frontmatter Check:" -ForegroundColor Yellow
+Write-Host "📋 YAML + Line-Length (Warnings):" -ForegroundColor Yellow
+$yamlCheckRoots = @($config.YamlCheckRoots)
+if (-not $yamlCheckRoots -or $yamlCheckRoots.Count -eq 0) {
+    $yamlCheckRoots = @('src')
+}
+
 $filesWithYaml = 0
 $filesWithoutYaml = 0
 $filesOverLimit = 0
 
-foreach ($file in $mdFiles) {
-    $content = Get-Content $file.FullName -Raw -ErrorAction SilentlyContinue
-    $lines = (Get-Content $file.FullName -ErrorAction SilentlyContinue).Count
-    
-    if ($content -match "^---\s*\n") {
+$checkedFiles = @()
+foreach ($rootRel in $yamlCheckRoots) {
+    $rootPath = Join-Path $repoRoot $rootRel
+    if (-not (Test-Path -LiteralPath $rootPath)) { continue }
+    $checkedFiles += Get-ChildItem -Path $rootPath -Recurse -File -Filter '*.md' -ErrorAction SilentlyContinue
+}
+
+$checkedFiles = $checkedFiles | Sort-Object FullName -Unique
+foreach ($file in $checkedFiles) {
+    $content = Get-Content -LiteralPath $file.FullName -Raw -ErrorAction SilentlyContinue
+    $lineCount = (Get-Content -LiteralPath $file.FullName -ErrorAction SilentlyContinue).Count
+
+    if ($content -match '^---\s*\r?\n') {
         $filesWithYaml++
     } else {
         $filesWithoutYaml++
     }
-    
-    if ($lines -gt 150) {
+
+    if ($lineCount -gt 150) {
         $filesOverLimit++
     }
 }
@@ -125,16 +127,9 @@ if ($filesOverLimit -gt 0) {
 
 Write-Host ""
 
-# Summary
 Write-Host "=== Summary ===" -ForegroundColor Cyan
 if ($structureOk) {
     Write-Host "✅ Health Check: PASSED" -ForegroundColor Green
-    if ($filesWithoutYaml -gt 0) {
-        Write-Host "  - Note: some files are missing YAML frontmatter (warning only)" -ForegroundColor Yellow
-    }
-    if ($filesOverLimit -gt 0) {
-        Write-Host "  - Note: some files exceed 150 lines (warning only)" -ForegroundColor Yellow
-    }
     exit 0
 }
 

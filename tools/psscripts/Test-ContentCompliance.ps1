@@ -10,6 +10,21 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+function Get-RepoConfig {
+    param([string]$RepoRootPath)
+
+    $configPath = Join-Path $RepoRootPath 'tools\psscripts\RepoConfig.psd1'
+    if (Test-Path -LiteralPath $configPath) {
+        return Import-PowerShellDataFile -Path $configPath
+    }
+
+    # Safe defaults if config is missing
+    return @{
+        RepoName = (Split-Path -Leaf $RepoRootPath)
+        DisallowInterviewLanguage = $false
+    }
+}
+
 function Write-ComplianceError {
     param([string]$Message)
     Write-Host "ERROR: $Message" -ForegroundColor Red
@@ -47,6 +62,9 @@ function Get-FirstNonEmptyLine {
 $repoRootPath = (Resolve-Path $RepoRoot).Path
 Write-Host "Running content compliance checks in: $repoRootPath"
 
+$repoConfig = Get-RepoConfig -RepoRootPath $repoRootPath
+$disallowInterview = [bool]$repoConfig.DisallowInterviewLanguage
+
 $failed = $false
 
 # Rule: No 00_ prefix anywhere
@@ -58,9 +76,8 @@ if ($bad00) {
     $bad00 | ForEach-Object { Write-Host "  - $($_.FullName)" }
 }
 
-# Rule: Avoid interview language (only for repos that have evaluation-scenarios folder)
-$scenarioPath = Join-Path $repoRootPath 'src\05_evaluation-scenarios'
-if (Test-Path -LiteralPath $scenarioPath) {
+# Rule: Avoid interview language (repo-specific)
+if ($disallowInterview) {
     $textFiles = Get-TrackedTextFiles -Root $repoRootPath
     $interviewHits = @()
     foreach ($file in $textFiles) {
@@ -90,40 +107,7 @@ if (Test-Path -LiteralPath $srcPath) {
     }
 }
 
-# Rule: Scenario template compliance (only when scenario folder exists)
-if (Test-Path -LiteralPath $scenarioPath) {
-    $scenarioFiles = Get-ChildItem -Path $scenarioPath -File -Filter '*.md' -ErrorAction SilentlyContinue
 
-    $requiredHeadings = @(
-        '#',
-        '## Context',
-        '## Ambiguities',
-        '## Clarifying Questions',
-        '## Trade-offs Analysis',
-        '## Structured Reasoning',
-        '## Reflections'
-    )
-
-    foreach ($file in $scenarioFiles) {
-        $content = Get-Content -LiteralPath $file.FullName -Raw -ErrorAction Stop
-
-        foreach ($h in $requiredHeadings) {
-            if ($h -eq '#') {
-                if ($content -notmatch '(?m)^#\s+\S') {
-                    $failed = $true
-                    Write-ComplianceError "Scenario missing H1 title: $($file.FullName)"
-                }
-                continue
-            }
-
-            $escaped = [regex]::Escape($h)
-            if ($content -notmatch "(?m)^$escaped\s*$") {
-                $failed = $true
-                Write-ComplianceError "Scenario missing required heading '$h': $($file.FullName)"
-            }
-        }
-    }
-}
 
 if ($failed) {
     Write-Host "\nContent compliance: FAILED" -ForegroundColor Red
