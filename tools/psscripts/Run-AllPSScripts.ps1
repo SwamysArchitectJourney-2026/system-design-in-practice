@@ -50,9 +50,7 @@ Write-Host ""
 $scripts = Get-ChildItem -LiteralPath $psscriptsPath -Filter '*.ps1' -File | Sort-Object Name
 
 # Known categories
-$legacyOrMutating = @(
-  'reorder-url-shortener.ps1'
-)
+$legacyOrMutating = @()
 
 $paramRequired = @(
   'Compare-DocFiles.ps1'
@@ -73,7 +71,7 @@ $defaultRun = @(
   'Find-DuplicateContent.ps1'
 )
 
-$results = @()
+$script:results = @()
 
 function Invoke-Script {
   param(
@@ -92,25 +90,26 @@ function Invoke-Script {
   try {
     Push-Location $repoRootPath
     & $path @Args
-    $exit = $LASTEXITCODE
-    if ($null -eq $exit) { $exit = 0 }
+    # Note: $LASTEXITCODE is only set for native executables. For PowerShell scripts,
+    # rely on $? (success of last operation) and exceptions.
+    $ok = $?
     $sw.Stop()
 
-    $results += [PSCustomObject]@{
+    $script:results += [PSCustomObject]@{
       Script = $name
-      Status = if ($exit -eq 0) { 'PASS' } else { 'FAIL' }
-      ExitCode = $exit
+      Status = if ($ok) { 'PASS' } else { 'FAIL' }
+      ExitCode = if ($ok) { 0 } else { 1 }
       Seconds = [Math]::Round($sw.Elapsed.TotalSeconds, 2)
     }
 
-    if ($exit -eq 0) {
+    if ($ok) {
       Write-Host "PASS: $name ($($sw.Elapsed.TotalSeconds.ToString('0.00'))s)" -ForegroundColor Green
     } else {
-      Write-Host "FAIL: $name (exit $exit, $($sw.Elapsed.TotalSeconds.ToString('0.00'))s)" -ForegroundColor Red
+      Write-Host "FAIL: $name ($($sw.Elapsed.TotalSeconds.ToString('0.00'))s)" -ForegroundColor Red
     }
   } catch {
     $sw.Stop()
-    $results += [PSCustomObject]@{
+    $script:results += [PSCustomObject]@{
       Script = $name
       Status = 'ERROR'
       ExitCode = 1
@@ -126,17 +125,22 @@ foreach ($script in $scripts) {
   $name = $script.Name
 
   if ($heavy -contains $name -and -not $IncludeHeavy) {
-    $results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
+    $script:results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
+    continue
+  }
+
+  if ($heavy -contains $name -and $IncludeHeavy) {
+    Invoke-Script -ScriptFile $script
     continue
   }
 
   if ($legacyOrMutating -contains $name -and -not $IncludeLegacyOrMutating) {
-    $results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
+    $script:results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
     continue
   }
 
   if ($paramRequired -contains $name -and -not $RunParamRequired) {
-    $results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
+    $script:results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
     continue
   }
 
@@ -146,13 +150,13 @@ foreach ($script in $scripts) {
   }
 
   # Unknown scripts: be conservative.
-  $results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
+  $script:results += [PSCustomObject]@{ Script = $name; Status = 'SKIP'; ExitCode = 0; Seconds = 0 }
 }
 
 Write-Host "\n=== Summary ===" -ForegroundColor Cyan
-$results | Format-Table -AutoSize
+$script:results | Format-Table -AutoSize
 
-$failCount = ($results | Where-Object { $_.Status -in @('FAIL', 'ERROR') } | Measure-Object).Count
+$failCount = ($script:results | Where-Object { $_.Status -in @('FAIL', 'ERROR') } | Measure-Object).Count
 if ($failCount -gt 0) {
   throw "One or more scripts failed ($failCount)."
 }
