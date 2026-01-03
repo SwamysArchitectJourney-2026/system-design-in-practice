@@ -207,14 +207,14 @@ After studying this case study, you should be able to:
 2. **[Decision 2]**: [Rationale]
 3. **[Decision 3]**: [Rationale]
 
-## Interviewer Lens
+## Evaluator Lens
 
 This design demonstrates:
 - [Signal 1]: [Why it matters]
 - [Signal 2]: [Why it matters]
 - [Signal 3]: [Why it matters]
 
-**What interviewers look for**:
+**What evaluators look for**:
 - ✅ [Positive signal]
 - ❌ [Common mistake to avoid]
 ~~~
@@ -266,7 +266,7 @@ CREATE TABLE [table_name] (
 
 [Describe key algorithms, workflows, business logic]
 
-## Interviewer Lens
+## Evaluator Lens
 
 This LLD demonstrates:
 - [Signal 1]
@@ -433,13 +433,13 @@ This LLD demonstrates:
 
 [How consistency and availability are balanced]
 
-## Interviewer Lens
+## Evaluator Lens
 
 This demonstrates:
 - [Signal 1]: [Why it matters]
 - [Signal 2]: [Why it matters]
 
-**What interviewers look for**:
+**What evaluators look for**:
 - ✅ Understanding trade-offs explicitly
 - ✅ Clear rationale for decisions
 - ❌ Ignoring trade-offs
@@ -498,7 +498,7 @@ This demonstrates:
 [Mermaid C4Component diagram]
 
 > **LLD Scope Note**:  
-> In interviews, only one service is decomposed to this level.
+> In evaluations, only one service is decomposed to this level.
 
 ## Component Responsibilities
 
@@ -523,7 +523,7 @@ This demonstrates:
 - [Error 1]: [How handled]
 - [Error 2]: [How handled]
 
-## Interviewer Lens
+## Evaluator Lens
 
 This flow demonstrates:
 - [Signal 1]
@@ -536,7 +536,7 @@ This flow demonstrates:
 
 ---
 
-## Interviewer Lens Section (Required)
+## Evaluator Lens Section (Required)
 
 Every case study should include an **"Interviewer Lens"** section that explicitly answers:
 
@@ -595,7 +595,7 @@ Before finalizing a case study, verify:
 - [ ] All 8 core files present
 - [ ] C4 diagrams (context, container, component) included
 - [ ] At least 2-3 sequence diagrams
-- [ ] Interviewer Lens section in each relevant file
+- [ ] Evaluator Lens section in each relevant file
 - [ ] Failure scenario analysis included
 - [ ] SLIs/SLOs defined in observability section
 - [ ] Cross-links to related topics

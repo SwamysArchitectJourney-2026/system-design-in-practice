@@ -180,7 +180,7 @@ When making trade-off decisions, consider:
 
 **Key Principle**: Start simple, optimize as you scale. Don't over-engineer for scale you don't have yet.
 
-## Interviewer Lens
+## Evaluator Lens
 
 This case study demonstrates:
 
@@ -206,7 +206,7 @@ This case study demonstrates:
 - ❌ Ignoring cost implications
 - ❌ Trying to solve all problems from day 1
 
-**Interview evaluation criteria**:
+**Evaluation criteria**:
 - **Senior Level**: Can design for current scale, identify bottlenecks, plan evolution
 - **Staff Level**: Can explain why each phase exists, what triggers transitions, cost implications
 - **Architect Level**: Can design migration paths, balance competing concerns, optimize for business goals

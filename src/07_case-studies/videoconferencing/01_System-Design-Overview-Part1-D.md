@@ -117,5 +117,5 @@ To keep the system usable in these "locked down" scenarios, we add an **HTTP tun
   * Expose configuration toggles per tenant/region so organizations can decide whether the extra reliability
     is worth the additional cost.
 
-Mentioning HTTP tunneling in an interview shows you have an answer for "secure corporate proxy" scenarios
+Mentioning HTTP tunneling in an evaluation shows you have an answer for "secure corporate proxy" scenarios
 without compromising the UDP-first design for typical networks.

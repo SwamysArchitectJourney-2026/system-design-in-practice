@@ -4,7 +4,7 @@ prerequisites: ["Scalability in System Design (Part 1)"]
 estimated_time: "25 minutes"
 learning_objectives:
   - "Apply scaling decision frameworks to real-world scenarios"
-  - "Understand key takeaways for system design interviews"
+  - "Understand key takeaways for system design evaluations"
   - "Recognize when to evolve from vertical to horizontal scaling"
 related_topics:
   prerequisites:

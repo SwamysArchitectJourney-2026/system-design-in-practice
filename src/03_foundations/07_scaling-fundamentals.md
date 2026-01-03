@@ -23,7 +23,7 @@ related_topics:
 This topic is split into two parts to stay within the repository's recommended 150-line learning segment size.
 
 - Part 1 focuses on starting simple, request flow, and when to split tiers.
-- Part 2 focuses on database choices, vertical vs horizontal scaling, and interview takeaways.
+- Part 2 focuses on database choices, vertical vs horizontal scaling, and evaluation takeaways.
 
 ## Read Next
 

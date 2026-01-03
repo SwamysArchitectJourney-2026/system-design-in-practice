@@ -134,7 +134,7 @@
 - **Trigger**: Can't scale components independently, deployment conflicts
 - **Solution**: Microservices, service mesh, distributed architecture
 
-## Interviewer Lens
+## Evaluator Lens
 
 ### What Signals Senior-Level Thinking
 

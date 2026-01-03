@@ -3,7 +3,7 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "10 minutes"
 learning_objectives:
-	- "Use AI as an interview practice partner with realistic prompts"
+	- "Use AI as an evaluation practice partner with realistic prompts"
 	- "Apply an improvement loop to increase practice frequency"
 	- "Understand limitations and avoid over-reliance on AI feedback"
 related_topics:
@@ -15,7 +15,7 @@ related_topics:
 		- "../07_case-studies/05-url-shortener/README.md"
 ---
 
-# Let AI Evaluate Your System Design Interview Preparation
+# Let AI Evaluate Your System Design Preparation
 
 AI can be a powerful **practice partner**, not a replacement for human judgment.
 
@@ -23,7 +23,7 @@ AI can be a powerful **practice partner**, not a replacement for human judgment.
 
 ## How AI Can Help
 
-- Simulate interview questions
+- Simulate evaluation questions
 - Challenge design decisions
 - Identify weak areas
 - Enforce structured thinking
@@ -32,7 +32,7 @@ AI can be a powerful **practice partner**, not a replacement for human judgment.
 
 ## Effective Ways to Use AI
 
-- Ask AI to act as an interviewer
+- Ask AI to act as an evaluator
 - Present full designs for critique
 - Request alternative approaches
 - Practice explaining trade-offs

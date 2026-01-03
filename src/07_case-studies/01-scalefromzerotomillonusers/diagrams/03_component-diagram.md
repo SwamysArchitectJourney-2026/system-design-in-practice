@@ -124,9 +124,9 @@ C4Component
 4. **Monitoring**: All components send metrics to Monitoring system
 
 > **LLD Scope Note**:  
-> In interviews, only one service is decomposed to this level. You don't need to show component diagrams for every service—focus on the most critical or complex service.
+> In evaluations, only one service is decomposed to this level. You don't need to show component diagrams for every service—focus on the most critical or complex service.
 
-## Interviewer Lens
+## Evaluator Lens
 
 This diagram demonstrates:
 

@@ -7,7 +7,7 @@ This document provides a comprehensive index of all topics covered in this repos
 ## 📚 Table of Contents
 
 1. [Introduction & Getting Started](#introduction--getting-started)
-2. [Interview Preparation](#interview-preparation)
+2. [Preparation](#preparation)
 3. [Foundational Concepts](#foundational-concepts)
 4. [System Design Principles](#system-design-principles)
 5. [Building Blocks](#building-blocks)
@@ -25,13 +25,13 @@ This document provides a comprehensive index of all topics covered in this repos
 - [Why Learn System Design](01_introduction/02_why-learn-system-design.md)
 - [Learning Structure](01_introduction/03_learning-structure.md)
 
-## Interview Preparation
+## Preparation
 
-- [Getting Ready for System Design Interviews](02_interview-prep/01_getting-ready.md)
+- [Getting Ready for System Design Evaluations](02_interview-prep/01_getting-ready.md)
 - [High-Level vs Low-Level Design (HLD vs LLD)](02_interview-prep/06_hld-vs-lld.md)
 - [Do's and Don'ts](02_interview-prep/02_dos-and-donts.md)
 - [Preparation Timeline](02_interview-prep/03_preparation-timeline.md)
-- [Mock Interview Strategies](02_interview-prep/04_mock-interviews.md)
+- [Mock Evaluation Strategies](02_interview-prep/04_mock-interviews.md)
 - [AI Evaluation Tools](02_interview-prep/05_ai-evaluation.md)
 
 ## Foundational Concepts
@@ -179,7 +179,7 @@ This document provides a comprehensive index of all topics covered in this repos
 1. Complex Case Studies (YouTube, Uber, ChatGPT)
 2. Advanced Patterns (CQRS, Event-Driven)
 3. Real-world Failure Analysis
-4. Interview Preparation & Mock Interviews
+4. Preparation & Mock Evaluations
 
 ---
 

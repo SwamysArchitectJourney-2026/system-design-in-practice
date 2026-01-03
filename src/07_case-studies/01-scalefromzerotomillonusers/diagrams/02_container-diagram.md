@@ -123,7 +123,7 @@ C4Container
 5. **Database**: Persistent data storage
 6. **Message Queue**: Async processing and events
 
-## Interviewer Lens
+## Evaluator Lens
 
 This diagram demonstrates:
 

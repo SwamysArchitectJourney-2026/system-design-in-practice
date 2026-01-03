@@ -1,23 +1,22 @@
 # Primary Directives
 
-**Version**: 1.2  
-**Last Updated**: December 24, 2025
+**Version**: 1.1  
+**Last Updated**: January 1, 2026
 
 ---
 
 ## 🎯 Primary Directives
 
-### 1. System Design in Practice Content Rules (MANDATORY)
+### 1. Educational Content Rules (MANDATORY)
 
-**All content creation must follow these rules, with applicability based on content type:**
+**All content creation must follow these rules without exception.**
 
-- **Educational Content** (`src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, `src/08_failures/`): File naming, zero-copy policy, file references (YAML frontmatter recommended, line limits recommended)
-- **Case Studies** (`src/07_case-studies/`): Standard structure, zero-copy policy, diagrams co-located
-- **References** (`src/references/`): Logical naming, no numbering required
-
-See: `01_educational-content-rules.mdc` for complete details and applicability.
+See: `01_educational-content-rules.mdc` for complete details.
 
 ### 2. Automation-First Approach
+
+**Environment**: Windows 11, PowerShell  
+**Note**: All commands and scripts should use PowerShell syntax. File paths use Windows format.
 
 ✅ **ALWAYS**: Create reusable PowerShell scripts for repetitive tasks  
 ✅ **ALWAYS**: Use existing scripts in `tools/psscripts/` first  
@@ -44,14 +43,12 @@ See: `01_educational-content-rules.mdc` for complete details and applicability.
 
 **After ANY structural change, IMMEDIATELY update**:
 
-1. ✅ **`docs/RepositoryStructure.md`** - **UPDATE THIS FIRST** (Single source of truth)
-2. ✅ `.github/copilot-instructions.md` - Reference to RepositoryStructure.md
-3. ✅ `README.md` - Reference to RepositoryStructure.md
-4. ✅ `.cursor/rules/02_repository-structure.mdc` - Reference to RepositoryStructure.md
-5. ✅ Relevant documentation files
-6. ✅ Run verification: `.\Quick-HealthCheck.ps1` from tools/psscripts/
+1. ✅ `copilot-instructions.md` - Repository Structure section
+2. ✅ `README.md` - Repository Structure section
+3. ✅ Relevant documentation files
+4. ✅ Run verification: `.\Quick-HealthCheck.ps1` from tools/psscripts/
 
-**Self-Check Question**: "Did I update `docs/RepositoryStructure.md` first?" - If no, STOP and do it NOW.
+**Self-Check Question**: "Did I update the instruction file?" - If no, STOP and do it NOW.
 
 ### 4. File Naming Validation (CRITICAL)
 
@@ -59,105 +56,10 @@ See: `01_educational-content-rules.mdc` for complete details and applicability.
 
 1. ✅ **Check for `00_` prefix**: **NEVER ALLOWED** - Use `01_` instead
 2. ✅ **Verify scope**: Rule applies to **ALL files** including:
-   - Educational content (`src/01_introduction/`, `src/02_interview-prep/`, etc.)
+   - Educational content (`01_Reference/`, `02_Learning/`, `src/01_introduction/`, etc.)
    - Documentation files (`docs/`)
    - Any numbered files anywhere in repository
 3. ✅ **Quick validation**: Run `Get-ChildItem -Recurse -Filter "*00_*"` to find violations
 4. ✅ **NO EXCEPTIONS**: `00_` is NEVER allowed, even for meta/documentation files
 
 **Self-Check Question**: "Does this file use `00_` prefix?" - If yes, RENAME to `01_` or appropriate number.
-
-### 5. Chain-of-Thought + ReAct + Reasoning
-
-**Apply systematic reasoning to every task using this framework**:
-
-#### Chain-of-Thought (CoT)
-
-Break down complex problems into logical steps:
-
-- **Decompose**: Split large tasks into smaller, manageable components
-- **Sequential Logic**: Show clear progression from problem → solution
-- **Explicit Reasoning**: Articulate WHY each step is necessary
-- **Intermediate Steps**: Don't jump to conclusions; show the work
-
-**Example**: "To consolidate docs, I need to: 1) Read all files, 2) Identify unique content, 3) Extract and merge, 4) Verify no loss, 5) Update references"
-
-#### ReAct (Reasoning + Acting)
-
-Interleave thinking with action in iterative cycles:
-
-1. **OBSERVE** 🔍
-   - Current state: What exists now?
-   - User request: What is being asked?
-   - Context: What's the broader situation?
-   - Constraints: What limitations exist?
-
-2. **ANALYZE** 🧠
-   - Root cause: Why does this issue exist?
-   - Dependencies: What else is affected?
-   - Implications: What are the consequences?
-   - Alternatives: What other approaches exist?
-
-3. **PLAN** 📋
-   - Step-by-step approach with clear milestones
-   - Verification points at each step
-   - Rollback strategy if issues arise
-   - Resource requirements (scripts, tools, time)
-
-4. **ACT** ⚡
-   - Execute with automation where possible
-   - Use existing scripts before creating new ones
-   - Make incremental changes, not big bangs
-   - Document as you go
-
-5. **VERIFY** ✅
-   - Check results against expected outcomes
-   - Run validation tools (markdownlint, Quick-HealthCheck)
-   - Update documentation (rules files, README.md)
-   - Test edge cases
-
-6. **REFLECT** 🤔
-   - What worked well?
-   - What could be improved?
-   - What would prevent this issue in the future?
-   - Update instructions/scripts based on learnings
-
-#### System 2 Reasoning
-
-**Engage deliberate, analytical thinking for complex decisions**:
-
-- **Question Assumptions**: Don't accept requirements at face value
-- **Consider Trade-offs**: Every decision has pros and cons
-- **Think Long-term**: How will this affect future work?
-- **Pattern Recognition**: Have we solved similar problems before?
-- **Meta-cognition**: Monitor your own reasoning process
-
-**Red Flags Requiring Deep Analysis**:
-
-- ⚠️ Structural changes (affects multiple files)
-- ⚠️ Deletions (potential information loss)
-- ⚠️ Consolidations (complexity in merging)
-- ⚠️ New patterns (precedent-setting decisions)
-- ⚠️ User frustration (indicates process failure)
-
-#### Practical Application
-
-**For Simple Tasks** (read file, create script):
-
-- Quick CoT: "Need to read file → use read_file tool → done"
-- Minimal reasoning sufficient
-
-**For Complex Tasks** (consolidate docs, restructure):
-
-- Full ReAct cycle required
-- Multiple OBSERVE → ANALYZE → PLAN → ACT → VERIFY iterations
-- Deep System 2 reasoning for critical decisions
-- Document reasoning in commit messages
-
-**When User Points Out Mistakes**:
-
-1. **Acknowledge**: "You're right, I missed X"
-2. **Root Cause**: "This happened because..."
-3. **Immediate Fix**: Correct the issue
-4. **Prevention**: "I'm adding [protocol/check/script] to prevent recurrence"
-5. **Update Instructions**: Modify rules files to embed learning

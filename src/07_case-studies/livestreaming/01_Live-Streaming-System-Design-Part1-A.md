@@ -132,7 +132,7 @@ This is **not** an interactive “everyone can talk” meeting. It is **one-to-m
     - Latency vs scalability trade-offs (e.g., CMAF/LL-HLS vs HLS).
     - Advanced analytics and QoE optimization.
 
-## 6. Interview Angles to Emphasize
+## 6. Evaluation Angles to Emphasize
 
 - Clear contrast between **live streaming vs conferencing**.
 - The **tree-like fan-out** from a single ingest to many edge nodes.

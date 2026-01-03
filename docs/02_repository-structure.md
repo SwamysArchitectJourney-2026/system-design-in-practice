@@ -45,7 +45,7 @@ system-design-in-practice/
 │   │   ├── 03_learning-structure.md
 │   │   └── README.md
 │   │
-│   ├── 02_interview-prep/                 # Interview preparation
+│   ├── 02_interview-prep/                 # Preparation
 │   │   ├── 01_getting-ready.md
 │   │   ├── 02_dos-and-donts.md
 │   │   ├── 03_preparation-timeline.md

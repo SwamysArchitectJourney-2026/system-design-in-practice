@@ -158,7 +158,7 @@ graph TB
    - **Trigger**: When number of service instances grows very large
    - **Solution**: Pre-allocate larger token ranges, implement token service caching, or use distributed ID generation
 
-## Interviewer Lens
+## Evaluator Lens
 
 ### What Signals Senior-Level Thinking
 

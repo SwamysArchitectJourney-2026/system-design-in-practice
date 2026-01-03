@@ -127,7 +127,7 @@ User    API Gateway   App Service   Primary DB   Cache    Message Queue
 - **Phase 3**: Cache-aside pattern with Redis
 - **Phase 4**: Multi-layer caching (L1: app cache, L2: Redis, L3: CDN)
 
-## Interviewer Lens
+## Evaluator Lens
 
 This flow demonstrates:
 

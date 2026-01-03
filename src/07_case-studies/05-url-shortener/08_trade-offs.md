@@ -161,7 +161,7 @@ Key trade-offs accepted:
 - Asynchronous analytics (acceptable data loss)
 - Eventual consistency in database (acceptable for URL mappings)
 
-## Interviewer Lens
+## Evaluator Lens
 
 This case study demonstrates:
 
@@ -183,7 +183,7 @@ This case study demonstrates:
 - ❌ Not considering failure scenarios
 - ❌ Ignoring cost implications
 
-**Interview evaluation criteria**:
+**Evaluation criteria**:
 - **Senior Level**: Can design system, discuss trade-offs, handle scale
 - **Staff Level**: Can explain why each decision was made, what breaks first, how to evolve
 - **Architect Level**: Can design for multiple failure modes, optimize for business goals, balance competing concerns

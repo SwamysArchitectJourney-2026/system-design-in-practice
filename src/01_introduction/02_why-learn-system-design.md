@@ -5,7 +5,7 @@ time_spent_estimate: "15 minutes"
 focus_areas:
   - "Understanding how system design supports career growth and scope"
   - "Exploring how design thinking improves everyday engineering decisions"
-  - "Identifying what system design interviews actually evaluate"
+  - "Identifying what system design evaluations actually assess"
 related_topics:
   prerequisites: []
   builds_upon:
@@ -33,7 +33,7 @@ As engineers progress in their careers, expectations shift:
 System design is:
 
 - A core requirement for senior and architect roles
-- A primary evaluation area in technical interviews
+- A primary evaluation area in technical assessments
 - A key differentiator between “good” and “exceptional” engineers
 
 ---
@@ -81,9 +81,9 @@ System design helps engineers:
 
 ---
 
-## Interview Readiness
+## Evaluation Readiness
 
-System design interviews test:
+System design evaluations assess:
 
 - Depth of understanding
 - Communication clarity

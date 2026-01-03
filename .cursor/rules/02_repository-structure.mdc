@@ -1,7 +1,7 @@
 # Repository Structure & Context
 
 **Version**: 2.0  
-**Last Updated**: December 13, 2025
+**Last Updated**: January 1, 2026
 
 ---
 
@@ -16,7 +16,8 @@
 - Diagrams (C4, sequence, flow)
 - Trade-offs and failure scenarios
 
-**Target Audience**: 
+**Target Audience**:
+
 - Software Engineers preparing for system design interviews
 - Senior engineers transitioning to architect roles
 - Engineers designing scalable systems in production
@@ -30,23 +31,26 @@
 - ✅ **Educational Content**: System design principles, patterns, and building blocks (`src/01_introduction/` through `src/08_failures/`)
 - ✅ **Case Studies**: End-to-end system design case studies (`src/07_case-studies/`)
 - ✅ **References**: Learning resources (books, papers, tools) (`src/references/`)
-- ✅ **Documentation**: Roadmap and learning path (`docs/ROADMAP.md`)
+- ✅ **Documentation**: Roadmap and learning path (`docs/01_road-map.md`)
 
 ### 📋 Content Type Classifications
 
 **Educational Content** (`src/01_introduction/`, `src/02_interview-prep/`, `src/03_foundations/`, `src/04_principles/`, `src/05_building-blocks/`, `src/06_patterns/`, `src/08_failures/`):
+
 - Purpose: Educational learning materials for system design
 - YAML Frontmatter: Recommended but not strictly required for placeholder content
 - Line Limit: Recommended ≤150 lines (split, don't trim)
 - File Naming: Must use numbering (01_, 02_, etc., no 00_)
 
 **Case Studies** (`src/07_case-studies/`):
+
 - Purpose: End-to-end system design case studies
 - Structure: Each case study has `requirements.md`, `high-level-design.md`, `low-level-design.md`, `scalability.md`, `trade-offs.md`
 - Diagrams: Co-located in `diagrams/` folder within each case study
 - File Naming: Standard naming (no numbering required for case study folders)
 
 **References** (`src/references/`):
+
 - Purpose: Learning resources and reference materials
 - File Naming: Logical names (books.md, papers.md, tools.md)
 - No numbering required (reference materials)
@@ -55,13 +59,13 @@
 
 ## 📁 Repository Structure
 
-> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/RepositoryStructure.md`](../../docs/RepositoryStructure.md). This file should be referenced for the authoritative structure. When the structure changes, update that file first, then update references here.
+> **📋 Single Source of Truth**: The complete and up-to-date repository structure is maintained in [`docs/02_repository-structure.md`](../../docs/02_repository-structure.md). This file should be referenced for the authoritative structure. When the structure changes, update that file first, then update references here.
 
-For the complete repository structure, see: **[docs/RepositoryStructure.md](../../docs/RepositoryStructure.md)**
+For the complete repository structure, see: **[docs/02_repository-structure.md](../../docs/02_repository-structure.md)**
 
 ### Current Structure Overview (As of December 15, 2025)
 
-**Note**: This is a summary. For the complete structure with all file names and details, refer to [`docs/RepositoryStructure.md`](../../docs/RepositoryStructure.md).
+**Note**: This is a summary. For the complete structure with all file names and details, refer to [`docs/02_repository-structure.md`](../../docs/02_repository-structure.md).
 
 **Quick Overview**:
 
@@ -80,11 +84,13 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 ### Educational Content Directories
 
 **01_introduction/** - Getting started with system design
+
 - Overview of modern system design
 - Why learn system design
 - Course structure
 
 **02_interview-prep/** - Interview preparation
+
 - Getting ready for interviews
 - Do's and don'ts
 - Preparation timeline
@@ -92,6 +98,7 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 - AI evaluation tools
 
 **03_foundations/** - Foundational concepts
+
 - Abstractions in system design
 - Network abstractions (RPC)
 - Consistency models
@@ -100,11 +107,13 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 - C4 model for system design
 
 **04_principles/** - System design principles
+
 - Availability, reliability, scalability
 - Consistency, fault tolerance
 - Maintainability, security
 
 **05_building-blocks/** - Core building blocks
+
 - DNS, load balancers, databases
 - Key-value stores, CDN, sequencer
 - Monitoring, distributed cache
@@ -114,16 +123,19 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 - Sharded counters
 
 **06_patterns/** - Architectural patterns
+
 - Caching, rate limiting
 - Circuit breaker, CQRS
 - Event-driven architecture
 
 **07_case-studies/** - End-to-end case studies
+
 - Each case study follows standard structure
 - Diagrams co-located in `diagrams/` folder
 - C4 diagrams: context, container, component
 
 **08_failures/** - Real-world failure analysis
+
 - Introduction to system failures
 - Case studies of major outages
 - Lessons learned
@@ -131,6 +143,7 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 ### References Directory
 
 **references/** - Learning resources
+
 - Books, papers, tools
 - Not numbered (reference materials)
 
@@ -142,14 +155,14 @@ For the complete repository structure, see: **[docs/RepositoryStructure.md](../.
 
 **Looking for case studies?** → Check `src/07_case-studies/`
 
-**Structure outdated?** → Update `docs/RepositoryStructure.md` first, then update references in `.github/copilot-instructions.md` and `README.md`
+**Structure outdated?** → Update `docs/02_repository-structure.md` first, then update references in `.github/copilot-instructions.md` and `README.md`
 
 ---
 
 ## For More Information
 
 - **Repository**: Check README.md for repository location
-- **Learning Path**: `docs/ROADMAP.md`
+- **Learning Path**: `docs/01_road-map.md`
 - **Content Index**: `src/CONTENT_INDEX.md`
 - **GitHub Copilot Instructions**: `.github/copilot-instructions.md`
 - **Contributing**: `CONTRIBUTING.md`

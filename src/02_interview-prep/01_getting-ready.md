@@ -3,7 +3,7 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "20 minutes"
 learning_objectives:
-  - "Describe the typical system design interview flow and what is being evaluated"
+  - "Describe the typical system design evaluation flow and what is being evaluated"
   - "Apply a structured approach to starting any open-ended design prompt"
   - "Identify core fundamentals to strengthen before attempting case studies"
 related_topics:
@@ -18,15 +18,15 @@ related_topics:
       - "../03_foundations/README.md"
 ---
 
-# Getting Ready for System Design Interviews
+# Getting Ready for System Design Evaluations
 
-System design interviews evaluate **how you think**, not how much you remember. Preparation is less about memorizing architectures and more about developing a **structured, calm, and defensible reasoning process**.
+System design evaluations assess **how you think**, not how much you remember. Preparation is less about memorizing architectures and more about developing a **structured, calm, and defensible reasoning process**.
 
 ---
 
-## Understanding the Interview Format
+## Understanding the Evaluation Format
 
-Most system design interviews follow a predictable flow. Strong candidates recognize it and keep the conversation moving intentionally.
+Most system design evaluations follow a predictable flow. Strong candidates recognize it and keep the conversation moving intentionally.
 
 1. **Problem statement**
    Example: “Design a URL shortener” or “Design a news feed”.
@@ -46,7 +46,7 @@ Most system design interviews follow a predictable flow. Strong candidates recog
 6. **Trade-offs & alternatives**
    What you optimized for and what you consciously gave up.
 
-Interviewers are assessing:
+Evaluators are assessing:
 
 - Clarity of thought
 - Ability to reason under ambiguity
@@ -88,7 +88,7 @@ Weak fundamentals cannot be hidden by good diagrams.
 - This repository (primary)
 - Real-world postmortems
 - Architecture blogs from large tech companies
-- Mock interviews (human or AI)
+- Mock evaluations (human or AI)
 
 ---
 

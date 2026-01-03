@@ -68,4 +68,4 @@ After studying this case study, you should be able to:
 
 ---
 
-*This case study demonstrates the evolution of system architecture as user base grows, a critical skill for system design interviews.*
+*This case study demonstrates the evolution of system architecture as user base grows, a critical skill for system design evaluations.*

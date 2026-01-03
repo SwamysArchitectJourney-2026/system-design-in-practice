@@ -6,10 +6,10 @@
   - Markdown lint: Uses `npx markdownlint-cli2` over README/docs/src/tools by default.
   - Lychee: Uses the repository `lychee.toml` configuration.
 
-  This script intentionally excludes `source-materials/` by default (it is a staging area).
+  This script intentionally excludes `source-material/` by default (it is a staging area).
 
 .PARAMETER IncludeSourceMaterials
-  If set, include `source-materials/` in markdown linting.
+  If set, include `source-material/` in markdown linting.
 
 .PARAMETER MarkdownGlobs
   Optional override for markdownlint-cli2 globs.
@@ -63,7 +63,13 @@ if (-not $MarkdownGlobs -or $MarkdownGlobs.Count -eq 0) {
   )
 
   if ($IncludeSourceMaterials) {
-    $MarkdownGlobs += "source-materials/**/*.md"
+    # Support both legacy and current folder names.
+    if (Test-Path (Join-Path $repoRoot 'source-material')) {
+      $MarkdownGlobs += "source-material/**/*.md"
+    }
+    if (Test-Path (Join-Path $repoRoot 'source-materials')) {
+      $MarkdownGlobs += "source-materials/**/*.md"
+    }
   }
 }
 
@@ -119,8 +125,8 @@ Write-Host ""
 
 if ($mdExitCode -ne 0 -or $lycheeExitCode -ne 0) {
   Write-Host "Overall: ISSUES FOUND" -ForegroundColor Yellow
-  exit 1
+  throw "Markdown/Lychee validation failed."
 }
 
 Write-Host "Overall: PASSED" -ForegroundColor Green
-exit 0
+return

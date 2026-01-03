@@ -1,7 +1,7 @@
-# File Naming Conventions (System Design in Practice)
+# File Naming Conventions
 
-**Version**: 1.0  
-**Last Updated**: December 24, 2025  
+**Version**: 2.0  
+**Last Updated**: January 1, 2026  
 **Priority**: MANDATORY - All new content must follow these conventions
 
 ---
@@ -37,7 +37,7 @@ Topic-Part1-B-A.md
 
 ### ❌ Avoid arbitrary "Part" unless it's a published volume
 
-**Avoid** (when semantic names are better):
+**Avoid**:
 ```
 Glossary-Part1.md
 Glossary-Part2.md
@@ -47,8 +47,6 @@ Glossary-Part2.md
 - "Part" is an editorial accident, not a concept
 - No semantic meaning for readers
 - Hard to maintain and reorganize
-
-**Note**: `-part1.md`, `-part2.md` is **ACCEPTABLE** for mechanical splitting when content exceeds 150 lines and cannot be split into distinct concepts. This is better than `Part1-A`, `Part1-B` patterns.
 
 ### ❌ Avoid mixing sequence, hierarchy, and versioning
 
@@ -72,13 +70,14 @@ Glossary-Part2.md
 **Use semantic names that describe the content**:
 
 ```
-case-studies/
-├── url-shortener/
-│   ├── requirements.md
-│   ├── high-level-design.md
-│   ├── low-level-design.md
-│   ├── scalability.md
-│   └── trade-offs.md
+interview/
+├── glossary/
+│   ├── README.md
+│   ├── core-concepts.md
+│   ├── system-design.md
+│   ├── cloud-architecture.md
+│   ├── data-platforms.md
+│   └── security.md
 ```
 
 **Why this works**:
@@ -86,64 +85,43 @@ case-studies/
 - Easy to add, split, or merge
 - GitHub renders `README.md` automatically
 - URLs are clean and stable
-- Maintainer-friendly
+- Recruiter-friendly and maintainer-friendly
 
-### Pattern 2: Ordered Files (For Learning Sequence)
+### Pattern 2: Ordered Files (Only When Sequence Matters)
 
 **Use numbered prefixes ONLY when there's a deliberate learning order**:
 
 ```
-src/03_foundations/
-├── 01_abstractions.md
-├── 02_network-abstractions-part1.md
-├── 02_network-abstractions-part2.md
-├── 03_consistency-models-part1.md
-└── 03_consistency-models-part2.md
+interview/
+├── glossary/
+│   ├── 01_fundamentals.md
+│   ├── 02_system-design.md
+│   ├── 03_cloud.md
+│   └── 04_data.md
 ```
 
-**Use this when**:
+**Use this ONLY if**:
 - There is a deliberate reading order
 - You control the learning flow
 - Sequence is part of the educational design
-- Content must be learned in a specific progression
 
-**Current Repository Pattern**: The repository uses numbered prefixes (`01_`, `02_`, etc.) for educational content in `src/01_introduction/` through `src/08_failures/`. This is appropriate because there is a deliberate learning progression.
+**Otherwise, use semantic names (Pattern 1)**.
 
-### Pattern 3: Split Files with `-part1`, `-part2` (For Mechanical Splitting)
-
-**When content exceeds 150 lines and cannot be split into distinct concepts, use `-part1`, `-part2`**:
-
-```
-02_network-abstractions-part1.md
-02_network-abstractions-part2.md
-```
-
-**Why this works**:
-- Preserves the base slug so links remain predictable
-- Clear that these are parts of the same topic
-- Better than `Part1-A`, `Part1-B` patterns
-- Maintains file reference stability
-
-**When to use**:
-- Content exceeds 150 lines
-- Cannot be split into distinct semantic concepts
-- Content is a single cohesive topic that must be split mechanically
-
-### Pattern 4: Folder-Based Structure (Best for Growth)
+### Pattern 3: Folder-Based Structure (Best for Growth)
 
 **When content naturally groups, use folders**:
 
 ```
-src/07_case-studies/
-├── 01-scalefromzerotomillonusers/
-│   ├── README.md
-│   ├── requirements.md
-│   ├── high-level-design.md
-│   └── diagrams/
-└── 05-url-shortener/
-    ├── README.md
-    ├── requirements.md
-    └── diagrams/
+interview/
+├── glossary/
+│   ├── README.md        # Index + navigation
+│   ├── core-concepts.md
+│   ├── system-design.md
+│   └── cloud/
+│       ├── README.md
+│       ├── azure-fundamentals.md
+│       ├── aws-fundamentals.md
+│       └── multi-cloud.md
 ```
 
 **Why this works**:
@@ -156,30 +134,30 @@ src/07_case-studies/
 
 ## 📋 Naming Rules
 
-### Rule 1: Use Semantic Names When Possible
+### Rule 1: Use Semantic Names
 
 **✅ Good**:
-- `requirements.md`
-- `high-level-design.md`
-- `scalability.md`
-- `trade-offs.md`
+- `core-concepts.md`
+- `system-design.md`
+- `azure-fundamentals.md`
+- `interview-questions.md`
 
 **❌ Bad**:
 - `Part1-A.md`
 - `Part1-B.md`
-- `Glossary-Part1.md` (unless mechanical splitting)
+- `Glossary-Part1.md`
 
 ### Rule 2: Use Hyphens for Multi-Word Names
 
 **✅ Good**:
-- `network-abstractions.md`
-- `consistency-models.md`
-- `back-of-envelope.md`
+- `system-design.md`
+- `azure-fundamentals.md`
+- `interview-questions.md`
 
 **❌ Bad**:
-- `network_abstractions.md` (underscores)
-- `networkAbstractions.md` (camelCase)
-- `Network Abstractions.md` (spaces)
+- `system_design.md` (underscores)
+- `systemDesign.md` (camelCase)
+- `System Design.md` (spaces)
 
 ### Rule 3: Use Numbers Sparingly
 
@@ -189,15 +167,13 @@ src/07_case-studies/
 - You're certain the order won't change
 
 **✅ Good** (when sequence matters):
-- `01_abstractions.md`
-- `02_network-abstractions.md`
-- `03_consistency-models.md`
+- `01_fundamentals.md`
+- `02_advanced-concepts.md`
+- `03_practical-applications.md`
 
 **❌ Bad** (arbitrary numbering):
 - `01_glossary.md` (if order doesn't matter)
 - `02_questions.md` (if order doesn't matter)
-
-**Current Repository**: Uses numbered prefixes for educational content (`src/01_introduction/` through `src/08_failures/`) because there is a deliberate learning progression. This is appropriate.
 
 ### Rule 4: Use Folders for Structure
 
@@ -205,16 +181,19 @@ src/07_case-studies/
 
 **✅ Good**:
 ```
-case-studies/
-├── url-shortener/
-│   ├── requirements.md
-│   └── scalability.md
+interview/
+├── questions/
+│   ├── fundamentals.md
+│   ├── system-design.md
+│   └── cloud.md
 ```
 
 **❌ Bad**:
 ```
-case-studies-url-shortener-requirements.md
-case-studies-url-shortener-scalability.md
+interview/
+├── questions-fundamentals.md
+├── questions-system-design.md
+└── questions-cloud.md
 ```
 
 ---
@@ -233,30 +212,37 @@ case-studies-url-shortener-scalability.md
 
 **Question 3**: Is there a natural learning progression?
 - **Yes** → Use numbered prefixes: `01_fundamentals.md`, `02_advanced.md`
-- **No** → Use `-part1.md`, `-part2.md` for mechanical splitting
+- **No** → Use semantic names: `fundamentals.md`, `advanced.md`
 
 **Question 4**: Will these concepts be expanded further?
 - **Yes** → Create a folder structure
 - **No** → Keep as separate files
 
-### Example: Splitting a Large File
+### Example: Splitting a Large Glossary
 
 **Before** (problematic):
 ```
-01_Network-Abstractions-Part1-A.md  (150 lines)
-01_Network-Abstractions-Part1-B.md  (150 lines)
+01_Interview-Glossary-Part1-A.md  (150 lines)
+01_Interview-Glossary-Part1-B.md  (150 lines)
+01_Interview-Glossary-Part1-C.md  (150 lines)
 ```
 
-**After** (semantic - preferred):
+**After** (semantic):
 ```
-02_network-abstractions-fundamentals.md
-02_network-abstractions-implementation.md
+glossary/
+├── README.md
+├── core-concepts.md
+├── system-design.md
+└── cloud-architecture.md
 ```
 
-**After** (mechanical splitting - acceptable):
+**Or** (if sequence matters):
 ```
-02_network-abstractions-part1.md
-02_network-abstractions-part2.md
+glossary/
+├── README.md
+├── 01_fundamentals.md
+├── 02_system-design.md
+└── 03_cloud-architecture.md
 ```
 
 ---
@@ -267,75 +253,114 @@ case-studies-url-shortener-scalability.md
 
 1. **Content naturally groups**:
    ```
-   src/07_case-studies/
-   ├── 01-scalefromzerotomillonusers/
-   │   ├── requirements.md
-   │   └── scalability.md
+   interview/
+   ├── questions/
+   │   ├── fundamentals.md
+   │   ├── system-design.md
+   │   └── cloud.md
    ```
 
 2. **You expect expansion**:
    ```
-   src/07_case-studies/
-   ├── 05-url-shortener/
+   interview/
+   ├── scenarios/
    │   ├── README.md
-   │   ├── requirements.md
-   │   └── diagrams/
+   │   ├── e-commerce.md
+   │   ├── social-media.md
+   │   └── video-streaming.md
    ```
 
 3. **You need navigation**:
    ```
-   src/07_case-studies/
-   ├── 05-url-shortener/
+   interview/
+   ├── glossary/
    │   ├── README.md  # Index with links
-   │   ├── requirements.md
-   │   └── scalability.md
+   │   ├── core-concepts.md
+   │   └── advanced.md
    ```
 
 ### Folder Naming
 
-- Use semantic names: `url-shortener/`, `rate-limiter/`
-- Use hyphens for multi-word: `scalefromzerotomillonusers/`
-- Use numbers ONLY when sequence matters: `01-scalefromzerotomillonusers/`, `05-url-shortener/`
+- Use semantic names: `questions/`, `scenarios/`, `glossary/`
+- Use hyphens for multi-word: `system-design/`, `cloud-architecture/`
+- Use numbers ONLY when sequence matters: `01_fundamentals/`, `02_advanced/`
 
 ---
 
-## 🔍 Examples: Current Repository Patterns
+## 🔍 Examples: Current vs. Recommended
 
-### Example 1: Educational Content (Numbered Sequence)
+### Example 1: Interview Glossary
 
-**Current** (appropriate):
+**Current** (problematic):
 ```
-src/03_foundations/
-├── 01_abstractions.md
-├── 02_network-abstractions-part1.md
-├── 02_network-abstractions-part2.md
-├── 03_consistency-models-part1.md
-└── 03_consistency-models-part2.md
+01_Interview-Glossary-Part1-A.md
+01_Interview-Glossary-Part1-B.md
 ```
 
-**Why this works**:
-- Numbered sequence reflects learning progression
-- `-part1`, `-part2` used for mechanical splitting (acceptable)
-- Clear and maintainable
-
-### Example 2: Case Studies (Semantic Names)
-
-**Current** (appropriate):
+**Recommended**:
 ```
-src/07_case-studies/
-├── 01-scalefromzerotomillonusers/
-│   ├── requirements.md
-│   ├── high-level-design.md
-│   └── scalability.md
-└── 05-url-shortener/
-    ├── requirements.md
-    └── scalability.md
+glossary/
+├── README.md
+├── core-concepts.md
+├── system-design.md
 ```
 
-**Why this works**:
-- Semantic names describe content purpose
-- Folder structure organizes related files
-- Easy to navigate and maintain
+### Example 2: Architecture Patterns
+
+**Current** (problematic):
+```
+03_Architecture-Patterns-Part1-A.md
+03_Architecture-Patterns-Part1-B.md
+03_Architecture-Patterns-Part1-C.md
+```
+
+**Recommended**:
+```
+architecture-patterns/
+├── README.md
+├── fundamentals.md
+├── microservices.md
+└── event-driven.md
+```
+
+**Or** (if sequence matters):
+```
+architecture-patterns/
+├── README.md
+├── 01_fundamentals.md
+├── 02_microservices.md
+└── 03_event-driven.md
+```
+
+### Example 3: Question Banks
+
+**Current** (problematic):
+```
+03_Question-Bank-Part1-A-A.md
+03_Question-Bank-Part1-A-B.md
+03_Question-Bank-Part1-B-A.md
+03_Question-Bank-Part1-B-B.md
+```
+
+**Recommended**:
+```
+question-bank/
+├── README.md
+├── fundamentals.md
+├── intermediate.md
+├── advanced.md
+└── expert.md
+```
+
+**Or** (if organized by topic):
+```
+question-bank/
+├── README.md
+├── azure.md
+├── kubernetes.md
+├── system-design.md
+└── devops.md
+```
 
 ---
 
@@ -343,7 +368,7 @@ src/07_case-studies/
 
 ### For New Content
 
-**ALWAYS** use semantic names when possible. Use `-part1`, `-part2` only for mechanical splitting when content cannot be split into distinct concepts.
+**ALWAYS** use semantic names. Never use `Part1-A` patterns.
 
 ### For Existing Content
 
@@ -367,13 +392,12 @@ src/07_case-studies/
 **Before writing**:
 
 1. **Choose the right folder** based on learning progression or content type
-   - For educational content: Use numbered folders (`src/01_introduction/`, `src/03_foundations/`)
-   - For case studies: Create a folder with semantic name (e.g., `05-url-shortener/`)
+   - For learning content: Use numbered folders (`01_Reference/`, `02_Learning/`, `src/01_introduction/`, etc.)
+   - For reference-style content: Create a folder with `README.md` index (e.g., `glossary/`)
 
 2. **Choose a filename that matches the concept boundary**:
-   - Prefer `NN_concept-name.md` for sequence-based modules (e.g., `01_abstractions.md`)
-   - Prefer `concept-name.md` inside case study folders (e.g., `requirements.md`)
-   - Use `-part1.md`, `-part2.md` only for mechanical splitting
+   - Prefer `NN_concept-name.md` for sequence-based modules (e.g., `01_fundamentals.md`)
+   - Prefer `concept-name.md` inside reference-style folders (e.g., `core-concepts.md`)
 
 3. **Keep names URL-friendly**: lowercase, hyphen-separated words, avoid spaces
 
@@ -382,12 +406,12 @@ src/07_case-studies/
 **Decision process**:
 
 1. **First try to split by concept** (new file) instead of by "Part"
-   - Example: `fundamentals.md` and `implementation.md` instead of `topic-part1.md` and `topic-part2.md`
+   - Example: `fundamentals.md` and `advanced.md` instead of `topic-part1.md` and `topic-part2.md`
 
 2. **If you still need parts** (mechanical splitting for 150-line limit):
    - Use `-part1`, `-part2` (not `A/B/C`)
    - Preserve the base slug so links remain predictable
-   - Example: `02_network-abstractions-part1.md`, `02_network-abstractions-part2.md`
+   - Example: `03_consistency-models-part1.md`, `03_consistency-models-part2.md`
 
 3. **If hierarchy is needed**: Move structure into folders + `README.md` indexes instead of growing filename suffixes
 
@@ -403,13 +427,18 @@ src/07_case-studies/
 
 ### Recommended Patterns by Folder Type
 
-**In main learning folders** (e.g., `src/01_introduction/`, `src/03_foundations/`):
+**In main learning folders** (e.g., `src/01_Reference/`, `src/02_Learning/`, `src/01_introduction/`):
 - Use ordered files: `NN_topic-slug.md`
 - If you must split: `NN_topic-slug-part1.md`, `NN_topic-slug-part2.md` (keep the same `NN_` prefix)
 
-**In case study folders** (e.g., `src/07_case-studies/05-url-shortener/`):
-- Prefer semantic topic files like `requirements.md`, `scalability.md`, `trade-offs.md`
-- Use `README.md` for navigation within each case study
+**In reference-style subfolders** (e.g., `glossary/`, `interview-prep/`):
+- Prefer `README.md` as the index + semantic topic files like `core-concepts.md`, `security.md`
+- Add ordering numbers only if there is a deliberate reading sequence
+
+**In interview prep folders** (e.g., `src/03_Interview-Prep/`, `src/02_interview-prep/`):
+- Use semantic names: `interview-overview.md`, `study-roadmap.md`, `skills-checklist.md`
+- Use folders for grouping: `azure-architect/`, `devops-architect/`
+- Use `README.md` for navigation within each folder
 
 ---
 

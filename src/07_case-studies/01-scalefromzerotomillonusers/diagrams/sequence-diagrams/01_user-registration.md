@@ -86,7 +86,7 @@ User          WebApp        API Gateway   App Service   Auth Service  Database  
 - **Rate limit exceeded**: Return 429 Too Many Requests
 - **Database error**: Return 500 Internal Server Error
 
-## Interviewer Lens
+## Evaluator Lens
 
 This flow demonstrates:
 

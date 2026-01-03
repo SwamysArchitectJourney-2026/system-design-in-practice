@@ -3,9 +3,9 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "15 minutes"
 learning_objectives:
-	- "List high-signal behaviors that improve system design interview performance"
+	- "List high-signal behaviors that improve system design evaluation performance"
 	- "Avoid common failure patterns that cause down-leveling"
-	- "Frame the interview as collaborative problem-solving"
+	- "Frame the evaluation as collaborative problem-solving"
 related_topics:
 	prerequisites: []
 	builds_upon:
@@ -16,9 +16,9 @@ related_topics:
 		- "../07_case-studies/05-url-shortener/01_requirements.md"
 ---
 
-# The Do’s and Don’ts of System Design Interviews
+# The Do's and Don'ts of System Design Evaluations
 
-System design interviews reward **clarity, humility, and reasoning**. Many candidates fail due to avoidable behavioral mistakes.
+System design evaluations reward **clarity, humility, and reasoning**. Many candidates fail due to avoidable behavioral mistakes.
 
 ---
 
@@ -74,13 +74,13 @@ System design interviews reward **clarity, humility, and reasoning**. Many candi
 
 ---
 
-## Interviewer Lens
+## Evaluator Lens
 
-Interviewers are **collaborators**, not adversaries.
+Evaluators are **collaborators**, not adversaries.
 They want to see how you respond to feedback and uncertainty.
 
 ---
 
 ## Key Takeaway
 
-A good system design interview feels like a **technical discussion**, not a performance.
+A good system design evaluation feels like a **technical discussion**, not a performance.

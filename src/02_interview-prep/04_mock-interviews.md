@@ -3,8 +3,8 @@ learning_level: "Beginner"
 prerequisites: []
 estimated_time: "15 minutes"
 learning_objectives:
-	- "Run a realistic mock interview with a clear structure and time-box"
-	- "Evaluate performance on the same criteria used in interviews"
+	- "Run a realistic mock evaluation with a clear structure and time-box"
+	- "Evaluate performance on the same criteria used in evaluations"
 	- "Use repetition and feedback loops to improve quickly"
 related_topics:
 	prerequisites: []
@@ -18,16 +18,16 @@ related_topics:
 		- "../07_case-studies/README.md"
 ---
 
-# System Design Mock Interviews
+# System Design Mock Evaluations
 
-Mock interviews are the **fastest way to improve** system design performance.
+Mock evaluations are the **fastest way to improve** system design performance.
 
 ---
 
-## How to Conduct a Mock Interview
+## How to Conduct a Mock Evaluation
 
 - Time-box to 45–60 minutes
-- Follow real interview structure
+- Follow real evaluation structure
 - Explain everything verbally
 - Capture feedback immediately
 
@@ -47,7 +47,7 @@ Focus on **depth**, not variety.
 
 ## Evaluation Criteria
 
-Mock interviews should assess:
+Mock evaluations should assess:
 
 - Requirement clarification
 - Architecture clarity
@@ -67,4 +67,4 @@ Mock interviews should assess:
 
 ## Key Takeaway
 
-If you are not doing mock interviews, you are **under-preparing**.
+If you are not doing mock evaluations, you are **under-preparing**.
