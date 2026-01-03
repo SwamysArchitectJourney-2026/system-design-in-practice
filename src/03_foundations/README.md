@@ -12,6 +12,7 @@ This section covers the fundamental abstractions and concepts in distributed sys
 - [C4 Model for System Design (Part 1)](./06_c4-diagrams-part1.md)
 - [Request Flow and Basic Architecture (Part 1)](./07_request-flow-and-basic-architecture-part1.md)
 - [Request Flow and Basic Architecture (Part 2)](./07_request-flow-and-basic-architecture-part2.md)
+- [Performance Metrics](./08_performance-metrics.md)
 
 ---
 
