@@ -53,10 +53,36 @@ function Get-FirstNonEmptyLine {
     param([string[]]$Lines)
     foreach ($line in $Lines) {
         if ($null -ne $line -and $line.Trim().Length -gt 0) {
+            # Allow leading HTML comments (often used for markdownlint directives)
+            if ($line.Trim().StartsWith('<!--')) {
+                continue
+            }
             return $line
         }
     }
     return $null
+}
+
+function Get-FirstNonEmptyContentLine {
+    param([string[]]$Lines)
+
+    if ($Lines.Count -gt 0 -and $Lines[0].Trim() -eq '---') {
+        # Skip YAML frontmatter block
+        for ($i = 1; $i -lt $Lines.Count; $i++) {
+            if ($Lines[$i].Trim() -eq '---') {
+                # Return first non-empty line after frontmatter
+                for ($j = $i + 1; $j -lt $Lines.Count; $j++) {
+                    if ($null -ne $Lines[$j] -and $Lines[$j].Trim().Length -gt 0) {
+                        return $Lines[$j]
+                    }
+                }
+                return $null
+            }
+        }
+        return $null
+    }
+
+    return Get-FirstNonEmptyLine -Lines $Lines
 }
 
 $repoRootPath = (Resolve-Path $RepoRoot).Path
@@ -99,7 +125,7 @@ if (Test-Path -LiteralPath $srcPath) {
     $srcMarkdown = Get-ChildItem -Path $srcPath -Recurse -File -Filter '*.md' -ErrorAction SilentlyContinue
     foreach ($file in $srcMarkdown) {
         $lines = Get-Content -LiteralPath $file.FullName -ErrorAction Stop
-        $first = Get-FirstNonEmptyLine -Lines $lines
+        $first = Get-FirstNonEmptyContentLine -Lines $lines
         if ($null -eq $first -or $first -notmatch '^#\s+\S') {
             $failed = $true
             Write-ComplianceError "File must start with an H1 heading: $($file.FullName)"
