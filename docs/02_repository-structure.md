@@ -110,7 +110,7 @@ system-design-in-practice/
 │   │   ├── 04-uniqueidgenerator/          # Unique ID generator
 │   │   ├── 05-url-shortener/              # URL Shortener (complete case study)
 │   │   │   ├── 01_requirements.md
-│   │   │   ├── 02_back-of-envelope.md
+│   │   │   ├── 02_back-of-envelope-part1.md
 │   │   │   ├── 03_high-level-design.md
 │   │   │   ├── 04_low-level-design.md
 │   │   │   ├── 05_scalability.md

@@ -1,8 +1,8 @@
-# Scale from Zero to Million Users - Component Calculations (Part 1)
+# Scale from Zero to Million Users - Component Calculations (Part 2)
 
 This document covers back-of-envelope calculations for core infrastructure components: Data Store, Caching, and Load Balancing.
 
-> **📋 Main Document**: See [Back-of-Envelope Summary](./02_back-of-envelope.md) for capacity planning by phase and links to all component calculations.
+> **📋 Main Document**: See [Back-of-Envelope Summary (Part 1)](./02_back-of-envelope-part1.md) for capacity planning by phase and links to all component calculations.
 
 ---
 
@@ -173,5 +173,5 @@ Internet → External LB → [App Server 1, App Server 2, ...]
 
 ---
 
-*Next: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - CDN, Monitoring, Alerting*
+*Next: [Component Calculations Part 3](./02_back-of-envelope-part3.md) - CDN, Monitoring, Alerting*
 

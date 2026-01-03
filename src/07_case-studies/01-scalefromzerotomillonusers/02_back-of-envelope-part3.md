@@ -1,8 +1,8 @@
-# Scale from Zero to Million Users - Component Calculations (Part 2)
+# Scale from Zero to Million Users - Component Calculations (Part 3)
 
 This document covers back-of-envelope calculations for content delivery, monitoring, and alerting: CDN, Monitoring, and Alerting.
 
-> **📋 Main Document**: See [Back-of-Envelope Summary](./02_back-of-envelope.md) for capacity planning by phase and links to all component calculations.
+> **📋 Main Document**: See [Back-of-Envelope Summary (Part 1)](./02_back-of-envelope-part1.md) for capacity planning by phase and links to all component calculations.
 
 ---
 
@@ -129,6 +129,6 @@ This document covers back-of-envelope calculations for content delivery, monitor
 
 ---
 
-*Previous: [Component Calculations Part 1](./02_back-of-envelope-part1.md) - Data Store, Caching, Load Balancing*  
-*Next: [Component Calculations Part 3](./02_back-of-envelope-part3.md) - Auto-Scaling, Backup & Recovery, Security & Compliance*
+*Previous: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - Data Store, Caching, Load Balancing*  
+*Next: [Component Calculations Part 4](./02_back-of-envelope-part4.md) - Auto-Scaling, Backup & Recovery, Security & Compliance*
 

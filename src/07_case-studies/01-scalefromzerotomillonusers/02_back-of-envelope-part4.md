@@ -1,8 +1,8 @@
-# Scale from Zero to Million Users - Component Calculations (Part 3)
+# Scale from Zero to Million Users - Component Calculations (Part 4)
 
 This document covers back-of-envelope calculations for operations and security: Auto-Scaling, Backup & Recovery, and Security & Compliance.
 
-> **📋 Main Document**: See [Back-of-Envelope Summary](./02_back-of-envelope.md) for capacity planning by phase and links to all component calculations.
+> **📋 Main Document**: See [Back-of-Envelope Summary (Part 1)](./02_back-of-envelope-part1.md) for capacity planning by phase and links to all component calculations.
 
 ---
 
@@ -131,5 +131,5 @@ This document covers back-of-envelope calculations for operations and security: 
 
 ---
 
-*Previous: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - CDN, Monitoring, Alerting*
+*Previous: [Component Calculations Part 3](./02_back-of-envelope-part3.md) - CDN, Monitoring, Alerting*
 

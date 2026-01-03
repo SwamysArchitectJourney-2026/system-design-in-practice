@@ -15,7 +15,7 @@ related_topics:
     - ../04_principles/01_availability.md
     - ../04_principles/02_reliability.md
     - ../05_building-blocks/02_load-balancers.md
-    - ../07_case-studies/01-scalefromzerotomillonusers/02_back-of-envelope.md
+    - ../07_case-studies/01-scalefromzerotomillonusers/02_back-of-envelope-part1.md
   cross_refs: []
 ---
 

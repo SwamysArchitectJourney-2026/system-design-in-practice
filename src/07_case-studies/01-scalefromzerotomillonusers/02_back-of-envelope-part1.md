@@ -113,9 +113,9 @@
 
 Detailed component-level calculations are split across three documents for better organization:
 
-- **[Part 1: Data Store, Caching, Load Balancing](./02_back-of-envelope-part1.md)** - Core infrastructure components
-- **[Part 2: CDN, Monitoring, Alerting](./02_back-of-envelope-part2.md)** - Content delivery and observability
-- **[Part 3: Auto-Scaling, Backup & Recovery, Security & Compliance](./02_back-of-envelope-part3.md)** - Operations and security
+- **[Part 2: Data Store, Caching, Load Balancing](./02_back-of-envelope-part2.md)** - Core infrastructure components
+- **[Part 3: CDN, Monitoring, Alerting](./02_back-of-envelope-part3.md)** - Content delivery and observability
+- **[Part 4: Auto-Scaling, Backup & Recovery, Security & Compliance](./02_back-of-envelope-part4.md)** - Operations and security
 
 ### Quick Component Summary
 
@@ -132,3 +132,7 @@ Detailed component-level calculations are split across three documents for bette
 | **I. Security & Compliance** | Encryption overhead: 5-10% | HTTPS, basic validation | WAF, DDoS, compliance audits |
 
 For detailed calculations, examples, and capacity planning formulas, see the component-specific documents above.
+
+---
+
+*Next: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - Data Store, Caching, Load Balancing*
