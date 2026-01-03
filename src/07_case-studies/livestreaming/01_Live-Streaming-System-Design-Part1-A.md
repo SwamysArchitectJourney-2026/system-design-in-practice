@@ -16,8 +16,7 @@ related_topics:
     - "../VideoConferencing/02_Detailed-Design-Part1-H.md"
   enables:
     - "./01_Live-Streaming-System-Design-Part1-B.md"
-  cross_refs:
-    - "../../01_Reference/05_DevOps/02_DevOps-GitOps-MLOps-LLMOps-Guide.md"
+  cross_refs: []
 ---
 
 # System Design: Large-Scale Live Streaming – Part 1-A (Overview)

@@ -27,12 +27,12 @@ This document provides a comprehensive index of all topics covered in this repos
 
 ## Preparation
 
-- [Getting Ready for System Design Evaluations](02_interview-prep/01_getting-ready.md)
-- [High-Level vs Low-Level Design (HLD vs LLD)](02_interview-prep/06_hld-vs-lld.md)
-- [Do's and Don'ts](02_interview-prep/02_dos-and-donts.md)
-- [Preparation Timeline](02_interview-prep/03_preparation-timeline.md)
-- [Mock Evaluation Strategies](02_interview-prep/04_mock-interviews.md)
-- [AI Evaluation Tools](02_interview-prep/05_ai-evaluation.md)
+- [Getting Ready for System Design Evaluations](02_evaluation-prep/01_getting-ready.md)
+- [High-Level vs Low-Level Design (HLD vs LLD)](02_evaluation-prep/06_hld-vs-lld.md)
+- [Do's and Don'ts](02_evaluation-prep/02_dos-and-donts.md)
+- [Preparation Timeline](02_evaluation-prep/03_preparation-timeline.md)
+- [Mock Evaluation Strategies](02_evaluation-prep/04_mock-interviews.md)
+- [AI Evaluation Tools](02_evaluation-prep/05_ai-evaluation.md)
 
 ## Foundational Concepts
 

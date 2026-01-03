@@ -8,14 +8,14 @@ learning_objectives:
   - "Differentiate DevOps, GitOps, and DevSecOps and know when to apply each"
 related_topics:
   prerequisites:
-    - 04_principles/02_reliability.md
-    - 04_principles/06_maintainability.md
+    - ../04_principles/02_reliability.md
+    - ../04_principles/06_maintainability.md
   builds_upon:
-    - 05_building-blocks/07_monitoring.md
-    - 05_building-blocks/13_distributed-logging.md
+    - 07_monitoring.md
+    - 13_distributed-logging.md
   enables:
-    - 07_case-studies/01-scalefromzerotomillonusers/05_scalability.md
-    - 07_case-studies/02-rate-limiter/05_scalability.md
+    - ../07_case-studies/01-scalefromzerotomillonusers/05_scalability.md
+    - ../07_case-studies/02-rate-limiter/05_scalability.md
   cross_refs: []
 ---
 
