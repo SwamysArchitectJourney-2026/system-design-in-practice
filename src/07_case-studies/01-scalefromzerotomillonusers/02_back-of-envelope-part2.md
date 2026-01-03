@@ -1,134 +1,177 @@
-# Scale from Zero to Million Users - Component Calculations (Part 2)
+# Scale from Zero to Million Users - Component Calculations (Part 1)
 
-This document covers back-of-envelope calculations for content delivery, monitoring, and alerting: CDN, Monitoring, and Alerting.
+This document covers back-of-envelope calculations for core infrastructure components: Data Store, Caching, and Load Balancing.
 
 > **📋 Main Document**: See [Back-of-Envelope Summary](./02_back-of-envelope.md) for capacity planning by phase and links to all component calculations.
 
 ---
 
-## D. CDN (Content Delivery Network)
+## A. Data Store
 
-**Purpose**: Cache static content at edge locations close to users
-
-**CDN, Traffic Distribution, and Edge Locations**:
-
-**Edge Locations**: Servers distributed globally, close to end users
-- Reduces latency by serving content from nearby locations
-- Typical latency: 10-50ms (vs 100-300ms from origin)
-
-**Traffic Distribution**:
-- DNS routes users to nearest edge location
-- Edge location serves cached content
-- On cache miss, edge fetches from origin and caches for future requests
-
-**Cache Hit Ratio**: 90-95% for static content (typical)
+**Performance Target**: Returns within 50ms for 95% of requests (p95 < 50ms)
 
 **Capacity Planning**:
 
+**Phase 1-2 (0-100K users)**:
+- Single database instance
+- Read replicas for read-heavy workloads
+- Connection pool: 50-100 connections
+- Storage: 365 GB - 3.65 TB/year
+
 **Phase 3-4 (100K-1M+ users)**:
-- CDN for static assets (images, CSS, JS, videos)
-- Edge locations: 50-200+ locations globally
-- Bandwidth: 80-90% of total bandwidth (CDN handles most static traffic)
-- Origin bandwidth: 10-20% of total (cache misses and dynamic content)
+- Database sharding or read replicas
+- Connection pool: 200-500 connections per shard
+- Storage: 3.65 TB - 36.5+ TB/year
+- Read replicas: 2-5 replicas per primary
 
 **Calculations**:
-- **Static Content**: 60-80% of total bandwidth
-- **CDN Bandwidth**: Static bandwidth × 0.9 (90% cache hit)
-- **Origin Bandwidth**: Static bandwidth × 0.1 (10% cache miss) + Dynamic bandwidth
-- **Latency Improvement**: 
-  - Without CDN: 200-300ms (origin to user)
-  - With CDN: 10-50ms (edge to user)
+- **Read Operations**: 90% of traffic (10:1 read/write ratio)
+- **Write Operations**: 10% of traffic
+- **Database Load**: Total QPS / (1 + number of read replicas)
+- **Storage Growth**: Daily writes × record size × retention period
 
 **Example (Phase 3)**:
-- Total bandwidth: 160 Mbps
-- Static content: 60% = 96 Mbps
-- CDN handles: 96 × 0.9 = 86.4 Mbps (cache hits)
-- Origin handles: 96 × 0.1 = 9.6 Mbps (cache misses) + 64 Mbps (dynamic) = 73.6 Mbps
+- 10,000 QPS total
+- 9,000 read QPS, 1,000 write QPS
+- 3 read replicas
+- Primary database handles: 1,000 write QPS + (9,000 / 3) = 4,000 QPS
+- Each replica handles: 3,000 read QPS
 
 ---
 
-## E. Monitoring
+## B. Caching
 
-**Purpose**: Track system health, performance, and business metrics
+**Strategy**: Use Redis or Memcached to cache frequent queries, reducing database load
 
-**Metrics Collected**:
-
-**Infrastructure Metrics**:
-- CPU utilization (per server)
-- Memory usage (per server)
-- Disk I/O (per server)
-- Network bandwidth (per server)
-
-**Application Metrics**:
-- Request rate (QPS/RPS)
-- Response time (p50, p90, p95, p99)
-- Error rate (4xx, 5xx)
-- Cache hit ratio
-
-**Business Metrics**:
-- Active users
-- Transactions per second
-- Revenue per request
+**Cache Hit Ratio Target**: 80-90% (industry standard)
 
 **Capacity Planning**:
 
-**Phase 1-2 (0-100K users)**:
-- Basic monitoring: 10-50 metrics
-- Data retention: 7-30 days
-- Update frequency: 1-5 minutes
+**Phase 2 (1K-100K users)**:
+- Single Redis instance
+- Memory: 2-4 GB
+- Cache TTL: 5-15 minutes
+- Reduces database load by 4-5x
 
 **Phase 3-4 (100K-1M+ users)**:
-- Comprehensive monitoring: 100-1000+ metrics
-- Data retention: 90-365 days
-- Update frequency: 10-60 seconds
-- Distributed tracing for microservices
+- Redis cluster (distributed)
+- Memory: 16-64 GB total (across nodes)
+- Cache TTL: 1-10 minutes (varies by data type)
+- Reduces database load by 5-10x
 
 **Calculations**:
-- **Metrics per Second**: (Number of metrics × Update frequency) / 60
-- **Storage per Day**: (Metrics per second × Bytes per metric × 86400 seconds)
-- **Example**: 100 metrics × 1 update/minute = 100/60 = 1.67 metrics/second
-- Storage: 1.67 × 100 bytes × 86400 = ~14 MB/day
+- **Cache Hit Rate**: 80% (typical)
+- **Database Load Reduction**: 
+  - Without cache: 10,000 QPS to database
+  - With 80% hit rate: 2,000 QPS to database (80% reduction)
+- **Cache Memory**: 
+  - Hot data: 20% of total data
+  - Cache size = (Daily unique reads × record size × 0.2) / cache_hit_ratio
+
+**Example (Phase 3)**:
+- 10,000 read QPS
+- 80% cache hit rate
+- Cache handles: 8,000 QPS (hits)
+- Database handles: 2,000 QPS (misses)
+- Cache memory needed: ~8-16 GB for hot data
 
 ---
 
-## F. Alerting
+## C. Load Balancing
 
-**Purpose**: Notify team when metrics exceed thresholds
+**Types**: External (public-facing) and Internal (service-to-service)
 
-**Alert Types**:
+**External Load Balancer**:
+- Sits between internet and application servers
+- Handles user traffic
+- SSL termination
+- Health checks
+- Geographic routing (Phase 4)
 
-**Critical Alerts** (immediate response):
-- Service down (error rate > 5%)
-- High latency (p95 > 1 second)
-- Database connection failures
-- Disk space < 10%
-
-**Warning Alerts** (investigate soon):
-- Error rate > 1%
-- Latency increasing (p95 > 500ms)
-- CPU > 80%
-- Cache hit ratio < 70%
+**Internal Load Balancer**:
+- Routes traffic between services
+- Service-to-service communication
+- Not exposed to internet
+- Lower latency requirements
 
 **Capacity Planning**:
 
-**Phase 1-2 (0-100K users)**:
-- 5-10 alert rules
-- Email/SMS notifications
-- On-call rotation: 1-2 people
+**Phase 2 (1K-100K users)**:
+- Single external load balancer
+- 1,000-10,000 connections/second capacity
+- Health checks every 5-10 seconds
 
 **Phase 3-4 (100K-1M+ users)**:
-- 20-50+ alert rules
-- PagerDuty/Opsgenie integration
-- On-call rotation: 5-10 people
-- Alert routing by service/severity
+- External load balancer with auto-scaling
+- 10,000-100,000+ connections/second capacity
+- Internal load balancers for microservices
+- Health checks every 1-5 seconds
 
 **Calculations**:
-- **Alert Volume**: Typically 1-5% of metrics generate alerts
-- **False Positive Rate**: Target < 5% (alerts that don't require action)
-- **Alert Fatigue**: Too many alerts reduce effectiveness (aim for < 10 alerts/day per on-call person)
+- **Connections per Second**: Peak QPS × average connection duration
+- **Load Balancer Capacity**: Must handle 2-3x peak traffic for headroom
+- **Health Check Overhead**: (Number of backends × health check frequency) / 60 seconds
+
+**Example (Phase 3)**:
+- 10,000 peak QPS
+- Average connection: 2 seconds
+- Connections/second: 10,000 × 2 = 20,000 connections/second
+- Load balancer capacity needed: 20,000 × 2 = 40,000 connections/second (with headroom)
+
+### Internal vs External Load Balancers
+
+**External Load Balancer** (Public-facing):
+- **Location**: Between internet and application servers
+- **Purpose**: Distribute user traffic to application servers
+- **Features**:
+  - SSL/TLS termination
+  - Public IP addresses
+  - DDoS protection
+  - Geographic routing (multi-region)
+- **Use Cases**: 
+  - User-facing APIs
+  - Web applications
+  - Mobile app backends
+- **Latency**: 1-5ms overhead per request
+
+**Internal Load Balancer** (Service-to-service):
+- **Location**: Inside private network, between services
+- **Purpose**: Route traffic between microservices
+- **Features**:
+  - Private IP addresses only
+  - Service discovery integration
+  - Health checks
+  - Circuit breaker support
+- **Use Cases**:
+  - Microservices communication
+  - Database connection pooling
+  - Internal API routing
+- **Latency**: 0.5-2ms overhead per request
+
+**When to Use Each**:
+
+**External Load Balancer**:
+- All user-facing traffic
+- Phase 2+ (when you have multiple application servers)
+- Required for SSL termination
+- Needed for geographic distribution
+
+**Internal Load Balancer**:
+- Microservices architecture (Phase 4)
+- Service mesh implementations
+- Database read replica routing
+- Internal service-to-service communication
+
+**Example Architecture (Phase 4)**:
+```text
+Internet → External LB → [App Server 1, App Server 2, ...]
+                              ↓
+                    Internal LB → [User Service, Order Service, ...]
+                              ↓
+                    Internal LB → [Database Primary, Read Replica 1, ...]
+```
 
 ---
 
-*Previous: [Component Calculations Part 1](./02_back-of-envelope-part1.md) - Data Store, Caching, Load Balancing*  
-*Next: [Component Calculations Part 3](./02_back-of-envelope-part3.md) - Auto-Scaling, Backup & Recovery, Security & Compliance*
+*Next: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - CDN, Monitoring, Alerting*
 
