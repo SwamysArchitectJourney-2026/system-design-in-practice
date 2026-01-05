@@ -3,7 +3,7 @@
 
   ExpectedFolders = @(
     'src\01_introduction'
-    'src\02_interview-prep'
+    'src\02_evaluation-prep'
     'src\03_foundations'
     'src\04_principles'
     'src\05_building-blocks'

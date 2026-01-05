@@ -99,7 +99,7 @@ This is **Swamy's personal learning** repository and reference workspace, not of
 ```text
 src/
 ├── 01_introduction/          → Getting started with system design
-├── 02_interview-prep/        → Preparation strategies
+├── 02_evaluation-prep/        → Preparation strategies
 ├── 03_foundations/           → Foundational concepts (abstractions, consistency, failures, C4 diagrams)
 ├── 04_principles/            → System design principles (availability, scalability, etc.)
 ├── 05_building-blocks/       → Core components (DNS, load balancers, databases, etc.)
@@ -176,7 +176,7 @@ For the complete repository structure with all file names and details, see: **[`
 
 ### For Preparation
 
-1. Review `src/02_interview-prep/README.md`
+1. Review `src/02_evaluation-prep/README.md`
 2. Study `src/05_building-blocks/` (core components)
 3. Practice `src/07_case-studies/` (multiple case studies)
 4. Review `src/08_failures/` (learn from real incidents)

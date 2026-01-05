@@ -13,7 +13,7 @@ related_topics:
 	enables:
 		- "04_mock-interviews.md"
 	cross_refs:
-		- "../../docs/01_ROADMAP.md"
+		- "../../docs/01_road-map.md"
 		- "../CONTENT_INDEX.md"
 ---
 

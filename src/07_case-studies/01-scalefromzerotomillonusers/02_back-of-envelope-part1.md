@@ -93,3 +93,46 @@
 - **Read/Write Ratio**: 10:1 read/write ratio affects database design
 - **Data Growth**: Plan for 3-5 years of data retention
 - **Geographic Distribution**: Multi-region deployment for global users
+
+---
+
+## Understanding Performance Metrics
+
+> **📚 Foundational Content**: For detailed explanations of performance metrics (p90/p95, latency vs throughput, QPS/RPS, concurrent users), see [Performance Metrics in System Design](../../03_foundations/08_performance-metrics.md).
+
+**Quick Reference**:
+- **p90/p95**: Percentile metrics showing response time distribution (p95 = 95% of requests finish in this time)
+- **Latency**: Time to complete a request (lower is better, measured in ms)
+- **Throughput**: Requests processed per second (higher is better, measured in RPS/QPS)
+- **Concurrent Users vs RPS**: RPS = (Concurrent Users × Requests per Session) / Session Duration
+- **QPS vs RPS**: Essentially the same metric (QPS for databases, RPS for APIs)
+
+---
+
+## Component-Level Back-of-Envelope Calculations
+
+Detailed component-level calculations are split across three documents for better organization:
+
+- **[Part 2: Data Store, Caching, Load Balancing](./02_back-of-envelope-part2.md)** - Core infrastructure components
+- **[Part 3: CDN, Monitoring, Alerting](./02_back-of-envelope-part3.md)** - Content delivery and observability
+- **[Part 4: Auto-Scaling, Backup & Recovery, Security & Compliance](./02_back-of-envelope-part4.md)** - Operations and security
+
+### Quick Component Summary
+
+| Component | Key Metrics | Phase 1-2 | Phase 3-4 |
+|-----------|-------------|-----------|-----------|
+| **A. Data Store** | p95 < 50ms | Single DB, 50-100 connections | Sharded/Replicated, 200-500 connections/shard |
+| **B. Caching** | 80-90% hit rate | 2-4 GB Redis | 16-64 GB Redis cluster |
+| **C. Load Balancing** | 2-3x peak capacity | External LB, 1K-10K conn/s | External + Internal LBs, 10K-100K+ conn/s |
+| **D. CDN** | 90-95% cache hit | Not needed | 50-200+ edge locations |
+| **E. Monitoring** | 10-1000+ metrics | 10-50 metrics, 7-30 day retention | 100-1000+ metrics, 90-365 day retention |
+| **F. Alerting** | < 10 alerts/day/person | 5-10 rules, Email/SMS | 20-50+ rules, PagerDuty integration |
+| **G. Auto-Scaling** | CPU/Memory triggers | 2-20 instances | 20-100+ instances |
+| **H. Backup & Recovery** | RTO: 1-24 hours | Daily backups, 7-30 day retention | Continuous + daily, 30-90 day retention |
+| **I. Security & Compliance** | Encryption overhead: 5-10% | HTTPS, basic validation | WAF, DDoS, compliance audits |
+
+For detailed calculations, examples, and capacity planning formulas, see the component-specific documents above.
+
+---
+
+*Next: [Component Calculations Part 2](./02_back-of-envelope-part2.md) - Data Store, Caching, Load Balancing*

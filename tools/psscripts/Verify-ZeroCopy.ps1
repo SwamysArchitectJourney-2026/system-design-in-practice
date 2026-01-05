@@ -33,12 +33,14 @@ $sourceMaterialPath = Join-Path $RepoRoot "source-material"
 $sourceFiles = @()
 
 if (Test-Path $sourceMaterialPath) {
-    $sourceFiles = Get-ChildItem -Path $sourceMaterialPath -Filter "*.md" -Recurse -ErrorAction SilentlyContinue
+    $sourceFiles = @(Get-ChildItem -Path $sourceMaterialPath -Filter "*.md" -Recurse -ErrorAction SilentlyContinue)
 }
 
 if ($SourceFiles.Count -gt 0) {
-    $sourceFiles += $SourceFiles | ForEach-Object { Get-Item $_ -ErrorAction SilentlyContinue }
+    $sourceFiles += @($SourceFiles | ForEach-Object { Get-Item $_ -ErrorAction SilentlyContinue })
 }
+
+$sourceFiles = @($sourceFiles | Where-Object { $_ })
 
 if ($sourceFiles.Count -eq 0) {
     Write-Host "No source material files found to check against." -ForegroundColor Yellow
@@ -49,6 +51,8 @@ if ($sourceFiles.Count -eq 0) {
 # Get content files to check
 $contentFiles = Get-ChildItem -Path (Join-Path $RepoRoot "src") -Filter "*.md" -Recurse -ErrorAction SilentlyContinue |
     Where-Object { $_.FullName -notmatch '\\resources\\' }
+
+$contentFiles = @($contentFiles)
 
 Write-Host "Zero-Copy Policy Verification" -ForegroundColor Cyan
 Write-Host "=" * 60 -ForegroundColor Cyan

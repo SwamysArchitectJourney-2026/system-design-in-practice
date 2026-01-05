@@ -11,7 +11,7 @@ This case study covers the complete design journey of scaling a system from init
 ### Core Documentation
 
 1. **[Requirements](./01_requirements.md)** - Functional and non-functional requirements, scale considerations
-2. **[Back-of-Envelope](./02_back-of-envelope.md)** - Capacity planning calculations (storage, bandwidth, servers)
+2. **[Back-of-Envelope](./02_back-of-envelope-part1.md)** - Capacity planning calculations (storage, bandwidth, servers)
 3. **[High-Level Design](./03_high-level-design.md)** - System architecture, components, and design decisions
 4. **[Low-Level Design](./04_low-level-design.md)** - Detailed implementation: data models, APIs, service logic
 5. **[Scalability](./05_scalability.md)** - Scaling strategies, infrastructure evolution, performance optimization

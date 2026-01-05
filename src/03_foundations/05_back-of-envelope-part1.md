@@ -11,7 +11,7 @@ related_topics:
   builds_upon: []
   enables:
     - ./05_back-of-envelope-part2.md
-    - ../07_case-studies/01-scalefromzerotomillonusers/02_back-of-envelope.md
+    - ../07_case-studies/01-scalefromzerotomillonusers/02_back-of-envelope-part1.md
     - ../07_case-studies/05-url-shortener/02_back-of-envelope.md
   cross_refs: []
 ---

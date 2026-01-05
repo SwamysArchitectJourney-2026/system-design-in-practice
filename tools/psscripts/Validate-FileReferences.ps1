@@ -69,18 +69,23 @@ function Parse-YamlReferences {
 
     $references = @()
 
-    # Check for prerequisites, builds_upon, enables, related_topics
-    $referenceKeys = @('prerequisites', 'builds_upon', 'enables', 'related_topics')
+    # Note: 'related_topics' is a mapping and should NOT be treated as a direct reference value.
+    # We scan for reference-like keys wherever they appear in the frontmatter.
+    $referenceKeys = @('prerequisites', 'builds_upon', 'enables', 'cross_refs')
 
     foreach ($key in $referenceKeys) {
-        $pattern = "$key\s*:\s*(.+?)(?:\s*$|\s*#)"
-        if ($YamlContent -match $pattern) {
-            $value = $matches[1].Trim()
+        $pattern = "(?m)^\s*$key\s*:\s*(.+?)\s*$"
+        $keyMatches = [regex]::Matches($YamlContent, $pattern)
+        foreach ($keyMatch in $keyMatches) {
+            $value = $keyMatch.Groups[1].Value.Trim()
+            if ([string]::IsNullOrWhiteSpace($value) -or $value -eq '[]') { continue }
             # Handle array format: - file.md or [file1.md, file2.md]
-            if ($value -match '^\[(.+)\]$') {
-                $items = $matches[1] -split ',' | ForEach-Object { $_.Trim().Trim("'`\"\"") }
+            if ($value -match '^\[(.*)\]$') {
+                if ([string]::IsNullOrWhiteSpace($matches[1])) { continue }
+                $items = $matches[1] -split ',' | ForEach-Object { ($_.Trim() -replace '^[''"]|[''"]$', '') }
                 foreach ($item in $items) {
                     if (-not [string]::IsNullOrWhiteSpace($item)) {
+                        if ($item -notmatch '(?i)\.md($|[?#])') { continue }
                         $references += [PSCustomObject]@{
                             Type = 'yaml'
                             Key = $key
@@ -90,8 +95,9 @@ function Parse-YamlReferences {
                     }
                 }
             } elseif ($value -match '^-\s*(.+)$') {
-                $item = $matches[1].Trim().Trim("'`\"")
+                $item = ($matches[1].Trim() -replace '^[''"]|[''"]$', '')
                 if (-not [string]::IsNullOrWhiteSpace($item)) {
+                    if ($item -notmatch '(?i)\.md($|[?#])') { continue }
                     $references += [PSCustomObject]@{
                         Type = 'yaml'
                         Key = $key
@@ -100,8 +106,9 @@ function Parse-YamlReferences {
                     }
                 }
             } else {
-                $item = $value.Trim().Trim("'`\"")
+                $item = ($value.Trim() -replace '^[''"]|[''"]$', '')
                 if (-not [string]::IsNullOrWhiteSpace($item)) {
+                    if ($item -notmatch '(?i)\.md($|[?#])') { continue }
                     $references += [PSCustomObject]@{
                         Type = 'yaml'
                         Key = $key
@@ -122,8 +129,25 @@ function Parse-MarkdownLinks {
     $references = @()
     $linkRegex = [regex]'\[([^\]]+)\]\(([^\)]+)\)'
 
+    $inFence = $false
+    $fenceMarker = $null
+
     for ($i = 0; $i -lt $Lines.Count; $i++) {
         $line = $Lines[$i]
+
+        # Ignore links inside fenced code blocks (``` or ~~~). Templates frequently contain example links.
+        if ($line -match '^\s*(```|~~~)') {
+            if (-not $inFence) {
+                $inFence = $true
+                $fenceMarker = $matches[1]
+            } elseif ($matches[1] -eq $fenceMarker) {
+                $inFence = $false
+                $fenceMarker = $null
+            }
+            continue
+        }
+        if ($inFence) { continue }
+
         foreach ($match in $linkRegex.Matches($line)) {
             $target = $match.Groups[2].Value.Trim()
             if ([string]::IsNullOrWhiteSpace($target)) { continue }
@@ -203,7 +227,8 @@ foreach ($ref in $allReferences) {
 
     if (-not (Test-Path -LiteralPath $resolved)) {
         $relativePath = $ref.File.Replace($repoRootPath, '').TrimStart('\\')
-        $lineInfo = if ($ref.Line) { " (line $($ref.Line))" } else { "" }
+        $lineProp = $ref.PSObject.Properties['Line']
+        $lineInfo = if ($lineProp -and $lineProp.Value) { " (line $($lineProp.Value))" } else { "" }
         $errors += "  - $relativePath$lineInfo : References '$($ref.Target)' (resolved: $resolved)"
     }
 }

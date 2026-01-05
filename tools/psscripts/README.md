@@ -93,10 +93,6 @@ Runs Markdown lint (`markdownlint-cli2`) and link checking (Lychee) using repo `
 
 ### One-off Maintenance
 
-#### `reorder-url-shortener.ps1`
-
-Legacy helper preserved for history; no longer performs renames/reorders.
-
 ---
 
 ## 🚀 Quick Start

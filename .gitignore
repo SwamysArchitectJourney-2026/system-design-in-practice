@@ -419,3 +419,6 @@ FodyWeavers.xsd
 
 # Source material
 source-material/
+
+# Copilot-generated local artifacts (do not track)
+.copilot/tmp/

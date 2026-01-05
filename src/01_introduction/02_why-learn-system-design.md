@@ -13,7 +13,7 @@ related_topics:
   enables:
     - "03_learning-structure.md"
   cross_refs:
-    - "../02_interview-prep/README.md"
+    - "../02_evaluation-prep/README.md"
 ---
 
 # Why Every Developer Should Learn System Design
