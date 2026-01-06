@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter()]
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")),
+    [string]$RepoRoot = ((Resolve-Path (Join-Path $PSScriptRoot "..\..") | Select-Object -First 1 -ExpandProperty Path)),
 
     [Parameter()]
     [string[]]$SourceFiles = @(),
